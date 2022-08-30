@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('wargas', function (Blueprint $table) {
-            $table->unsignedBigInteger('no_ktp')->primary();
+            $table->id();
+            $table->bigInteger('no_ktp')->unique();
             $table->string('nama_lengkap');
             $table->string('agama');
             $table->string('tempat_lahir');

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('detail_keluargas', function (Blueprint $table) {
             $table->unsignedBigInteger('keluarga_id'); 
-            $table->unsignedBigInteger('no_ktp'); 
+            $table->unsignedBigInteger('warga_id'); 
 
             $table->foreign('keluarga_id')->references('id')->on('keluargas')->onDelete('cascade');
-            $table->foreign('no_ktp')->references('no_ktp')->on('wargas')->onDelete('cascade');
+            $table->foreign('warga_id')->references('id')->on('wargas')->onDelete('cascade');
         });
     }
 
