@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('users/update', [UserController::class, 'update'])->name('user.update');
     Route::delete('users/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     
+    Route::get('warga', [WargaController::class, 'index'])->name('wargas');
+    Route::get('warga/{id}', [WargaController::class, 'show'])->name('warga.show');
+    Route::post('warga/create', [WargaController::class, 'create'])->name('warga.create');
+    Route::post('warga/update', [WargaController::class, 'update'])->name('warga.update');
+    Route::delete('warga/delete/{id}', [WargaController::class, 'delete'])->name('warga.delete');
 });

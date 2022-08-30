@@ -10,22 +10,10 @@
     <li class="nav-heading">Master</li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="ri-folder-5-fill"></i><span>Data Penduduk</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link {{ $title == 'Data penduduk' ? '' : 'collapsed' }}" href="{{ route('wargas') }}">
+            <i class="ri-folder-5-fill"></i>
+            <span>Data Penduduk</span>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="#" class="active">
-                    <i class="bi bi-circle"></i><span>Daftar Penduduk</span>
-                </a>
-            </li>
-            <li>
-                <a href="components-accordion.html">
-                    <i class="bi bi-circle"></i><span>Tambah Penduduk</span>
-                </a>
-            </li>
-
-        </ul>
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
