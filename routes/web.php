@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\KeluargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('warga/create', [WargaController::class, 'create'])->name('warga.create');
     Route::post('warga/update', [WargaController::class, 'update'])->name('warga.update');
     Route::delete('warga/delete/{id}', [WargaController::class, 'delete'])->name('warga.delete');
+
+     Route::get('keluarga/tambah', [KeluargaController::class, 'add'])->name('keluarga.add');
 });

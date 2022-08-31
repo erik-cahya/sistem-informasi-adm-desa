@@ -1,7 +1,11 @@
+@php
+$route = Route::current()->getName();
+@endphp
+
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item ">
-        <a class="nav-link {{ $title == 'Home' ? '' : 'collapsed' }}" href="{{ route('home') }}">
+        <a class="nav-link {{ Request::segment(1) == 'home' ? '' : 'collapsed' }}" href="{{ route('home') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
         </a>
@@ -10,24 +14,26 @@
     <li class="nav-heading">Master</li>
 
     <li class="nav-item">
-        <a class="nav-link {{ $title == 'Data penduduk' ? '' : 'collapsed' }}" href="{{ route('wargas') }}">
+        <a class="nav-link {{ Request::segment(1) == 'warga' ? '' : 'collapsed' }}" href="{{ route('wargas') }}">
             <i class="ri-folder-5-fill"></i>
             <span>Data Penduduk</span>
         </a>
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::segment(1) == 'keluarga' ? '' : 'collapsed' }}" data-bs-target="#forms-nav"
+            data-bs-toggle="collapse" href="#">
             <i class="ri-folder-5-fill"></i><span>Data Keluarga</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content collapse {{ Request::segment(1) == 'keluarga' ? 'show' : '' }}"
+            data-bs-parent="#sidebar-nav">
             <li>
-                <a href="forms-elements.html">
+                <a href="forms-elements.html" class="{{ $route == 'keluargas' ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Daftar Keluarga</span>
                 </a>
             </li>
             <li>
-                <a href="forms-layouts.html">
+                <a href="{{ route('keluarga.add') }}" class="{{ $route == 'keluarga.add' ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Tambah Kelaurga</span>
                 </a>
             </li>
