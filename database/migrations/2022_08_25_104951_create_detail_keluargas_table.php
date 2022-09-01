@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('detail_keluargas', function (Blueprint $table) {
             $table->unsignedBigInteger('keluarga_id'); 
-            $table->unsignedBigInteger('warga_id'); 
-
+            $table->unsignedBigInteger('warga_id');
+            $table->string('status_anggota');
+            $table->timestamps();
+             
             $table->foreign('keluarga_id')->references('id')->on('keluargas')->onDelete('cascade');
             $table->foreign('warga_id')->references('id')->on('wargas')->onDelete('cascade');
         });
