@@ -21,6 +21,7 @@
 
 
                           <form id="form_new_keluarga" method="post">
+                              @csrf
                               <div class="form-group">
                                   <label for="input-no_kk">Nomor Kartu Keluarga</label>
                                   <input id="input-no_kk" type="text" class="form-control form-control-sm"
@@ -82,8 +83,9 @@
                                   <label for="table-anggota">Daftar Anggota</label>
 
                                   <div class="d-flex flex-row">
-                                      <select id="select-warga" class="form-control custom-select">
-                                          <option value="-">-</option>
+                                      <select id="input-anggota"
+                                          class="js-example-placeholder-single js-states form-control custom-select">
+                                          <option value="-"></option>
                                           @foreach ($wargas as $warga)
                                               <option value="{{ $warga->id }}">{{ $warga->nama_lengkap }}
                                                   ({{ $warga->no_ktp }})
@@ -104,10 +106,12 @@
                                                   Keluarga</a>
                                           </li>
                                       </ul>
+
                                   </div>
 
                                   <table id="table-anggota" class="table">
                                       <tr>
+                                          <th style="display: none">ID</th>
                                           <th>NIK</th>
                                           <th>Nama Lengkap</th>
                                           <th>Status</th>
@@ -128,7 +132,7 @@
 
       <script>
           $(document).ready(function() {
-              $('#table-anggota').hide()
+              $('#table-anggota').hide();
 
               $.ajaxSetup({
                   headers: {
@@ -137,41 +141,32 @@
               });
 
               //select warga
-
-              $('#select-kepala_keluarga').select2({
-                  theme: "bootstrap"
-              });
-
-              $('#select-warga').select2({
-                  theme: "bootstrap"
+              $('#input-anggota').select2({
+                  theme: "bootstrap",
               });
 
               addAnggota = (sebagai) => {
-                  var id_warga = $("#select-warga").val();
-                  if (id_warga == "-") {
+                  var id_warga = $("#input-anggota").val();
+                  if (id_warga == "-" || id_warga == undefined) {
 
                   } else {
 
                       var status = (sebagai == 'kepala') ? 'Kepala Keluarga' : 'Anggota Keluarga';
 
-
-                      console.log(id_warga)
                       var url = '{{ route('warga.show', ':id') }}';
-
-                      $('#table-anggota').show()
 
                       $.ajax({
                           url: url.replace(':id', id_warga),
                           success: function(response) {
-                              console.log(response);
 
                               var tr = $('#table-anggota tr[data-id="' + response.id + '"]');
 
-                              console.log(tr.length);
+
                               if (!tr.length) {
                                   var markup =
                                       `
                                 <tr data-id="${response.id}">
+                                    <td style="display:none;">${response.id}</td>
                                     <td>${ response.no_ktp}</td>
                                     <td>${ response.nama_lengkap}</td>
                                     <td>${ status}</td>
@@ -185,6 +180,7 @@
                                 </tr>
                               `;
                                   $("#table-anggota tbody").append(markup);
+                                  $('#table-anggota').show();
 
                                   if (sebagai == 'kepala') {
                                       $("#button-kepala").hide();
@@ -199,7 +195,7 @@
                                       showConfirmButton: true
                                   })
                               }
-
+                              $("#input-anggota").val('').trigger('change')
                           },
                           error: function(xhr, status, error) {
                               var err = eval(xhr.responseJSON);
@@ -234,14 +230,136 @@
                   // get the current row
                   var currentRow = $(this).closest("tr");
 
-                  var col3 = currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-
+                  // get current row 3rd TD
+                  var col3 = currentRow.find("td:eq(3)").text();
                   if (col3 == 'Kepala Keluarga') {
                       $("#button-kepala").show();
                   }
-                  console.log(col3);
+
+                  //hide table if no data
+                  var rowCount = $("#table-anggota tr").length;
+                  if (rowCount == 2) {
+                      $('#table-anggota').hide();
+                  }
+
+
                   $(this).closest('tr').remove();
                   return false;
+              });
+
+              //Create Data
+              $("#form_new_keluarga").submit(function(event) {
+
+                  /* stop form from submitting normally */
+                  event.preventDefault();
+
+
+
+                  //get data  from table
+                  var DataAnggota = [];
+                  var checkKepalaKeluarga = false;
+                  $('#table-anggota tr').each(function(index) {
+
+                      //get Id Anggota
+                      var id = $(this).find("td:eq(0)").html();
+
+                      //get Status Anggota
+                      var status = $(this).find("td:eq(3)").html();
+
+                      if (status == "Kepala Keluarga") {
+                          checkKepalaKeluarga = true;
+                      }
+
+                      var anggota = new Object();
+                      anggota.id = id;
+                      anggota.status = status;
+
+                      if (index != 0) {
+                          DataAnggota[index - 1] = anggota;
+                      }
+                  });
+
+                  //cek kepala keluarga
+                  if (!checkKepalaKeluarga) {
+                      Swal.fire({
+                          position: 'center',
+                          icon: 'warning',
+                          title: `Upss...`,
+                          text: `Masukkan anggota Kepala keluarga`,
+                          showConfirmButton: true
+                      })
+                      checkKepalaKeluarga = false;
+                  } else {
+
+                      var data_input = new Object();
+                      data_input.no_kk = $("#input-no_kk").val();
+                      data_input.alamat = $("#input-alamat").val();
+                      data_input.dusun = $("#input-dusun").val();
+                      data_input.rt = $("#input-rt").val();
+                      data_input.rw = $("#input-rw").val();
+                      data_input.ekonomi = $("#input-ekonomi").val();
+                      data_input.anggotas = DataAnggota;
+
+                      console.log(data_input);
+
+
+                      //reset validation
+                      for (obj in data_input) {
+                          $(`#input-${obj}`).attr("class", "form-control is-valid");
+                      }
+
+                      $.ajax({
+                          url: '{{ route('keluarga.create') }}',
+                          method: 'POST',
+                          dataType: 'json',
+                          contentType: 'application/x-www-form-urlencoded',
+                          data: data_input,
+                          success: function(response) {
+                              console.log(response);
+
+                              $("#form_new_keluarga").trigger('reset');
+                              $("#table-anggota tr").remove();
+                              $('#table-anggota').hide();
+
+                              //sweet alert message success
+                              Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: `Success`,
+                                  text: `${response.message}`,
+                                  showConfirmButton: false,
+                                  timer: 2000
+                              }).then(function() {
+                                  location.reload();
+                              });
+
+                          },
+                          error: function(xhr, status, error) {
+                              var err = eval(xhr.responseJSON);
+                              console.log(err.errors);
+
+                              if (err.errors != undefined) {
+
+                                  //error validation
+                                  for (var obj in err.errors) {
+                                      checkValidation(err.errors[obj], "input-" + obj,
+                                          "message-" +
+                                          obj);
+                                  }
+
+                              } else {
+                                  //sweet alert message error
+                                  Swal.fire({
+                                      position: 'center',
+                                      icon: 'error',
+                                      title: `${status}`,
+                                      text: `${err.message}`,
+                                      showConfirmButton: true
+                                  })
+                              }
+                          }
+                      })
+                  }
               });
 
 
