@@ -42,6 +42,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('warga/update', [WargaController::class, 'update'])->name('warga.update');
     Route::delete('warga/delete/{id}', [WargaController::class, 'delete'])->name('warga.delete');
 
+    Route::get('keluarga', [KeluargaController::class, 'index'])->name('keluargas');
+    Route::get('keluarga/get', [KeluargaController::class, 'show'])->name('keluarga.show');
+    Route::get('keluarga/get/{id}', [KeluargaController::class, 'show'])->name('keluarga.show');
     Route::get('keluarga/tambah', [KeluargaController::class, 'add'])->name('keluarga.add');
     Route::post('keluarga/create', [KeluargaController::class, 'create'])->name('keluarga.create');
+    Route::post('keluarga/update', [KeluargaController::class, 'update'])->name('keluarga.update');
+    Route::delete('keluarga/delete/{id}', [KeluargaController::class, 'delete'])->name('keluarga.delete');
 });

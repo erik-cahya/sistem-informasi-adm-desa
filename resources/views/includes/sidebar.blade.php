@@ -28,7 +28,7 @@ $route = Route::current()->getName();
         <ul id="forms-nav" class="nav-content collapse {{ Request::segment(1) == 'keluarga' ? 'show' : '' }}"
             data-bs-parent="#sidebar-nav">
             <li>
-                <a href="forms-elements.html" class="{{ $route == 'keluargas' ? 'active' : '' }}">
+                <a href="{{ route('keluargas') }}" class="{{ $route == 'keluargas' ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Daftar Keluarga</span>
                 </a>
             </li>
