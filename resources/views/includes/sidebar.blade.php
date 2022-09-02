@@ -18,27 +18,14 @@ $route = Route::current()->getName();
             <i class="ri-folder-5-fill"></i>
             <span>Data Penduduk</span>
         </a>
-    </li><!-- End Components Nav -->
+    </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ Request::segment(1) == 'keluarga' ? '' : 'collapsed' }}" data-bs-target="#forms-nav"
-            data-bs-toggle="collapse" href="#">
-            <i class="ri-folder-5-fill"></i><span>Data Keluarga</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link {{ Request::segment(1) == 'keluarga' ? '' : 'collapsed' }}" href="{{ route('keluargas') }}">
+            <i class="ri-folder-5-fill"></i>
+            <span>Data Keluarga</span>
         </a>
-        <ul id="forms-nav" class="nav-content collapse {{ Request::segment(1) == 'keluarga' ? 'show' : '' }}"
-            data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="{{ route('keluargas') }}" class="{{ $route == 'keluargas' ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Daftar Keluarga</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('keluarga.add') }}" class="{{ $route == 'keluarga.add' ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Tambah Kelaurga</span>
-                </a>
-            </li>
-        </ul>
-    </li><!-- End Forms Nav -->
+    </li>
 
     <li class="nav-heading">Menu</li>
 

@@ -34,15 +34,6 @@ class KeluargaController extends Controller
         return view('pages.keluarga', $data);
     }
 
-    public function add()
-    {
-        $data = [
-            'title' => "Tambah data keluarga",
-            'wargas' => Warga::get()
-        ];
-        return view('pages.tambah-keluarga', $data);
-    }
-
     public function show($id = null){
 
         if ($id == null) {
