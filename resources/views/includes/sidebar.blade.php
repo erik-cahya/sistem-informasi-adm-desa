@@ -30,31 +30,31 @@ $route = Route::current()->getName();
     <li class="nav-heading">Menu</li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-            <i class="ri-draft-line"></i>
-            <span>Buat Surat</span>
+        <a class="nav-link collapsed" href="pages-register.html">
+            <i class="ri ri-arrow-left-right-fill"></i>
+            <span>Data Mutasi</span>
         </a>
-    </li><!-- End Profile Page Nav -->
+    </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="pages-faq.html">
             <i class="ri-user-add-line"></i>
             <span>Lahir/Masuk</span>
         </a>
-    </li><!-- End F.A.Q Page Nav -->
+    </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link {{ Request::segment(2) == 'keluar' ? '' : 'collapsed' }}"
+            href="{{ route('mutasi.keluar') }}">
             <i class="ri-user-received-line"></i>
             <span>Wafat/Keluar</span>
         </a>
-    </li><!-- End Contact Page Nav -->
+    </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-            <i class="bx bxs-log-out"></i>
-            <span>Mutasi</span>
+        <a class="nav-link collapsed" href="users-profile.html">
+            <i class="ri-draft-line"></i>
+            <span>Buat Surat</span>
         </a>
-    </li><!-- End Register Page Nav -->
-
+    </li>
 </ul>

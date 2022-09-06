@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaController;
+use App\Http\Controllers\MutasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('keluarga/create', [KeluargaController::class, 'create'])->name('keluarga.create');
     Route::post('keluarga/update', [KeluargaController::class, 'update'])->name('keluarga.update');
     Route::delete('keluarga/delete/{id}', [KeluargaController::class, 'delete'])->name('keluarga.delete');
+
+    Route::post('mutasi/create', [MutasiController::class, 'create'])->name('mutasi.create');
+    Route::get('mutasi/keluar', [MutasiController::class, 'mutasiKeluar'])->name('mutasi.keluar');
+    Route::get('mutasi/masuk', [MutasiController::class, 'mutasiMasuk'])->name('mutasi.masuk');
+    Route::get('mutasi', [MutasiController::class, 'index'])->name('mutasi');
+    
 });
