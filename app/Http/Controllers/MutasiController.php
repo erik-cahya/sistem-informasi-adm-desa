@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Warga;
+use App\Models\Mutasi;
+use Illuminate\Support\Facades\DB;
 
 class MutasiController extends Controller
 {
@@ -31,23 +33,15 @@ class MutasiController extends Controller
 
         DB::transaction(function() use ($request) {
            
-            $keluarga = Keluarga::create([
-                'no_kk' => $request->no_kk,
-                'alamat' => $request->alamat,
-                'dusun' => $request->dusun ,
-                'rt' => $request->rt,
-                'rw' => $request->rw,
-                'ekonomi' => $request->ekonomi
+            Mutasi::create([
+                'warga_id' => $request->id,
+                'jenis_mutasi' => $request->type_mutasi,
+                'tgl_keluar_masuk' => $request->tanggal_keluar_masuk ,
+                'keterangan' => $request->keterangan
             ]);
 
-            $anggotas = $request->anggotas;
-            foreach($anggotas as $anggota){
-                DetailKeluarga::create([
-                    'keluarga_id' => $keluarga->id,
-                    'warga_id' => $anggota['id'],
-                    'status_anggota' => $anggota['status']
-                ]);
-            }
+            Warga::find($request->id)->update(['status_warga' => '0']);
+           
         });
       
         return response()->json(['message'=>'Data berhasil di simpan.']);

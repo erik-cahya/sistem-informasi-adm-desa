@@ -58,11 +58,17 @@
                                       <label for="input-tanggal_keluar_masuk">Tanggal</label>
                                       <input id="input-tanggal_keluar_masuk" type="date"
                                           class="form-control form-control-sm" value="">
+                                      <div class="invalid-feedback">
+                                          <span id="message-tanggal_keluar_masuk"></span>
+                                      </div>
                                   </div>
 
                                   <div class="form-group">
                                       <label for="input-keterangan">Keterangan</label>
                                       <textarea id="input-keterangan" class="form-control form-control-sm" style="height: 100px" value=""></textarea>
+                                      <div class="invalid-feedback">
+                                          <span id="message-keterangan"></span>
+                                      </div>
                                   </div>
 
                               </div>
@@ -236,9 +242,9 @@
                               text: `${response.message}`,
                               showConfirmButton: false,
                               timer: 2000
-                          }.then(function() {
+                          }).then(function() {
                               location.reload();
-                          }));
+                          });
 
                       },
                       error: function(xhr, status, error) {
@@ -247,11 +253,13 @@
 
                           if (err.errors != undefined) {
 
-                              //error validation
-                              for (var obj in err.errors) {
-                                  checkValidation(err.errors[obj], "input-" + obj, "message-" +
-                                      obj);
-                              }
+                              checkValidation(err.errors.type_mutasi, "input-type_mutasi",
+                                  "message-type_mutasi");
+                              checkValidation(err.errors.tanggal_keluar_masuk,
+                                  "input-tanggal_keluar_masuk", "message-tanggal_keluar_masuk"
+                              );
+                              checkValidation(err.errors.keterangan, "input-keterangan",
+                                  "message-keterangan");
 
                           } else {
                               //sweet alert message error
