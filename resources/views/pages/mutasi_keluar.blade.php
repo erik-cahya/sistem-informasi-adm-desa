@@ -4,7 +4,7 @@
           <h1>{{ $title }}</h1>
           <nav>
               <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Master</li>
+                  <li class="breadcrumb-item">Menu</li>
                   <li class="breadcrumb-item active">{{ $title }}</li>
               </ol>
           </nav>
@@ -16,7 +16,7 @@
                   <div class="card">
                       <div class="card-body">
 
-                          <h5 class="card-title">{{ $title }}</h5>
+                          <h5 class="card-title">Input data</h5>
 
 
                           <form id="form_create_mutasi">
@@ -55,7 +55,7 @@
                                   </div>
 
                                   <div class="form-group">
-                                      <label for="input-tanggal_keluar_masuk">Tanggal</label>
+                                      <label for="input-tanggal_keluar_masuk">Tanggal mutasi</label>
                                       <input id="input-tanggal_keluar_masuk" type="date"
                                           class="form-control form-control-sm" value="">
                                       <div class="invalid-feedback">
@@ -75,7 +75,7 @@
                               <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal"
                                       onclick="window.location.reload();">Reset</button>
-                                  <button type="submit" class="btn btn-success">Update</button>
+                                  <button type="submit" class="btn btn-success">Simpan</button>
                               </div>
                           </form>
                       </div>
@@ -216,8 +216,9 @@
                   event.preventDefault();
 
                   var data_input = new Object();
+                  data_input.create = "out";
                   data_input.id = $("#input-id").val();
-                  data_input.type_mutasi = $("#input-type_mutasi").val();
+                  data_input.jenis_mutasi = $("#input-type_mutasi").val();
                   data_input.tanggal_keluar_masuk = $("#input-tanggal_keluar_masuk").val();
                   data_input.keterangan = $("#input-keterangan").val();
 

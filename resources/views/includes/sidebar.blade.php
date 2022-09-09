@@ -30,14 +30,14 @@ $route = Route::current()->getName();
     <li class="nav-heading">Menu</li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link {{ $title == 'Data Mutasi' ? '' : 'collapsed' }}" href="{{ route('mutasi') }}">
             <i class="ri ri-arrow-left-right-fill"></i>
             <span>Data Mutasi</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
+        <a class="nav-link {{ Request::segment(2) == 'masuk' ? '' : 'collapsed' }}" href="{{ route('mutasi.masuk') }}">
             <i class="ri-user-add-line"></i>
             <span>Lahir/Masuk</span>
         </a>

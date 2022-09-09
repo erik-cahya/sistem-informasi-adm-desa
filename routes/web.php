@@ -54,5 +54,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('mutasi/keluar', [MutasiController::class, 'mutasiKeluar'])->name('mutasi.keluar');
     Route::get('mutasi/masuk', [MutasiController::class, 'mutasiMasuk'])->name('mutasi.masuk');
     Route::get('mutasi', [MutasiController::class, 'index'])->name('mutasi');
+    Route::get('mutasi/get', [MutasiController::class, 'show'])->name('mutasi.show');
+    Route::get('mutasi/get/{id}', [MutasiController::class, 'show'])->name('mutasi.show');
+    Route::delete('mutasi/delete/{id}', [MutasiController::class, 'delete'])->name('mutasi.delete');
+    Route::post('mutasi/update', [MutasiController::class, 'update'])->name('mutasi.update');
     
 });

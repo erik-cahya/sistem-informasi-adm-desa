@@ -20,4 +20,21 @@ class Mutasi extends Model
         'tgl_keluar_masuk',
         'keterangan'
     ];
+
+    public function getFullData($id = null)
+    {
+        if ($id == null) {
+            $dataMutasi = Mutasi::select('mutasis.*',
+                'wargas.no_ktp','wargas.nama_lengkap'
+            )->join('wargas','wargas.id','=','mutasis.warga_id')->get();
+
+            return $dataMutasi;
+        }
+
+        $data = Mutasi::select('mutasis.*',
+                'wargas.no_ktp','wargas.nama_lengkap'
+            )->join('wargas','wargas.id','=','mutasis.warga_id')->get();
+
+        return $data;
+    }
 }
