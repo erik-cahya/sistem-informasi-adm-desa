@@ -41,7 +41,7 @@
 
 <body>
 
-    <main>
+    <main class="bg-images">
         <div class="container">
 
             <section
@@ -49,30 +49,32 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{ asset('res/assets/my-image/Lambang_Kabupaten_Banggai_Laut.png') }}"
+                                alt="Italian Trulli" style="height: 100px" class="m-4">
 
-                            <div class="justify-content-center py-4">
-                                <div href="index.html" class="logo d-flex flex-column align-items-center w-auto">
-                                    <span>Sistem Informasi</span>
-                                    <span>Administrasi Desa</span>
-                                </div>
-                            </div><!-- End Logo -->
 
                             <div class="card mb-3">
 
-                                <div class="card-body">
 
+                                <div class="card-body">
+                                    <div class="justify-content-center pt-4">
+                                        <div class="logo d-flex flex-column align-items-center w-auto">
+                                            <span class="text-center">Sistem Informasi Administrasi</span>
+                                            <span class="text-center">Desa Matanga</span>
+                                        </div>
+                                    </div><!-- End Logo -->
                                     @yield('content')
 
                                 </div>
                             </div>
 
-                            <div class="credits">
+                            {{-- <div class="credits">
                                 <!-- All the links in the footer should remain intact. -->
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
                                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

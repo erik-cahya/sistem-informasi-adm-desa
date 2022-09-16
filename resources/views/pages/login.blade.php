@@ -1,7 +1,8 @@
      @extends('layouts.auth')
      @section('content')
-         <div class="pt-4 pb-2">
-             <h5 class="card-title text-center pb-0 fs-4">Login</h5>
+         <div class="">
+             <hr class="mb-0">
+             <h5 class="card-title text-center pb-0 fs-4 mt-0">Login</h5>
              <p class="text-center small">Masukan username & password</p>
          </div>
 
