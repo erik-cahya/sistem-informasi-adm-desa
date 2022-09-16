@@ -1,9 +1,11 @@
 <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">Adm. Desa</span>
-    </a>
+    <div class="logo d-flex align-items-center">
+        <img src="{{ asset('res/assets/my-image/Lambang_Kabupaten_Banggai_Laut.png') }}"
+            alt="lanbang kabupaten banggai laut">
+        <span class="d-none d-lg-block">Sistem Informasi <br>Desa Matanga</span>
+    </div>
     <i class="bi bi-list toggle-sidebar-btn"></i>
-</div><!-- End Logo -->
+</div>
 
 <div class="search-bar">
     <form class="search-form d-flex align-items-center" method="POST" action="#">
