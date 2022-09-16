@@ -23,8 +23,8 @@ return new class extends Migration
             $table->enum('jenis_kelamin',['Laki-laki','Perempuan']);
             $table->string('alamat');
             $table->string('dusun');
-            $table->string('rt');
-            $table->string('rw');
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
             $table->string('golongan_darah');
             $table->string('warga_negara');
             $table->string('pendidikan');

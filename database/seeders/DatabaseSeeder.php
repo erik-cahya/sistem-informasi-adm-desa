@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
                 'pendidikan' => $studys[rand(0, count($studys) - 1)],
                 'pekerjaan' => $faker->jobTitle,
                 'status_nikah' => $maritalStatus[rand(0, count($maritalStatus) - 1)],
-                'status_warga' => $faker->randomElement(['1', '0'])
+                'status_warga' => '1'
             ]);
         }
 

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->bigInteger('no_kk')->unique();
             $table->text('alamat');
             $table->string('dusun');
-            $table->string('rt');
-            $table->string('rw');
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
             $table->string('ekonomi');
             $table->timestamps();
         });
