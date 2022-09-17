@@ -278,7 +278,6 @@
                   $.ajax({
                       url: url.replace(':id', id),
                       success: function(response) {
-                          //console.log(response);
 
                           $('#warga_id').val(`${response.id}`);
 
@@ -296,8 +295,6 @@
                       },
                       error: function(xhr, status, error) {
                           console.log(error);
-                          //close modal
-                          $('#moda .close').click();
 
                           //sweet alert message error
                           Swal.fire({
@@ -307,8 +304,6 @@
                               text: `${error}`,
                               showConfirmButton: true
                           });
-
-                          $('#data-warga').hide();
                       }
                   })
               });
@@ -338,9 +333,6 @@
                   data_input.tgl_surat = $("#input-tgl_surat").val();
                   data_input.kepala_desa = $("#input-kepala_desa").val();
 
-
-                  console.log(data_input);
-
                   $.ajax({
                       url: '{{ route('surat.domisili.create') }}',
                       method: 'POST',
@@ -366,41 +358,29 @@
 
                       },
                       error: function(xhr, status, error) {
-                          var err = eval(xhr.responseJSON);
-                          console.log(err.errors);
 
-                          if (err.errors != undefined) {
-
-                              //error validation
-                              for (var obj in err.errors) {
-                                  checkValidation(err.errors[obj], "input-edit-" + obj,
-                                      "message-edit-" +
-                                      obj);
-                              }
-
+                          //sweet alert message error
+                          if (xhr.status == 422) {
+                              Swal.fire({
+                                  position: 'center',
+                                  icon: 'warning',
+                                  title: `Uppss...`,
+                                  text: `${xhr.responseJSON.message}`,
+                                  showConfirmButton: true
+                              })
                           } else {
-                              //sweet alert message error
+                              console.log(xhr);
                               Swal.fire({
                                   position: 'center',
                                   icon: 'error',
-                                  title: `${status}`,
-                                  text: `${err.message}`,
+                                  title: `${xhr.status}`,
+                                  text: `${error}`,
                                   showConfirmButton: true
                               })
                           }
                       }
                   })
               });
-
-
-              function checkValidation(errorMsg, elementById, elementMsg) {
-                  if (errorMsg != undefined) {
-                      document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                      $(`#${elementMsg}`).html(` ${errorMsg}`);
-                  } else {
-                      document.getElementById(`${elementById}`).className = "form-control is-valid";
-                  }
-              }
           });
       </script>
   @endsection

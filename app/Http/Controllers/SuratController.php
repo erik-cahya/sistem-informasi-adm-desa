@@ -97,10 +97,10 @@ class SuratController extends Controller
         $doc = str_replace('#KEPALADESA',$request->kepala_desa,$doc);
 
      
-        $fileName = 'surat_domisili_'.$request->no_ktp.'_'.$request->tgl_surat.'.doc';
+        $fileName = 'surat_domisili_'.$request->nama_lengkap.'_'.$request->tgl_surat.'.doc';
 
         //save document
-        $data = Storage::put('public/surat/domisili/'.$fileName, $doc);
+        $data = Storage::put('public/surat/'.$fileName, $doc);
 
         //save data into database
         Surat::create([
@@ -202,7 +202,7 @@ class SuratController extends Controller
         $fileName = 'surat_keterangan_pekerjaan_orang_tua_'.$request->nama_lengkap_anak.'_'.$request->tgl_surat.'.doc';
 
         //save document
-        $data = Storage::put('public/surat/domisili/'.$fileName, $doc);
+        $data = Storage::put('public/surat/'.$fileName, $doc);
 
         //save data into database
         Surat::create([
@@ -217,7 +217,7 @@ class SuratController extends Controller
 
     public function getFile($fileName)
     {
-       return response()->download(storage_path('app/public/surat/domisili/'.$fileName));
+       return response()->download(storage_path('app/public/surat/'.$fileName));
     }
 
     public function delete($id)

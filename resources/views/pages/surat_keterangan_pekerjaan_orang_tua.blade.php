@@ -545,28 +545,28 @@
 
                       },
                       error: function(xhr, status, error) {
-                          console.log(xhr);
                           //sweet alert message error
-                          Swal.fire({
-                              position: 'center',
-                              icon: 'error',
-                              title: `${xhr.statusText}`,
-                              text: `${xhr.responseJSON.message}`,
-                              showConfirmButton: true
-                          })
+                          if (xhr.status == 422) {
+                              Swal.fire({
+                                  position: 'center',
+                                  icon: 'warning',
+                                  title: `Uppss...`,
+                                  text: `${xhr.responseJSON.message}`,
+                                  showConfirmButton: true
+                              })
+                          } else {
+                              console.log(xhr);
+                              Swal.fire({
+                                  position: 'center',
+                                  icon: 'error',
+                                  title: `${xhr.status}`,
+                                  text: `${error}`,
+                                  showConfirmButton: true
+                              })
+                          }
                       }
                   })
               });
-
-
-              function checkValidation(errorMsg, elementById, elementMsg) {
-                  if (errorMsg != undefined) {
-                      document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                      $(`#${elementMsg}`).html(` ${errorMsg}`);
-                  } else {
-                      document.getElementById(`${elementById}`).className = "form-control is-valid";
-                  }
-              }
           });
       </script>
   @endsection
