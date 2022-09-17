@@ -52,19 +52,19 @@ $route = Route::current()->getName();
     </li>
 
     <li class="nav-item">
-        <a class="nav-link {{ $title == 'Data surat' ? '' : 'collapsed' }}" href="">
+        <a class="nav-link {{ $title == 'Data surat' ? '' : 'collapsed' }}" href="{{ route('surats') }}">
             <i class="ri-draft-line"></i>
             <span>Daftar Surat</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link  {{ Request::segment(1) == 'surat' ? '' : 'collapsed' }}" data-bs-target="#components-nav"
-            data-bs-toggle="collapse" aria-expanded="{{ Request::segment(1) == 'surat' ? 'true' : 'false' }}"
-            href="#">
+        <a class="nav-link  {{ Request::segment(1) == 'buat-surat' ? '' : 'collapsed' }}"
+            data-bs-target="#components-nav" data-bs-toggle="collapse"
+            aria-expanded="{{ Request::segment(1) == 'buat-surat' ? 'true' : 'false' }}" href="#">
             <i class="ri-draft-line"></i><span>Buat Surat</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse {{ Request::segment(1) == 'surat' ? 'show' : ' ' }}"
+        <ul id="components-nav" class="nav-content collapse {{ Request::segment(1) == 'buat-surat' ? 'show' : ' ' }}"
             data-bs-parent="#sidebar-nav">
             <li>
                 <a href="{{ route('surat.domisili') }}"

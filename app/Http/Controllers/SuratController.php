@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Support\Carbon;
+use Datatables;
 
 class SuratController extends Controller
 {
@@ -17,6 +18,22 @@ class SuratController extends Controller
         $this->warga = new Warga();
         $this->surat = new Surat();
     }
+
+    public function index()
+    {
+        if (request()->ajax()) {
+            return datatables()->of(Surat::select('*'))
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        $data = [
+            'title' => "Data surat"
+        ];
+
+        return view('pages.surat', $data);
+    }
+
 
     public function suratDomisili()
     {
@@ -100,5 +117,21 @@ class SuratController extends Controller
     public function getFile($fileName)
     {
        return response()->download(storage_path('app/public/surat/domisili/'.$fileName));
+    }
+
+    public function delete($id)
+    {
+        $data = $this->surat->find($id);
+
+        DB::transaction(function() use ($data) {
+            //delete file
+            Storage::delete('public/surat/domisili/'.$data->nama_surat);
+
+            //delete data
+            $data->forceDelete();
+        });
+     
+        
+        return response()->json(['message'=>'Data berhasil dihapus']);
     }
 }

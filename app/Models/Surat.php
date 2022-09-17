@@ -15,4 +15,8 @@ class Surat extends Model
         'nama_surat',
         'tanggal_surat'
     ];
+
+    protected $casts = [
+        'tanggal_surat' => 'datetime:d M Y'
+    ];
 }

@@ -60,7 +60,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('mutasi/delete/{id}', [MutasiController::class, 'delete'])->name('mutasi.delete');
     Route::post('mutasi/update', [MutasiController::class, 'update'])->name('mutasi.update');
     
-    Route::get('surat/domisili', [SuratController::class, 'suratDomisili'])->name('surat.domisili');
-    Route::post('surat/domisili/create', [SuratController::class, 'createSuratDomisili'])->name('surat.domisili.create');
+    Route::get('surat', [SuratController::class, 'index'])->name('surats');
+    Route::delete('surat/delete/{id}', [SuratController::class, 'delete'])->name('surat.delete');
     Route::get('surat/download/{fileName}', [SuratController::class, 'getFile'])->name('surat.download');
+    
+    Route::get('buat-surat/domisili', [SuratController::class, 'suratDomisili'])->name('surat.domisili');
+    Route::post('surat/domisili/create', [SuratController::class, 'createSuratDomisili'])->name('surat.domisili.create');
+    
 });
