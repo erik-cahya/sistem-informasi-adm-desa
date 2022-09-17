@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Warga;
 use App\Models\Surat;
+use App\Models\Parameter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
@@ -38,18 +39,19 @@ class SuratController extends Controller
     public function suratDomisili()
     {
         $params = [
-            'nama_penanggung_jawab'=> 'Ferdian Arjutama Narwan',
-            'jabatan_penanggung_jawab' => 'Kepala Desa',
-            'alamat_penanggung_jawab' => 'Ini Alamat',
-            'desa' => 'matanga',
-            'kepala_desa' => 'Ferdian Arjun'
+            'nama_penanggung_jawab'=> Parameter::where('param','nama_penanggung_jawab')->first()->value,
+            'jabatan_penanggung_jawab' => Parameter::where('param','jabatan_penanggung_jawab')->first()->value,
+            'alamat_penanggung_jawab' => Parameter::where('param','alamat_penanggung_jawab')->first()->value,
+            'desa' => Parameter::where('param','desa')->first()->value,
+            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
         ];
+
+    
         $data = [
             'title' => 'Surat Domisili',
             'wargas' => Warga::get(),
             'params' => $params
         ];
-
         return view('pages.surat_domisili', $data);
     }
 

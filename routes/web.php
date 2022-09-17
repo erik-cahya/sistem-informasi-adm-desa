@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\MutasiController;
@@ -37,6 +38,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('users/update', [UserController::class, 'update'])->name('user.update');
     Route::delete('users/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+    Route::get('parameter', [ParameterController::class, 'index'])->name('parameters');
+    Route::get('parameters/{id}', [ParameterController::class, 'show'])->name('parameter.show');
+    Route::post('parameter/create', [ParameterController::class, 'create'])->name('parameter.create');
+    Route::post('parameters/update', [ParameterController::class, 'update'])->name('parameter.update');
+    Route::delete('parameters/delete/{id}', [ParameterController::class, 'delete'])->name('parameter.delete');
     
     Route::get('warga', [WargaController::class, 'index'])->name('wargas');
     Route::get('warga/{id}', [WargaController::class, 'show'])->name('warga.show');

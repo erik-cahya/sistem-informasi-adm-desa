@@ -51,6 +51,13 @@
                         <span>Akun Pengguna</span>
                     </a>
                 </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('parameters') }}">
+                        <i class="bi bi-wrench-adjustable-circle"></i>
+                        <span>Parameter Aplikasi</span>
+                    </a>
+                </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
