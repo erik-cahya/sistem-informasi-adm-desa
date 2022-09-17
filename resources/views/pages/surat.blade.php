@@ -32,7 +32,8 @@
                                           tua</a></li>
                                   <li><a class="dropdown-item" href="{{ route('surat.keterangan_berlakuan_baik') }}">Surat
                                           berpelakuan baik</a></li>
-                                  <li><a class="dropdown-item" href="">Surat ekonomi lemah</a></li>
+                                  <li><a class="dropdown-item" href="{{ route('surat.keterangan_ekonomi_lemah') }}">Surat
+                                          ekonomi lemah</a></li>
                                   <li><a class="dropdown-item" href="">Surat belum menikah</a></li>
                                   <li><a class="dropdown-item" href="">Surat kepemilikan</a></li>
                                   <li><a class="dropdown-item" href="">Surat keterangan usaha</a></li>

@@ -85,7 +85,8 @@ $route = Route::current()->getName();
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('surat.keterangan_ekonomi_lemah') }}"
+                    class="{{ Request::segment(2) == 'keterangan-ekonomi-lemah' ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Ekonomi Lemah</span>
                 </a>
             </li>
