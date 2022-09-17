@@ -35,6 +35,26 @@ class SuratController extends Controller
         return view('pages.surat', $data);
     }
 
+    public function getFile($fileName)
+    {
+       return response()->download(storage_path('app/public/surat/'.$fileName));
+    }
+
+    public function delete($id)
+    {
+        $data = $this->surat->find($id);
+
+        DB::transaction(function() use ($data) {
+            //delete file
+            Storage::delete('public/surat/domisili/'.$data->nama_surat);
+
+            //delete data
+            $data->forceDelete();
+        });
+     
+        
+        return response()->json(['message'=>'Data berhasil dihapus']);
+    }
 
     public function suratDomisili()
     {
@@ -215,24 +235,75 @@ class SuratController extends Controller
         return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
     }
 
-    public function getFile($fileName)
+    public function suratKeteranganBerlakuanBaik()
     {
-       return response()->download(storage_path('app/public/surat/'.$fileName));
+        $params = [
+            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
+            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
+        ];
+
+    
+        $data = [
+            'title' => 'Surat Keterangan Berlakuan Baik',
+            'wargas' => Warga::get(),
+            'params' => $params
+        ];
+        return view('pages.surat_keterangan_berlakuan_baik', $data);
     }
 
-    public function delete($id)
+    public function createsuratKeteranganBerlakuanBaik(Request $request)
     {
-        $data = $this->surat->find($id);
+         $request->validate([
+                'no_surat' => 'required',
+                'pembuat_nama' => 'required',
+                'pembuat_jabatan' => 'required',
+                'pembuat_alamat' => 'required',
+                'nama_lengkap' => 'required',
+                'tempat_lahir' => 'required',
+                'tgl_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'pekerjaan' => 'required',
+                'alamat_lengkap' => 'required',
+                'no_ktp' => 'required',
+                'tempat_surat' => 'required',
+                'tgl_surat' => 'required',
+                'kepala_desa' => 'required',              
+            ]);
 
-        DB::transaction(function() use ($data) {
-            //delete file
-            Storage::delete('public/surat/domisili/'.$data->nama_surat);
+        //get document template
+        $doc = Storage::get('template/Surat-Keterangan Berlakuan-Baik.rtf');
 
-            //delete data
-            $data->forceDelete();
-        });
+        //replace data
+        $doc = str_replace('#NOSURAT',$request->no_surat,$doc);
+        $doc = str_replace('#NAMAPENANGGUNG',$request->pembuat_nama,$doc);
+        $doc = str_replace('#JABATANPENANGGUNG',$request->pembuat_jabatan,$doc);
+        $doc = str_replace('#ALAMATPENANGGUNG',$request->pembuat_alamat,$doc);
+
+        $doc = str_replace('#NAMA',$request->nama_lengkap,$doc);
+        $doc = str_replace('#TEMPATLAHIR',$request->tempat_lahir,$doc);
+        $doc = str_replace('#TANGGALLAHIR',(new Carbon($request->tgl_lahir))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#PEKERJAAN',$request->pekerjaan,$doc);
+        $doc = str_replace('#JENISKELAMIN',$request->jenis_kelamin,$doc);
+        $doc = str_replace('#ALAMATLENGKAP',$request->alamat_lengkap,$doc);
+
+        $doc = str_replace('#TEMPATSURAT',$request->tempat_surat,$doc);
+        $doc = str_replace('#TGLSURAT',(new Carbon($request->tgl_surat))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#KEPALADESA',$request->kepala_desa,$doc);
+
      
-        
-        return response()->json(['message'=>'Data berhasil dihapus']);
+        $fileName = 'surat_keterangan_berlakuan_baik_'.$request->nama_lengkap.'_'.$request->tgl_surat.'.doc';
+
+        //save document
+        $data = Storage::put('public/surat/'.$fileName, $doc);
+
+        //save data into database
+        Surat::create([
+            'jenis_surat' => 'Surat Keterangan Berlakuan Baik',
+            'no_surat' => $request->no_surat,
+            'nama_surat' => $fileName,
+            'tanggal_surat' => $request->tgl_surat
+        ]);
+
+        return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
     }
 }
