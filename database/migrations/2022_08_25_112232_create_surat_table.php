@@ -17,11 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('jenis_surat');
             $table->string('no_surat');
+            $table->string('nama_surat');
             $table->datetime('tanggal_surat', $precision = 0);
-            $table->string('isi_surat');
-            $table->string('tanda_tangan_surat');
-            $table->string('no_ktp');
-            $table->string('nama_lengkap_warga');
             $table->timestamps();
         });
     }

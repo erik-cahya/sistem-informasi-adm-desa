@@ -52,9 +52,56 @@ $route = Route::current()->getName();
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link {{ $title == 'Data surat' ? '' : 'collapsed' }}" href="">
             <i class="ri-draft-line"></i>
-            <span>Buat Surat</span>
+            <span>Daftar Surat</span>
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link  {{ Request::segment(1) == 'surat' ? '' : 'collapsed' }}" data-bs-target="#components-nav"
+            data-bs-toggle="collapse" aria-expanded="{{ Request::segment(1) == 'surat' ? 'true' : 'false' }}"
+            href="#">
+            <i class="ri-draft-line"></i><span>Buat Surat</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse {{ Request::segment(1) == 'surat' ? 'show' : ' ' }}"
+            data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('surat.domisili') }}"
+                    class="{{ Request::segment(2) == 'domisili' ? 'active' : '' }}">
+                    <i class="bi bi-circle"></i><span>Domisili</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Pekerjaan orang tua</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Berpelakukan Baik</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Ekonomi Lemah</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Belom Menikah</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Kepemilikan</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-circle"></i><span>Keterangan Usaha</span>
+                </a>
+            </li>
+        </ul>
+    </li><!-- End Components Nav -->
 </ul>

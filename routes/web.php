@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\MutasiController;
+use App\Http\Controllers\SuratController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('mutasi/delete/{id}', [MutasiController::class, 'delete'])->name('mutasi.delete');
     Route::post('mutasi/update', [MutasiController::class, 'update'])->name('mutasi.update');
     
+    Route::get('surat/domisili', [SuratController::class, 'suratDomisili'])->name('surat.domisili');
+    Route::post('surat/domisili/create', [SuratController::class, 'createSuratDomisili'])->name('surat.domisili.create');
+    Route::get('surat/download/{fileName}', [SuratController::class, 'getFile'])->name('surat.download');
 });
