@@ -82,4 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('buat-surat/keterangan-ekonomi-lemah', [SuratController::class, 'suratKeteranganEkonomiLemah'])->name('surat.keterangan_ekonomi_lemah');
     Route::post('surat/keterangan-ekonomi-lemah/create', [SuratController::class, 'createSuratKeteranganEkonomiLemah'])->name('surat.keterangan_ekonomi_lemah.create');
+
+    Route::get('buat-surat/keterangan-belum-menikah', [SuratController::class, 'suratKeteranganBelumMenikah'])->name('surat.surat_keterangan_belum_menikah');
+    Route::post('surat/keterangan-belum-menikah/create', [SuratController::class, 'createSuratKeteranganBelumMenikah'])->name('surat.surat_keterangan_belum_menikah.create');
 });
