@@ -27,7 +27,9 @@
                               </button>
                               <ul class="dropdown-menu">
                                   <li><a class="dropdown-item" href="{{ route('surat.domisili') }}">Surat domisili</a></li>
-                                  <li><a class="dropdown-item" href="">Surat pekerjaan orang tua</a></li>
+                                  <li><a class="dropdown-item"
+                                          href="{{ route('surat.keterangan_pekerjaan_orang_tua') }}">Surat pekerjaan orang
+                                          tua</a></li>
                                   <li><a class="dropdown-item" href="">Surat berpelakuan baik</a></li>
                                   <li><a class="dropdown-item" href="">Surat ekonomi lemah</a></li>
                                   <li><a class="dropdown-item" href="">Surat belum menikah</a></li>

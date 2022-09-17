@@ -73,5 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('buat-surat/domisili', [SuratController::class, 'suratDomisili'])->name('surat.domisili');
     Route::post('surat/domisili/create', [SuratController::class, 'createSuratDomisili'])->name('surat.domisili.create');
+
+    Route::get('buat-surat/keterangan-pekerjaan-orang-tua', [SuratController::class, 'suratKeteranganPekerjaanOrangTua'])->name('surat.keterangan_pekerjaan_orang_tua');
+    Route::post('surat/keterangan-pekerjaan-orang-tua/create', [SuratController::class, 'createSuratKeteranganPekerjaanOrangTua'])->name('surat.keterangan_pekerjaan_orang_tua.create');
     
 });

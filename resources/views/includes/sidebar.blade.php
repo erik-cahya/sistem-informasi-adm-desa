@@ -73,7 +73,8 @@ $route = Route::current()->getName();
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('surat.keterangan_pekerjaan_orang_tua') }}"
+                    class="{{ Request::segment(2) == 'keterangan-pekerjaan-orang-tua' ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Pekerjaan orang tua</span>
                 </a>
             </li>
