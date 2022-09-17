@@ -37,7 +37,9 @@
                                   <li><a class="dropdown-item"
                                           href="{{ route('surat.surat_keterangan_belum_menikah') }}">Surat belum menikah</a>
                                   </li>
-                                  <li><a class="dropdown-item" href="">Surat kepemilikan</a></li>
+                                  <li><a class="dropdown-item"
+                                          href="{{ route('surat.surat_keterangan_kepemilikan') }}">Surat kepemilikan</a>
+                                  </li>
                                   <li><a class="dropdown-item" href="">Surat keterangan usaha</a></li>
                               </ul>
                           </div>

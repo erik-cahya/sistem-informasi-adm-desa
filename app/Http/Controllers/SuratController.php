@@ -457,4 +457,84 @@ class SuratController extends Controller
 
         return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
     }
+
+    public function suratKeteranganKepemilikan()
+    {
+        $params = [
+            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
+            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
+        ];
+
+    
+        $data = [
+            'title' => 'Surat Keterangan Kepemilikan',
+            'wargas' => Warga::get(),
+            'params' => $params
+        ];
+        return view('pages.surat_keterangan_kepemilikan', $data);
+    }
+
+     public function createSuratKeteranganKepemilikan(Request $request)
+    {
+         $request->validate([
+                'no_surat' => 'required',
+                'pembuat_nama' => 'required',
+                'pembuat_jabatan' => 'required',
+                'pembuat_alamat' => 'required',
+                'nama_lengkap' => 'required',
+                'no_ktp' => 'required',
+                'tempat_lahir' => 'required',
+                'tgl_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'agama' => 'required',
+                'status_nikah' => 'required',
+                'pekerjaan' => 'required',
+                'alamat_lengkap' => 'required',
+                'pemilik_dari' => 'required',
+                'tempat_surat' => 'required',
+                'tgl_surat' => 'required',
+                'kepala_desa' => 'required',              
+            ]);
+
+        //get document template
+        $doc = Storage::get('template/Surat-Keterangan-Kepemilikan.rtf');
+
+        //replace data
+        $doc = str_replace('#NOSURAT',$request->no_surat,$doc);
+        $doc = str_replace('#NAMAPENANGGUNG',$request->pembuat_nama,$doc);
+        $doc = str_replace('#JABATANPENANGGUNG',$request->pembuat_jabatan,$doc);
+        $doc = str_replace('#ALAMATPENANGGUNG',$request->pembuat_alamat,$doc);
+
+        $doc = str_replace('#NAMA',$request->nama_lengkap,$doc);
+        $doc = str_replace('#NIK',$request->no_ktp,$doc);
+        $doc = str_replace('#TEMPATLAHIR',$request->tempat_lahir,$doc);
+        $doc = str_replace('#TANGGALLAHIR',(new Carbon($request->tgl_lahir))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#JENISKELAMIN',$request->jenis_kelamin,$doc);
+        $doc = str_replace('#AGAMA',$request->agama,$doc);
+        $doc = str_replace('#STATUS',$request->status_nikah,$doc);
+        $doc = str_replace('#PEKERJAAN',$request->pekerjaan,$doc);
+        $doc = str_replace('#ALAMATLENGKAP',$request->alamat_lengkap,$doc);
+
+        $doc = str_replace('#PD',$request->pemilik_dari,$doc);
+
+        $doc = str_replace('#TEMPATSURAT',$request->tempat_surat,$doc);
+        $doc = str_replace('#TGLSURAT',(new Carbon($request->tgl_surat))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#KEPALADESA',$request->kepala_desa,$doc);
+
+     
+        $fileName = 'surat_keterangan_kepemilikan_'.$request->nama_lengkap.'_'.$request->tgl_surat.'.doc';
+
+        //save document
+        $data = Storage::put('public/surat/'.$fileName, $doc);
+
+        //save data into database
+        Surat::create([
+            'jenis_surat' => 'Surat Keterangan Kepemilikan',
+            'no_surat' => $request->no_surat,
+            'nama_surat' => $fileName ,
+            'tanggal_surat' => $request->tgl_surat
+        ]);
+
+        return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
+    }
 }
