@@ -19,8 +19,9 @@
 
                           <h5 class="card-title">Daftar {{ $title }}</h5>
 
-                          <button type="button" class="btn btn-success mb-4" data-toggle="modal"
-                              data-target="#modalNewParams"> <i class="bx bx-plus"></i>&nbsp;Buat Baru</button>
+                          {{-- Dev Only --}}
+                          {{-- <button type="button" class="btn btn-success mb-4" data-toggle="modal"
+                              data-target="#modalNewParams"> <i class="bx bx-plus"></i>&nbsp;Buat Baru</button> --}}
 
                           <div id="modalNewParams" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
@@ -108,9 +109,9 @@
                       <div class="modal-body">
                           <input id="param_id" type="hidden" />
 
-                          <div class="form-group">
-                              <label for="input-edit-param">param</label>
-                              <input id="input-edit-param" type="text" class="form-control" value="">
+                          <div class="form-group hide">
+                              <label for="input-edit-param">parameter</label>
+                              <input id="input-edit-param" type="text" class="form-control" disabled>
                               <div class="invalid-feedback">
                                   <span id="message-edit-param"></span>
                               </div>

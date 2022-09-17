@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Warga;
+use App\Models\Parameter;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -28,6 +29,23 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as  $u) {
             User::create($u);
+        }
+
+        $params = [
+            [
+                'param' => 'nama_desa',
+                'value' => 'Matanga',
+                'keterangan' => 'nama desa',
+            ],
+            [
+                'param' => 'kepala_desa',
+                'value' => 'ARIYANDO MATAIYA',
+                'keterangan' => 'nama kepala desa',
+            ],
+        ];
+
+        foreach ($params as $p) {
+            Parameter::create($p);
         }
 
         //faker data warga
