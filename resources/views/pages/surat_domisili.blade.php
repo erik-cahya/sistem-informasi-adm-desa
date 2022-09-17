@@ -41,7 +41,7 @@
                                       <label for="input-pembuat_nama" class="col-sm-2 col-form-label">Nama</label>
                                       <div class="col-sm-10">
                                           <input id="input-pembuat_nama" type="text" class="form-control form-control-sm"
-                                              value="{{ $params['nama_penanggung_jawab'] }}" name="pembuat_nama">
+                                              value="" name="pembuat_nama">
                                           <div class="invalid-feedback">
                                               <span id="message-pembuat_nama"></span>
                                           </div>
@@ -52,8 +52,7 @@
                                       <label for="input-pembuat_jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                                       <div class="col-sm-10">
                                           <input id="input-pembuat_jabatan" type="text"
-                                              class="form-control form-control-sm"
-                                              value="{{ $params['jabatan_penanggung_jawab'] }}" name="pembuat_jabatan">
+                                              class="form-control form-control-sm" value="" name="pembuat_jabatan">
                                           <div class="invalid-feedback">
                                               <span id="message-pembuat_jabatan"></span>
                                           </div>
@@ -64,8 +63,7 @@
                                       <label for="input-pembuat_alamat" class="col-sm-2 col-form-label">Alamat</label>
                                       <div class="col-sm-10">
                                           <input id="input-pembuat_alamat" type="text"
-                                              class="form-control form-control-sm"
-                                              value="{{ $params['alamat_penanggung_jawab'] }}" name="pembuat_alamat">
+                                              class="form-control form-control-sm" value="" name="pembuat_alamat">
                                           <div class="invalid-feedback">
                                               <span id="message-pembuat_alamat"></span>
                                           </div>
@@ -208,7 +206,7 @@
                                       <label for="input-tempat_surat" class="col-sm-2 col-form-label">Tempat</label>
                                       <div class="col-sm-10">
                                           <input id="input-tempat_surat" type="text"
-                                              class="form-control form-control-sm" value="{{ $params['desa'] }}"
+                                              class="form-control form-control-sm" value="{{ $params['nama_desa'] }}"
                                               name="tempat_surat">
                                           <div class="invalid-feedback">
                                               <span id="message-tempat_surat"></span>

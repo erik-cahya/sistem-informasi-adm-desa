@@ -39,10 +39,7 @@ class SuratController extends Controller
     public function suratDomisili()
     {
         $params = [
-            'nama_penanggung_jawab'=> Parameter::where('param','nama_penanggung_jawab')->first()->value,
-            'jabatan_penanggung_jawab' => Parameter::where('param','jabatan_penanggung_jawab')->first()->value,
-            'alamat_penanggung_jawab' => Parameter::where('param','alamat_penanggung_jawab')->first()->value,
-            'desa' => Parameter::where('param','desa')->first()->value,
+            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
             'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
         ];
 
