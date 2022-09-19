@@ -537,4 +537,82 @@ class SuratController extends Controller
 
         return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
     }
+
+    public function suratKeteranganUsaha()
+    {
+        $params = [
+            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
+            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
+        ];
+
+        $data = [
+            'title' => 'Surat Keterangan Usaha',
+            'wargas' => Warga::get(),
+            'params' => $params
+        ];
+        return view('pages.surat_keterangan_usaha', $data);
+    }
+
+    public function createSuratKeteranganUsaha(Request $request)
+    {
+         $request->validate([
+                'no_surat' => 'required',
+                'pembuat_nama' => 'required',
+                'pembuat_jabatan' => 'required',
+                'pembuat_alamat' => 'required',
+                'nama_lengkap' => 'required',
+                'tempat_lahir' => 'required',
+                'tgl_lahir' => 'required',
+                'jenis_kelamin' => 'required',
+                'agama' => 'required',
+                'warga_negara' => 'required',
+                'alamat_lengkap' => 'required',
+                'nama_usaha' => 'required',
+                'alamat_usaha' => 'required',
+                'no_ktp' => 'required',
+                'tempat_surat' => 'required',
+                'tgl_surat' => 'required',
+                'kepala_desa' => 'required',              
+            ]);
+
+        //get document template
+        $doc = Storage::get('template/Surat-Keterangan-Usaha.rtf');
+
+        //replace data
+        $doc = str_replace('#NOSURAT',$request->no_surat,$doc);
+        $doc = str_replace('#NAMAPENANGGUNG',$request->pembuat_nama,$doc);
+        $doc = str_replace('#JABATANPENANGGUNG',$request->pembuat_jabatan,$doc);
+        $doc = str_replace('#ALAMATPENANGGUNG',$request->pembuat_alamat,$doc);
+
+        $doc = str_replace('#NAMA',$request->nama_lengkap,$doc);
+        $doc = str_replace('#TEMPATLAHIR',$request->tempat_lahir,$doc);
+        $doc = str_replace('#TANGGALLAHIR',(new Carbon($request->tgl_lahir))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#JENISKELAMIN',$request->jenis_kelamin,$doc);
+        $doc = str_replace('#AGAMA',$request->agama,$doc);
+        $doc = str_replace('#WN',$request->warga_negara,$doc);
+        $doc = str_replace('#ALAMATLENGKAP',$request->alamat_lengkap,$doc);
+
+        $doc = str_replace('#USAHA',$request->nama_usaha,$doc);
+        $doc = str_replace('#ALAMATUSAHA',$request->alamat_usaha,$doc);
+
+        $doc = str_replace('#TEMPATSURAT',$request->tempat_surat,$doc);
+        $doc = str_replace('#TGLSURAT',(new Carbon($request->tgl_surat))->isoFormat('D MMMM Y'),$doc);
+        $doc = str_replace('#KEPALADESA',$request->kepala_desa,$doc);
+
+     
+        $fileName = 'surat_keterangan_usaha_'.$request->nama_lengkap.'_'.$request->tgl_surat.'.doc';
+
+        //save document
+        $data = Storage::put('public/surat/'.$fileName, $doc);
+
+        //save data into database
+        Surat::create([
+            'jenis_surat' => 'Surat Keterangan Usaha',
+            'no_surat' => $request->no_surat,
+            'nama_surat' => $fileName ,
+            'tanggal_surat' => $request->tgl_surat
+        ]);
+
+        return response()->json(['message'=>'Surat berhasil dibuat','fileName' => $fileName]);
+    }
 }

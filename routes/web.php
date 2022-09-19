@@ -88,4 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('buat-surat/keterangan-kepemilikan', [SuratController::class, 'suratKeteranganKepemilikan'])->name('surat.surat_keterangan_kepemilikan');
     Route::post('surat/keterangan-kepemilikan/create', [SuratController::class, 'createSuratKeteranganKepemilikan'])->name('surat.surat_keterangan_kepemilikan.create');
+
+    Route::get('buat-surat/keterangan-usaha', [SuratController::class, 'suratKeteranganUsaha'])->name('surat.surat_keterangan_usaha');
+    Route::post('surat/keterangan-usaha/create', [SuratController::class, 'createSuratKeteranganUsaha'])->name('surat.surat_keterangan_usaha.create');
 });
