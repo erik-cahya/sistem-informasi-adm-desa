@@ -18,6 +18,11 @@ class SuratController extends Controller
     {
         $this->warga = new Warga();
         $this->surat = new Surat();
+        
+        $this->params = [
+            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
+            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
+        ];
     }
 
     public function index()
@@ -58,16 +63,10 @@ class SuratController extends Controller
 
     public function suratDomisili()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Domisili',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_domisili', $data);
     }
@@ -135,16 +134,10 @@ class SuratController extends Controller
 
     public function suratKeteranganPekerjaanOrangTua()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Keterangan Pekerjaan Orang Tua',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
 
         return view('pages.surat_keterangan_pekerjaan_orang_tua', $data);
@@ -237,16 +230,10 @@ class SuratController extends Controller
 
     public function suratKeteranganBerlakuanBaik()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Keterangan Berlakuan Baik',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_keterangan_berlakuan_baik', $data);
     }
@@ -309,16 +296,10 @@ class SuratController extends Controller
 
     public function suratKeteranganEkonomiLemah()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Keterangan Ekonomi Lemah',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_keterangan_ekonomi_lemah', $data);
     }
@@ -383,16 +364,10 @@ class SuratController extends Controller
 
     public function suratKeteranganBelumMenikah()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Keterangan Belum Menikah',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_keterangan_belum_menikah', $data);
     }
@@ -460,16 +435,10 @@ class SuratController extends Controller
 
     public function suratKeteranganKepemilikan()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
-    
         $data = [
             'title' => 'Surat Keterangan Kepemilikan',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_keterangan_kepemilikan', $data);
     }
@@ -540,15 +509,10 @@ class SuratController extends Controller
 
     public function suratKeteranganUsaha()
     {
-        $params = [
-            'nama_desa' => Parameter::where('param','nama_desa')->first()->value,
-            'kepala_desa' => Parameter::where('param','kepala_desa')->first()->value
-        ];
-
         $data = [
             'title' => 'Surat Keterangan Usaha',
             'wargas' => Warga::get(),
-            'params' => $params
+            'params' => $this->params
         ];
         return view('pages.surat_keterangan_usaha', $data);
     }

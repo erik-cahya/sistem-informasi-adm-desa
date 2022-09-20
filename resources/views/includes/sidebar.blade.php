@@ -27,7 +27,7 @@ $route = Route::current()->getName();
         </a>
     </li>
 
-    <li class="nav-heading">Menu</li>
+    <li class="nav-heading">Mutasi</li>
 
     <li class="nav-item">
         <a class="nav-link {{ $title == 'Data Mutasi' ? '' : 'collapsed' }}" href="{{ route('mutasi') }}">
@@ -51,10 +51,12 @@ $route = Route::current()->getName();
         </a>
     </li>
 
+    <li class="nav-heading">Surat</li>
+
     <li class="nav-item">
         <a class="nav-link {{ $title == 'Data surat' ? '' : 'collapsed' }}" href="{{ route('surats') }}">
-            <i class="ri-draft-line"></i>
-            <span>Daftar Surat</span>
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Data Surat</span>
         </a>
     </li>
 

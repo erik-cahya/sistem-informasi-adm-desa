@@ -19,7 +19,6 @@
 
                           <h5 class="card-title">Daftar {{ $title }}</h5>
 
-                          <!-- Example single danger button -->
                           <div class="btn-group mb-3">
                               <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
                                   aria-expanded="false">
@@ -162,6 +161,10 @@
                           }
                       ],
                   },
+                  aLengthMenu: [
+                      [25, 50, 100, 200, -1],
+                      [25, 50, 100, 200, "All"]
+                  ],
                   order: [
                       [0, 'desc']
                   ],

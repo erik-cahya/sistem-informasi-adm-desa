@@ -188,9 +188,6 @@
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit" onclick="editModalUser('${row["id"]}')">
                                     Ubah
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteModalAccount('${row["id"]}')">
-                                    Hapus
-                                </button>
                             </div>
                             `;
                           },

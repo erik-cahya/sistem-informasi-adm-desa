@@ -4,7 +4,7 @@
           <h1>{{ $title }}</h1>
           <nav>
               <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Menu</li>
+                  <li class="breadcrumb-item">Mutasi</li>
                   <li class="breadcrumb-item active">{{ $title }}</li>
               </ol>
           </nav>
@@ -19,7 +19,20 @@
 
                           <h5 class="card-title">Daftar {{ $title }}</h5>
 
-                          <div id="printbar" style="float:left" class="mb-3"></div>
+                          <div class="btn-group mb-3">
+                              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                                  aria-expanded="false">
+                                  <i class="bx bx-plus"></i>&nbsp;Buat Mutasi
+                              </button>
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="{{ route('mutasi.masuk') }}">Mutasi masuk/lahir</a>
+                                  </li>
+                                  <li><a class="dropdown-item" href="{{ route('mutasi.keluar') }}">Mutasi keluar/wafat</a>
+                                  </li>
+                              </ul>
+                          </div>
+
+                          <div id="printbar" style="float:right" class="mb-3"></div>
                           <div class="table-responsive">
                               <table id="table_mutasi" class="display .datatable table table-hover" style="width:100%">
                                   <thead>
@@ -161,6 +174,10 @@
                           }
                       ],
                   },
+                  aLengthMenu: [
+                      [25, 50, 100, 200, -1],
+                      [25, 50, 100, 200, "All"]
+                  ],
                   order: [
                       [0, 'asc']
                   ],
