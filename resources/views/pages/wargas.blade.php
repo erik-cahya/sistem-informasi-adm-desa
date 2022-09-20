@@ -271,6 +271,8 @@
                                           <th>Pendidikan</th>
                                           <th>Pekerjaan</th>
                                           <th>Perkawinan</th>
+                                          <th>Status Dalam Keluarga</th>
+                                          <th>No KK</th>
                                           <th>Status Warga</th>
                                           <th width="6%" style="text-align: right">Aksi</th>
                                       </tr>
@@ -631,6 +633,14 @@
                           name: "status_nikah",
                       },
                       {
+                          data: "status_anggota",
+                          name: "status_anggota",
+                      },
+                      {
+                          data: "no_kk",
+                          name: "no_kk",
+                      },
+                      {
                           data: "status_warga",
                           name: "status_warga",
                           render: function(data, type, row, meta) {
@@ -750,12 +760,11 @@
               $("#form_edit_warga").find('.has-error').removeClass("has-error");
               $("#form_edit_warga").removeClass("is-invalid");
 
-
+              var url = '{{ route('warga.show', ':id') }}';
               $.ajax({
-                  url: "warga/" + id,
+                  url: url.replace(':id', id),
                   success: function(response) {
-                      //console.log(response);
-
+                      console.log(response[0]);
                       $('#warga_id').val(`${response.id}`);
 
                       //set value

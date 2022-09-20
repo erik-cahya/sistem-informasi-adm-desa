@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class Warga extends Model
 {
@@ -25,6 +26,7 @@ class Warga extends Model
         'dusun',
         'rt',
         'rw',
+        'baca_tulis',
         'golongan_darah',
         'warga_negara',
         'pendidikan',
@@ -34,4 +36,25 @@ class Warga extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function getFullData($id = null)
+    {
+        if ($id != null) {
+            $dataAnggota = \DB::table('wargas')
+            ->leftJoin('detail_keluargas','detail_keluargas.warga_id', '=', 'wargas.id')
+            ->leftJoin('keluargas','keluargas.id', '=', 'detail_keluargas.keluarga_id')
+            ->where('wargas.id',$id)
+            ->select('wargas.*','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
+            ->first();
+
+            return $dataAnggota;
+        }
+            $dataAnggota = \DB::table('wargas')
+                ->leftJoin('detail_keluargas','detail_keluargas.warga_id', '=', 'wargas.id')
+                ->leftJoin('keluargas','keluargas.id', '=', 'detail_keluargas.keluarga_id')
+                ->select('wargas.*','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
+                ->get();
+
+            return $dataAnggota;
+    }
 }

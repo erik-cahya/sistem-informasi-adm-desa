@@ -99,6 +99,7 @@ class DatabaseSeeder extends Seeder
                 'dusun' => $faker->citySuffix,
                 'rt' => $faker->numberBetween($min = 001, $max = 100),
                 'rw' => $faker->numberBetween($min = 001, $max = 100),
+                'baca_tulis' => 'iya',
                 'golongan_darah' => $bloodtypes[rand(0, count($bloodtypes) - 1)],
                 'warga_negara' => 'Indonesia',
                 'pendidikan' => $studys[rand(0, count($studys) - 1)],

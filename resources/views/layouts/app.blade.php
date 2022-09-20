@@ -5,7 +5,7 @@
     @include('includes.head')
 </head>
 
-<body>
+<body class="{{ Request::segment(1) == 'home' ? '' : 'toggle-sidebar' }}">
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">

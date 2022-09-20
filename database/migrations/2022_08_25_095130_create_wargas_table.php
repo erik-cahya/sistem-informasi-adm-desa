@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('dusun');
             $table->string('rt')->nullable();
             $table->string('rw')->nullable();
+            $table->enum('baca_tulis',['iya','tidak'])->nullable();
             $table->string('golongan_darah');
             $table->string('warga_negara');
             $table->string('pendidikan');

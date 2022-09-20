@@ -17,7 +17,7 @@ class WargaController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return datatables()->of($this->warga->all())
+            return datatables()->of($this->warga->getFullData())
             ->addIndexColumn()
             ->make(true);
         }
@@ -55,8 +55,8 @@ class WargaController extends Controller
     }
 
     public function show($id){
-        $data = Warga::find($id);
-
+       // $data = Warga::find($id);
+        $data = $this->warga->getFullData($id);
         return response()->json($data);
     }
 
