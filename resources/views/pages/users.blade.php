@@ -40,8 +40,8 @@
                                                   <label for="input-username">Username</label>
                                                   <input id="input-username" type="text" class="form-control"
                                                       value="">
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-username"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-username"></small>
                                                   </div>
                                               </div>
 
@@ -49,8 +49,8 @@
                                                   <label for="input-email">Email</label>
                                                   <input id="input-email" type="text" class="form-control"
                                                       value="">
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-email"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-email"></small>
                                                   </div>
                                               </div>
 
@@ -58,8 +58,8 @@
                                                   <label for="input-password">password</label>
                                                   <input id="input-password" type="text" class="form-control"
                                                       value="">
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-password"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-password"></small>
                                                   </div>
                                               </div>
 
@@ -111,16 +111,16 @@
                           <div class="form-group">
                               <label for="input-edit-username">Username</label>
                               <input id="input-edit-username" type="text" class="form-control" value="">
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-username"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-username"></small>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label for="input-edit-email">Email</label>
                               <input id="input-edit-email" type="text" class="form-control" value="">
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-email"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-email"></small>
                               </div>
                           </div>
                           <div class="form-group">
@@ -262,7 +262,7 @@
 
               //reset validation
               for (obj in data_input) {
-                  $(`#input-${obj}`).attr("class", "form-control is-valid");
+                  $(`#message-${obj}`).html('');
               }
 
               $.ajax({
@@ -332,6 +332,7 @@
 
                       for (key in response) {
                           $('#input-edit-' + key).val(`${response[key]}`);
+                          $(`#message-edit-${key}`).html('');
                       }
 
                       //Checkboxes 
@@ -381,7 +382,7 @@
 
               //reset validation
               for (obj in data_input) {
-                  $(`#input-edit-${obj}`).attr("class", "form-control is-valid");
+                  $(`#message-edit-${obj}`).html('');
               }
 
               $.ajax({
@@ -488,12 +489,8 @@
 
 
           function checkValidation(errorMsg, elementById, elementMsg) {
-              if (errorMsg != undefined) {
-                  document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                  $(`#${elementMsg}`).html(` ${errorMsg}`);
-              } else {
-                  document.getElementById(`${elementById}`).className = "form-control is-valid";
-              }
+              document.getElementById(`${elementById}`).className = "form-control";
+              $(`#${elementMsg}`).html(` ${errorMsg}`);
           }
       </script>
   @endsection

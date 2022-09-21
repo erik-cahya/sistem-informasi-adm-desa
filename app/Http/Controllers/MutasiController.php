@@ -76,7 +76,7 @@ class MutasiController extends Controller
         if ($request->create == 'out') {
        
             $request->validate([
-                'id' => 'required',
+                'ktp' => 'required',
                 'jenis_mutasi' => 'required|max:255',
                 'tanggal_keluar_masuk' => 'required',
                 'keterangan' => 'required'
@@ -85,13 +85,13 @@ class MutasiController extends Controller
             DB::transaction(function() use ($request) {
             
                 Mutasi::create([
-                    'warga_id' => $request->id,
+                    'warga_id' => $request->ktp,
                     'jenis_mutasi' => $request->jenis_mutasi,
                     'tgl_keluar_masuk' => $request->tanggal_keluar_masuk ,
                     'keterangan' => $request->keterangan
                 ]);
 
-                Warga::find($request->id)->update(['status_warga' => '0']);
+                Warga::find($request->ktp)->update(['status_warga' => '0']);
             
             });
         
@@ -108,11 +108,10 @@ class MutasiController extends Controller
                 'jenis_kelamin' => 'required|max:255',
                 'alamat' => 'required|max:255',
                 'dusun' => 'required|max:255',
-                'rt' => 'required|numeric|max:255',
-                'rw' => 'required|numeric|max:255',
                 'golongan_darah' => 'required|max:255',
                 'warga_negara' => 'required|max:255',
                 'pendidikan' => 'required|max:255',
+                'baca_tulis' => 'required|max:255',
                 'pekerjaan' => 'required|max:255',
                 'status_nikah' => 'required|max:255',
 
@@ -133,6 +132,7 @@ class MutasiController extends Controller
                     'dusun' =>  $request->dusun,
                     'rt' =>  $request->rt,
                     'rw' =>  $request->rw,
+                    'baca_tulis' =>  $request->baca_tulis,
                     'golongan_darah' =>  $request->golongan_darah,
                     'warga_negara' =>  $request->warga_negara,
                     'pendidikan' =>  $request->pendidikan,

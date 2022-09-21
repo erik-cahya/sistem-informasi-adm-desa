@@ -71,8 +71,8 @@
                           <div class="form-group">
                               <label for="input-edit-no_ktp">No KTP/ID</label>
                               <input id="input-edit-no_ktp" type="text" class="form-control" value="" readonly>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-no_ktp"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-no_ktp"></small>
                               </div>
                           </div>
 
@@ -81,8 +81,8 @@
                               <input id="input-edit-nama_lengkap" type="text" class="form-control" value=""
                                   readonly>
 
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-nama_lengkap"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-nama_lengkap"></small>
                               </div>
                           </div>
                           <div class="form-group">
@@ -93,8 +93,8 @@
                                       <option value="{{ $mut }}">{{ $mut }}</option>
                                   @endforeach
                               </select>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-jenis_mutasi"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-jenis_mutasi"></small>
                               </div>
                           </div>
 
@@ -102,16 +102,16 @@
                               <label for="input-edit-tgl_keluar_masuk">Tanggal mutasi</label>
                               <input id="input-edit-tgl_keluar_masuk" type="date" class="form-control form-control-sm"
                                   value="">
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-tgl_keluar_masuk"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-tgl_keluar_masuk"></small>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label for="input-edit-keterangan">Keterangan</label>
                               <textarea id="input-edit-keterangan" class="form-control form-control-sm" style="height: 100px" value=""></textarea>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-keterangan"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-keterangan"></small>
                               </div>
                           </div>
 
@@ -234,7 +234,6 @@
           //modal edit data
           editModal = (id) => {
 
-              console.log(id);
               $("#form_edit_mutasi").find('.has-error').removeClass("has-error");
               $("#form_edit_mutasi").removeClass("is-invalid");
 
@@ -253,14 +252,13 @@
                       //select option set value
                       document.querySelector('#input-edit-jenis_mutasi')
                           .options[response.jenis_mutasi.selectedIndex];
-                      console.log(response.jenis_mutasi);
                   },
                   error: function(xhr, status, error) {
                       console.log(error);
                       //close modal
                       $('#modalEdit .close').click();
 
-                      //sweet alert message error
+                      //sweet alert message error-id
                       Swal.fire({
                           position: 'center',
                           icon: 'error',
@@ -284,11 +282,9 @@
               data_input.tgl_keluar_masuk = $("#input-edit-tgl_keluar_masuk").val();
               data_input.keterangan = $("#input-edit-keterangan").val();
 
-              console.log(data_input);
-
               //reset validation
               for (obj in data_input) {
-                  $(`#input-edit-${obj}`).attr("class", "form-control is-valid");
+                  $(`#message-edit-${obj}`).html('');
               }
 
               $.ajax({
@@ -298,8 +294,6 @@
                   contentType: 'application/x-www-form-urlencoded',
                   data: data_input,
                   success: function(response) {
-                      //console.log(response);
-
                       //close modal
                       $('#modalEdit .close').click();
                       $("#form_edit_mutasi").trigger('reset');
@@ -345,8 +339,6 @@
 
           //delete 
           deleteModal = (id) => {
-
-              //console.log(id);
 
               Swal.fire({
                   title: 'Hapus data',
@@ -397,12 +389,8 @@
 
 
           function checkValidation(errorMsg, elementById, elementMsg) {
-              if (errorMsg != undefined) {
-                  document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                  $(`#${elementMsg}`).html(` ${errorMsg}`);
-              } else {
-                  document.getElementById(`${elementById}`).className = "form-control is-valid";
-              }
+              document.getElementById(`${elementById}`).className = "form-control";
+              $(`#${elementMsg}`).html(` ${errorMsg}`);
           }
       </script>
   @endsection

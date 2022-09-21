@@ -41,8 +41,8 @@
                                                   <input id="input-no_kk" type="text"
                                                       class="form-control form-control-sm" value="">
 
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-no_kk"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-no_kk"></small>
                                                   </div>
                                               </div>
 
@@ -50,8 +50,8 @@
                                                   <label for="input-alamat">Alamat</label>
                                                   <input id="input-alamat" type="text"
                                                       class="form-control form-control-sm" value="">
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-alamat"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-alamat"></small>
                                                   </div>
                                               </div>
 
@@ -60,8 +60,8 @@
                                                       <label for="input-dusun">Dusun</label>
                                                       <input id="input-dusun" type="text"
                                                           class="form-control form-control-sm" value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-dusun"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-dusun"></small>
                                                       </div>
                                                   </div>
 
@@ -69,8 +69,8 @@
                                                       <label for="input-rt">RT</label>
                                                       <input id="input-rt" type="text"
                                                           class="form-control form-control-sm" value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-rt"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-rt"></small>
                                                       </div>
                                                   </div>
 
@@ -78,8 +78,8 @@
                                                       <label for="input-rw">RW</label>
                                                       <input id="input-rw" type="text"
                                                           class="form-control form-control-sm" value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-rw"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-rw"></small>
                                                       </div>
                                                   </div>
                                               </div>
@@ -88,10 +88,14 @@
                                                   <label for="input-ekonomi">Status Ekonomi</label>
                                                   <select id="input-ekonomi"
                                                       class="form-control form-control-sm custom-select">
+                                                      <option value="" selected disabled></option>
                                                       <option value="A">A</option>
                                                       <option value="B">B</option>
                                                       <option value="C">C</option>
                                                   </select>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-ekonomi"></small>
+                                                  </div>
                                               </div>
 
                                               <div class="form-group">
@@ -115,13 +119,24 @@
                                                       <ul class="dropdown-menu dropdown-menu-end">
                                                           <li>
                                                               <a id="button-kepala" class="dropdown-item"
-                                                                  onclick="addAnggota('kepala')">Kepala
+                                                                  onclick="addAnggota('Kepala Keluarga')">Kepala
                                                                   Keluarga</a>
                                                           </li>
                                                           <li>
-                                                              <a id="button-anggota" class="dropdown-item"
-                                                                  onclick="addAnggota('anggota')">Anggota
-                                                                  Keluarga</a>
+                                                              <a id="button-istri" class="dropdown-item"
+                                                                  onclick="addAnggota('Istri')">Istri</a>
+                                                          </li>
+                                                          <li>
+                                                              <a id="button-anak" class="dropdown-item"
+                                                                  onclick="addAnggota('Anak')">Anak</a>
+                                                          </li>
+                                                          <li>
+                                                              <a id="button-aa" class="dropdown-item"
+                                                                  onclick="addAnggota('AA')">AA</a>
+                                                          </li>
+                                                          <li>
+                                                              <a id="button-p" class="dropdown-item"
+                                                                  onclick="addAnggota('P')">P</a>
                                                           </li>
                                                       </ul>
 
@@ -199,8 +214,8 @@
                               <input id="input-edit-no_kk" type="text" class="form-control form-control-sm"
                                   value="">
 
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-no_kk"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-no_kk"></small>
                               </div>
                           </div>
 
@@ -208,8 +223,8 @@
                               <label for="input-edit-alamat">Alamat</label>
                               <input id="input-edit-alamat" type="text" class="form-control form-control-sm"
                                   value="">
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-alamat"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-alamat"></small>
                               </div>
                           </div>
 
@@ -218,8 +233,8 @@
                                   <label for="input-edit-dusun">Dusun</label>
                                   <input id="input-edit-dusun" type="text" class="form-control form-control-sm"
                                       value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-dusun"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-dusun"></small>
                                   </div>
                               </div>
 
@@ -227,8 +242,8 @@
                                   <label for="input-edit-rt">RT</label>
                                   <input id="input-edit-rt" type="text" class="form-control form-control-sm"
                                       value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-rt"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-rt"></small>
                                   </div>
                               </div>
 
@@ -236,8 +251,8 @@
                                   <label for="input-edit-rw">RW</label>
                                   <input id="input-edit-rw" type="text" class="form-control form-control-sm"
                                       value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-rw"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-rw"></small>
                                   </div>
                               </div>
                           </div>
@@ -459,25 +474,33 @@
 
               } else {
 
-                  var status = (sebagai == 'kepala') ? 'Kepala Keluarga' : 'Anggota Keluarga';
-
                   var url = '{{ route('warga.show', ':id') }}';
 
                   $.ajax({
                       url: url.replace(':id', id_warga),
                       success: function(response) {
 
-                          var tr = $('#table-anggota tr[data-id="' + response.id + '"]');
+                          if (response.no_kk != null) {
+                              Swal.fire({
+                                  position: 'center',
+                                  icon: 'warning',
+                                  title: `Upss...`,
+                                  text: `${response.nama_lengkap} sudah terdaftar pada No KK ${response.no_kk}`,
+                                  showConfirmButton: true
+                              });
+                          } else {
+
+                              var tr = $('#table-anggota tr[data-id="' + response.id + '"]');
 
 
-                          if (!tr.length) {
-                              var markup =
-                                  `
+                              if (!tr.length) {
+                                  var markup =
+                                      `
                                 <tr data-id="${response.id}">
                                     <td style="display:none;">${response.id}</td>
                                     <td>${ response.no_ktp}</td>
                                     <td>${ response.nama_lengkap}</td>
-                                    <td>${ status}</td>
+                                    <td>${ sebagai}</td>
                                     <td>
                                         <div class="float-right">
                                             <button type="button" class="btndeleterowadded btn btn-danger btn-sm">
@@ -487,23 +510,24 @@
                                     </td>
                                 </tr>
                               `;
-                              $("#table-anggota tbody").append(markup);
-                              $('#table-anggota').show();
+                                  $("#table-anggota tbody").append(markup);
+                                  $('#table-anggota').show();
 
-                              if (sebagai == 'kepala') {
-                                  $("#button-kepala").hide();
-                              };
+                                  if (sebagai == 'Kepala Keluarga') {
+                                      $("#button-kepala").hide();
+                                  };
 
-                          } else {
-                              Swal.fire({
-                                  position: 'center',
-                                  icon: 'warning',
-                                  title: `Upss...`,
-                                  text: `Data ${response.nama_lengkap} sudah ditambahkan`,
-                                  showConfirmButton: true
-                              })
+                              } else {
+                                  Swal.fire({
+                                      position: 'center',
+                                      icon: 'warning',
+                                      title: `Upss...`,
+                                      text: `Data ${response.nama_lengkap} sudah ditambahkan`,
+                                      showConfirmButton: true
+                                  })
+                              }
+                              $("#input-anggota").val('').trigger('change');
                           }
-                          $("#input-anggota").val('').trigger('change')
                       },
                       error: function(xhr, status, error) {
                           var err = eval(xhr.responseJSON);
@@ -612,7 +636,7 @@
 
                   //reset validation
                   for (obj in data_input) {
-                      $(`#input-${obj}`).attr("class", "form-control is-valid");
+                      $(`#message-${obj}`).html('');
                   }
 
                   $.ajax({
@@ -670,16 +694,6 @@
                   })
               }
           });
-
-
-          function checkValidation(errorMsg, elementById, elementMsg) {
-              if (errorMsg != undefined) {
-                  document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                  $(`#${elementMsg}`).html(` ${errorMsg}`);
-              } else {
-                  document.getElementById(`${elementById}`).className = "form-control is-valid";
-              }
-          }
 
           //modal edit data
           editModalKeluarga = (id) => {
@@ -912,7 +926,7 @@
 
                   //reset validation
                   for (obj in data_input) {
-                      $(`#input-edit-${obj}`).attr("class", "form-control is-valid");
+                      $(`#message-${obj}`).html('');
                   }
 
                   $.ajax({
@@ -1026,12 +1040,8 @@
 
 
           function checkValidation(errorMsg, elementById, elementMsg) {
-              if (errorMsg != undefined) {
-                  document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                  $(`#${elementMsg}`).html(` ${errorMsg}`);
-              } else {
-                  document.getElementById(`${elementById}`).className = "form-control is-valid";
-              }
+              document.getElementById(`${elementById}`).className = "form-control";
+              $(`#${elementMsg}`).html(` ${errorMsg}`);
           }
       </script>
   @endsection

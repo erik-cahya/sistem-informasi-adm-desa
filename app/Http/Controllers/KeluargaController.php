@@ -54,8 +54,6 @@ class KeluargaController extends Controller
             'no_kk' => 'required|numeric|digits:16|unique:keluargas,no_kk',
             'alamat' => 'required|max:255',
             'dusun' => 'required|max:255',
-            'rt' => 'required|numeric|max:255',
-            'rw' => 'required|numeric|max:255',
             'ekonomi' => 'required',
             'anggotas' => 'required'
         ]);
@@ -95,8 +93,6 @@ class KeluargaController extends Controller
             ],
             'alamat' => 'required|max:255',
             'dusun' => 'required|max:255',
-            'rt' => 'required|numeric|max:255',
-            'rw' => 'required|numeric|max:255',
             'ekonomi' => 'required',
             'anggotas' => 'required'
         ]);

@@ -24,8 +24,8 @@
                               <div class="modal-body">
                                   <input id="warga_id" type="hidden">
                                   <div class="form-group">
-                                      <label for="input-id">No KTP/ID</label>
-                                      <select id="input-id" class="js-example-placeholder-single js-states form-control"
+                                      <label for="input-ktp">No KTP/ID</label>
+                                      <select id="input-ktp" class="js-example-placeholder-single js-states form-control"
                                           style=" display:block; width:100%;">
                                           <option value="" disabled selected>Cari data KTP/Nama Lengkap</option>
                                           @foreach ($wargas as $warga)
@@ -34,14 +34,14 @@
                                               </option>
                                           @endforeach
                                       </select>
-                                      <div class="invalid-feedback">
-                                          <span id="message-id"></span>
+                                      <div class="text-danger font-italic text-capital">
+                                          <small id="message-ktp"></small>
                                       </div>
                                   </div>
 
                                   <div class="form-group">
-                                      <label for="input-type_mutasi">Jenis Mutasi</label>
-                                      <select id="input-type_mutasi" class="form-control form-control-sm custom-select">
+                                      <label for="input-jenis_mutasi">Jenis Mutasi</label>
+                                      <select id="input-jenis_mutasi" class="form-control form-control-sm custom-select">
                                           <option value="" disabled selected>Pilih Jenis mutasi</option>
                                           @foreach ($tipeMutasi as $mut)
                                               <option value="{{ $mut }}">
@@ -49,8 +49,8 @@
                                               </option>
                                           @endforeach
                                       </select>
-                                      <div class="invalid-feedback">
-                                          <span id="message-type_mutasi"></span>
+                                      <div class="text-danger font-italic text-capital">
+                                          <small id="message-jenis_mutasi"></small>
                                       </div>
                                   </div>
 
@@ -58,16 +58,16 @@
                                       <label for="input-tanggal_keluar_masuk">Tanggal mutasi</label>
                                       <input id="input-tanggal_keluar_masuk" type="date"
                                           class="form-control form-control-sm" value="">
-                                      <div class="invalid-feedback">
-                                          <span id="message-tanggal_keluar_masuk"></span>
+                                      <div class="text-danger font-italic text-capital">
+                                          <small id="message-tanggal_keluar_masuk"></small>
                                       </div>
                                   </div>
 
                                   <div class="form-group">
                                       <label for="input-keterangan">Keterangan</label>
                                       <textarea id="input-keterangan" class="form-control form-control-sm" style="height: 100px" value=""></textarea>
-                                      <div class="invalid-feedback">
-                                          <span id="message-keterangan"></span>
+                                      <div class="text-danger font-italic text-capital">
+                                          <small id="message-keterangan"></small>
                                       </div>
                                   </div>
 
@@ -165,11 +165,11 @@
 
               $('#data-warga').hide();
 
-              $('#input-id').select2({
+              $('#input-ktp').select2({
                   theme: "bootstrap",
               });
 
-              $('#input-id').on('change', function() {
+              $('#input-ktp').on('change', function() {
                   var id = this.value;
 
                   console.log(id);
@@ -217,13 +217,14 @@
 
                   var data_input = new Object();
                   data_input.create = "out";
-                  data_input.id = $("#input-id").val();
-                  data_input.jenis_mutasi = $("#input-type_mutasi").val();
+                  data_input.ktp = $("#input-ktp").val();
+                  data_input.jenis_mutasi = $("#input-jenis_mutasi").val();
                   data_input.tanggal_keluar_masuk = $("#input-tanggal_keluar_masuk").val();
                   data_input.keterangan = $("#input-keterangan").val();
 
-                  console.log(data_input);
-
+                  for (obj in data_input) {
+                      $(`#message-${obj}`).html('');
+                  }
 
                   $.ajax({
                       url: '{{ route('mutasi.create') }}',
@@ -254,13 +255,11 @@
 
                           if (err.errors != undefined) {
 
-                              checkValidation(err.errors.type_mutasi, "input-type_mutasi",
-                                  "message-type_mutasi");
-                              checkValidation(err.errors.tanggal_keluar_masuk,
-                                  "input-tanggal_keluar_masuk", "message-tanggal_keluar_masuk"
-                              );
-                              checkValidation(err.errors.keterangan, "input-keterangan",
-                                  "message-keterangan");
+                              //error validation
+                              for (var obj in err.errors) {
+                                  checkValidation(err.errors[obj], "input-" + obj, "message-" +
+                                      obj);
+                              }
 
                           } else {
                               //sweet alert message error
@@ -278,12 +277,7 @@
 
 
               function checkValidation(errorMsg, elementById, elementMsg) {
-                  if (errorMsg != undefined) {
-                      document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                      $(`#${elementMsg}`).html(` ${errorMsg}`);
-                  } else {
-                      document.getElementById(`${elementById}`).className = "form-control is-valid";
-                  }
+                  $(`#${elementMsg}`).html(` ${errorMsg}`);
               }
           });
       </script>

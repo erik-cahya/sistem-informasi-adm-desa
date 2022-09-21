@@ -117,7 +117,7 @@ return [
     'prohibited_unless'    => ':attribute dilarang kecuali :other berada dalam :values.',
     'prohibits'            => ':attribute mearang :other hadir.',
     'regex' => ':attribute tidak valid.',
-    'required' => ':attribute diperlukan.',
+    'required' => ':attribute tidak boleh kosong.',
     'required_array_keys' => ':attribute harus berisi entri untuk: :values.',
     'required_if' => ':attribute diperlukan ketika  :other adalah :value.',
     'required_unless' => ':attribute diperlukan kecuali :other berada dalam :values.',

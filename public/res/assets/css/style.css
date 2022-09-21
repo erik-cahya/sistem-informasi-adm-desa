@@ -1281,3 +1281,12 @@ input[readonly]:focus {
     background-size: cover;
     background-position: center;
 }
+
+.text-capital {
+    display: inline-block !important;
+    text-transform: lowercase !important;
+}
+
+.text-capital:first-letter {
+    text-transform: uppercase !important;
+}

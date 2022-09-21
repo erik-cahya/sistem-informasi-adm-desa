@@ -41,8 +41,8 @@
                                                       <label for="input-no_ktp">No KTP/ID</label>
                                                       <input id="input-no_ktp" type="text" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-no_ktp"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-no_ktp"></small>
                                                       </div>
                                                   </div>
 
@@ -55,8 +55,8 @@
                                                           <option>Indonesia</option>
                                                       </datalist>
 
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-warga_negara"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-warga_negara"></small>
                                                       </div>
                                                   </div>
                                               </div>
@@ -66,14 +66,15 @@
                                                   <input id="input-nama_lengkap" type="text" class="form-control"
                                                       value="">
 
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-nama_lengkap"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-nama_lengkap"></small>
                                                   </div>
                                               </div>
 
                                               <div class="form-group">
                                                   <label for="input-agama">Agama</label>
                                                   <select id="input-agama" class="form-control custom-select">
+                                                      <option value="" selected disabled></option>
                                                       <option value="Islam">Islam</option>
                                                       <option value="Protestan">Protestan</option>
                                                       <option value="Katolik">Katolik</option>
@@ -82,8 +83,8 @@
                                                       <option value="Khonghucu">Khonghucu</option>
                                                       <option value="Penghayat Kepercayaan">Penghayat Kepercayaan</option>
                                                   </select>
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-agama"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-agama"></small>
                                                   </div>
                                               </div>
                                               <div class="row">
@@ -91,8 +92,8 @@
                                                       <label for="input-tempat_lahir">Tempat Lahir</label>
                                                       <input id="input-tempat_lahir" type="text" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-tempat_lahir"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-tempat_lahir"></small>
                                                       </div>
                                                   </div>
 
@@ -102,8 +103,8 @@
                                                       </label>
                                                       <input id="input-tgl_lahir" type="date" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-tgl_lahir"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-tgl_lahir"></small>
                                                       </div>
                                                   </div>
                                               </div>
@@ -111,11 +112,12 @@
                                               <div class="form-group">
                                                   <label for="input-jenis_kelamin">Jenis Kelamin</label>
                                                   <select id="input-jenis_kelamin" class="form-control custom-select">
+                                                      <option value="" selected disabled></option>
                                                       <option value="Laki-laki">Laki-laki</option>
                                                       <option value="Perempuan">Perempuan</option>
                                                   </select>
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-jenis_kelamin"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-jenis_kelamin"></small>
                                                   </div>
                                               </div>
 
@@ -123,8 +125,8 @@
                                                   <label for="input-alamat">Alamat</label>
                                                   <input id="input-alamat" type="text" class="form-control"
                                                       value="">
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-alamat"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-alamat"></small>
                                                   </div>
                                               </div>
 
@@ -133,8 +135,8 @@
                                                       <label for="input-dusun">Dusun</label>
                                                       <input id="input-dusun" type="text" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-dusun"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-dusun"></small>
                                                       </div>
                                                   </div>
 
@@ -142,8 +144,8 @@
                                                       <label for="input-rt">RT</label>
                                                       <input id="input-rt" type="text" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-rt"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-rt"></small>
                                                       </div>
                                                   </div>
 
@@ -151,8 +153,8 @@
                                                       <label for="input-rw">RW</label>
                                                       <input id="input-rw" type="text" class="form-control"
                                                           value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-rw"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-rw"></small>
                                                       </div>
                                                   </div>
                                               </div>
@@ -166,8 +168,8 @@
                                                       <option value="B">B</option>
                                                       <option value="AB">AB</option>
                                                   </select>
-                                                  <div class="invalid-feedback">
-                                                      <span id="message-golongan_darah"></span>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-golongan_darah"></small>
                                                   </div>
                                               </div>
 
@@ -176,6 +178,7 @@
                                                   <div class="form-group col-md-6">
                                                       <label for="input-pendidikan">Pendidikan</label>
                                                       <select id="input-pendidikan" class="form-control custom-select">
+                                                          <option value="" selected disabled></option>
                                                           <option value="TIDAK/BELUM SEKOLAH">
                                                               TIDAK/BELUM SEKOLAH
                                                           </option>
@@ -207,34 +210,48 @@
                                                               STRATA III
                                                           </option>
                                                       </select>
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-pendidikan"></span>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-pendidikan"></small>
                                                       </div>
                                                   </div>
-
                                                   <div class="form-group col-md-6">
-                                                      <label for="input-pekerjaan">Pekerjaan</label>
-                                                      <input id="input-pekerjaan" type="text" class="form-control"
-                                                          value="">
-                                                      <div class="invalid-feedback">
-                                                          <span id="message-pekerjaan"></span>
+                                                      <label for="input-baca_tulis">Baca tulis?</label>
+                                                      <select id="input-baca_tulis" class="form-control custom-select">
+                                                          <option value="" selected disabled></option>
+                                                          <option value="iya"> Iya </option>
+                                                          <option value="tidak"> Tidak </option>
+                                                      </select>
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-baca_tulis"></small>
                                                       </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label for="input-pekerjaan">Pekerjaan</label>
+                                                  <input id="input-pekerjaan" type="text" class="form-control"
+                                                      value="">
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-pekerjaan"></small>
                                                   </div>
                                               </div>
                                               <div class="form-group">
                                                   <label for="input-status_nikah">Status Perkawinan</label>
                                                   <select id="input-status_nikah" class="form-control custom-select">
+                                                      <option value="" selected disabled></option>
                                                       <option value="Belum Kawin">Belum Kawin</option>
                                                       <option value="Kawin">Kawin</option>
                                                       <option value="Cerai hidup">Cerai hidup</option>
                                                       <option value="Cerai mati"> Cerai mati</option>
                                                   </select>
+                                                  <div class="text-danger font-italic text-capital">
+                                                      <small id="message-status_nikah"></small>
+                                                  </div>
                                               </div>
 
                                               <div class="form-group">
                                                   <label for="input-status_warga">Status Warga</label>
                                                   <select id="input-status_warga" class="form-control custom-select">
-                                                      <option value="1">Aktif</option>
+                                                      <option value="1" selected>Aktif</option>
                                                       <option value="0">Tidak Aktif</option>
                                                   </select>
                                               </div>
@@ -304,8 +321,8 @@
                               <div class="form-group col-md-6">
                                   <label for="input-edit-no_ktp">No KTP/ID</label>
                                   <input id="input-edit-no_ktp" type="text" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-no_ktp"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-no_ktp"></small>
                                   </div>
                               </div>
 
@@ -318,8 +335,8 @@
                                       <option>Indonesia</option>
                                   </datalist>
 
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-warga_negara"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-warga_negara"></small>
                                   </div>
                               </div>
                           </div>
@@ -328,8 +345,8 @@
                               <label for="input-edit-nama_lengkap">Nama Lengkap</label>
                               <input id="input-edit-nama_lengkap" type="text" class="form-control" value="">
 
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-nama_lengkap"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-nama_lengkap"></small>
                               </div>
                           </div>
 
@@ -344,8 +361,8 @@
                                   <option value="Khonghucu">Khonghucu</option>
                                   <option value="Penghayat Kepercayaan">Penghayat Kepercayaan</option>
                               </select>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-agama"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-agama"></small>
                               </div>
                           </div>
                           <div class="row">
@@ -353,8 +370,8 @@
                                   <label for="input-edit-tempat_lahir">Tempat Lahir</label>
                                   <input id="input-edit-tempat_lahir" type="text" class="form-control"
                                       value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-tempat_lahir"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-tempat_lahir"></small>
                                   </div>
                               </div>
 
@@ -363,8 +380,8 @@
                                       Lahir<small class="text-small">(Tanggal/Bulan/Tahun)</small>
                                   </label>
                                   <input id="input-edit-tgl_lahir" type="date" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-tgl_lahir"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-tgl_lahir"></small>
                                   </div>
                               </div>
                           </div>
@@ -375,16 +392,16 @@
                                   <option value="Laki-laki">Laki-laki</option>
                                   <option value="Perempuan">Perempuan</option>
                               </select>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-jenis_kelamin"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-jenis_kelamin"></small>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label for="input-edit-alamat">Alamat</label>
                               <input id="input-edit-alamat" type="text" class="form-control" value="">
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-alamat"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-alamat"></small>
                               </div>
                           </div>
 
@@ -392,24 +409,24 @@
                               <div class="form-group col-md-4">
                                   <label for="input-edit-dusun">Dusun</label>
                                   <input id="input-edit-dusun" type="text" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-dusun"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-dusun"></small>
                                   </div>
                               </div>
 
                               <div class="form-group col-md-4">
                                   <label for="input-edit-rt">RT</label>
                                   <input id="input-edit-rt" type="text" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-rt"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-rt"></small>
                                   </div>
                               </div>
 
                               <div class="form-group col-md-4">
                                   <label for="input-edit-rw">RW</label>
                                   <input id="input-edit-rw" type="text" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-rw"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-rw"></small>
                                   </div>
                               </div>
                           </div>
@@ -423,8 +440,8 @@
                                   <option value="B">B</option>
                                   <option value="AB">AB</option>
                               </select>
-                              <div class="invalid-feedback">
-                                  <span id="message-edit-golongan_darah"></span>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-golongan_darah"></small>
                               </div>
                           </div>
 
@@ -464,17 +481,28 @@
                                           STRATA III
                                       </option>
                                   </select>
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-pendidikan"></span>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-pendidikan"></small>
                                   </div>
                               </div>
 
                               <div class="form-group col-md-6">
-                                  <label for="input-edit-pekerjaan">Pekerjaan</label>
-                                  <input id="input-edit-pekerjaan" type="text" class="form-control" value="">
-                                  <div class="invalid-feedback">
-                                      <span id="message-edit-pekerjaan"></span>
+                                  <label for="input-edit-baca_tulis">Baca tulis?</label>
+                                  <select id="input-edit-baca_tulis" class="form-control custom-select">
+                                      <option value="" selected disabled></option>
+                                      <option value="iya"> Iya </option>
+                                      <option value="tidak"> Tidak </option>
+                                  </select>
+                                  <div class="text-danger font-italic text-capital">
+                                      <small id="message-edit-baca_tulis"></small>
                                   </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="input-edit-pekerjaan">Pekerjaan</label>
+                              <input id="input-edit-pekerjaan" type="text" class="form-control" value="">
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-pekerjaan"></small>
                               </div>
                           </div>
                           <div class="form-group">
@@ -485,6 +513,9 @@
                                   <option value="Cerai hidup">Cerai hidup</option>
                                   <option value="Cerai mati"> Cerai mati</option>
                               </select>
+                              <div class="text-danger font-italic text-capital">
+                                  <small id="message-edit-status_nikah"></small>
+                              </div>
                           </div>
 
                           <div class="form-group">
@@ -534,7 +565,9 @@
                               text: '<i class="bi bi-file-earmark-excel-fill"></i> Excel',
                               titleAttr: 'Excel',
                               exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                                      18
+                                  ]
                               },
                           },
                           {
@@ -542,7 +575,9 @@
                               text: '<i class="bi bi-file-earmark-pdf-fill"></i> PDF',
                               titleAttr: 'PDF',
                               exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                                      18
+                                  ]
                               },
                           },
                           {
@@ -550,7 +585,9 @@
                               text: ' <i class="bi bi-printer-fill"></i> Print',
                               titleAttr: 'Print',
                               exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                                      18
+                                  ]
                               },
                           }
                       ],
@@ -565,7 +602,7 @@
                   columnDefs: [{
                       searchable: false,
                       orderable: false,
-                      targets: [17]
+                      targets: [19]
                   }],
                   columns: [{
                           render: function(data, type, row, meta) {
@@ -692,6 +729,7 @@
               data_input.golongan_darah = $("#input-golongan_darah").val();
               data_input.warga_negara = $("#input-warga_negara").val();
               data_input.pendidikan = $("#input-pendidikan").val();
+              data_input.baca_tulis = $("#input-baca_tulis").val();
               data_input.pekerjaan = $("#input-pekerjaan").val();
               data_input.status_nikah = $("#input-status_nikah").val();
               data_input.status_warga = $("#input-status_warga").val();
@@ -700,7 +738,7 @@
 
               //reset validation
               for (obj in data_input) {
-                  $(`#input-${obj}`).attr("class", "form-control is-valid");
+                  $(`#message-${obj}`).html('');
               }
 
               $.ajax({
@@ -770,6 +808,7 @@
                       //set value
                       for (key in response) {
                           $('#input-edit-' + key).val(`${response[key]}`);
+                          $(`#message-edit-${key}`).html('');
                       }
 
                       //select option set value
@@ -783,6 +822,8 @@
                           .options[response.pendidikan.selectedIndex];
                       document.querySelector('#input-edit-status_nikah')
                           .options[response.status_nikah.selectedIndex];
+                      document.querySelector('#input-edit-baca_tulis')
+                          .options[response.baca_tulis.selectedIndex];
 
                       if (response.status_warga == "1") {
                           document.querySelector('#input-edit-status_warga').options[0].selected = true;
@@ -830,6 +871,7 @@
               data_input.golongan_darah = $("#input-edit-golongan_darah").val();
               data_input.warga_negara = $("#input-edit-warga_negara").val();
               data_input.pendidikan = $("#input-edit-pendidikan").val();
+              data_input.baca_tulis = $("#input-edit-baca_tulis").val();
               data_input.pekerjaan = $("#input-edit-pekerjaan").val();
               data_input.status_nikah = $("#input-edit-status_nikah").val();
               data_input.status_warga = $("#input-edit-status_warga").val();
@@ -838,7 +880,7 @@
 
               //reset validation
               for (obj in data_input) {
-                  $(`#input-edit-${obj}`).attr("class", "form-control is-valid");
+                  $(`#message-edit-${obj}`).html('');
               }
 
               $.ajax({
@@ -945,12 +987,8 @@
 
 
           function checkValidation(errorMsg, elementById, elementMsg) {
-              if (errorMsg != undefined) {
-                  document.getElementById(`${elementById}`).className = "form-control is-invalid";
-                  $(`#${elementMsg}`).html(` ${errorMsg}`);
-              } else {
-                  document.getElementById(`${elementById}`).className = "form-control is-valid";
-              }
+              document.getElementById(`${elementById}`).className = "form-control";
+              $(`#${elementMsg}`).html(` ${errorMsg}`);
           }
       </script>
   @endsection
