@@ -38,9 +38,9 @@ class Warga extends Model
         'updated_at'
     ];
 
-    protected $casts = [
-        'tgl_lahir' => 'datetime:d/M/Y'
-    ];
+    // protected $casts = [
+    //     'tgl_lahir' => 'datetime:d/M/Y'
+    // ];
 
     public function getFullData($id = null)
     {
@@ -52,7 +52,7 @@ class Warga extends Model
             ->select('wargas.*','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
             ->first();
 
-            $dataAnggota->tgl_lahir = (new Carbon($dataAnggota->tgl_lahir))->isoFormat('d/M/Y');
+            //$dataAnggota->tgl_lahir = (new Carbon($dataAnggota->tgl_lahir))->isoFormat('d/M/Y');
 
             return $dataAnggota;
         }
@@ -63,7 +63,7 @@ class Warga extends Model
                 ->get();
 
             for ($i=0; $i < count($dataAnggota) ; $i++) { 
-                $dataAnggota[$i]->tgl_lahir = (new Carbon($dataAnggota[$i]->tgl_lahir))->isoFormat('d/M/Y');
+                //$dataAnggota[$i]->tgl_lahir = (new Carbon($dataAnggota[$i]->tgl_lahir))->isoFormat('d/M/Y');
             }
 
             return $dataAnggota;

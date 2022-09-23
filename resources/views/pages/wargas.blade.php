@@ -626,8 +626,9 @@
                           name: "tempat_lahir",
                       },
                       {
-                          data: "tgl_lahir",
-                          name: "tgl_lahir",
+                          render: function(data, type, row, meta) {
+                              return moment(row['tgl_lahir']).format('DD/MM/YYYY');
+                          }
                       },
                       {
                           data: "jenis_kelamin",
