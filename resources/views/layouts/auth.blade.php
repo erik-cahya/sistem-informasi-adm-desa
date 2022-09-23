@@ -31,6 +31,13 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('res/assets/css/style.css') }}" rel="stylesheet">
 
+
+    <!-- Sweetalert2 File -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+
+
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

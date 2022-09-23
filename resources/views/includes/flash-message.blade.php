@@ -13,31 +13,39 @@
 @endif
 
 @if ($message = Session::get('success'))
-    <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-        {{ $message }}
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log('success');
+            sweetAlart('success', '{{ $message }}');
+        });
+    </script>
 @endif
 
 @if ($message = Session::get('error'))
-    <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-        {{ $message }}
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log('error');
+            sweetAlart('error', '{{ $message }}');
+        });
+    </script>
 @endif
 
 @if ($message = Session::get('warning'))
-    <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-        {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log('warning');
+            sweetAlart('warning', '{{ $message }}');
+        });
+    </script>
 @endif
 
 @if ($message = Session::get('info'))
-    <div class="alert alert-info bg-info border-0 alert-dismissible fade show" role="alert">
-        {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log('info');
+            sweetAlart('info', '{{ $message }}');
+        });
+    </script>
 @endif
 
 @if ($message = Session::get('light'))
@@ -53,3 +61,14 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
+
+<script>
+    function sweetAlart(alert, message) {
+        return Swal.fire({
+            icon: `${alert}`,
+            title: `${message}`,
+            showConfirmButton: true,
+            timer: 3000
+        });
+    }
+</script>
