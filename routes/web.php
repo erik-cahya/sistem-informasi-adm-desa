@@ -32,6 +32,9 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('home/get/count/data/{by}', [HomeController::class, 'getCountData'])->name('home.getCountData');
+    Route::get('home/get/count/gender', [HomeController::class, 'getGenderData'])->name('home.getCountGender');
+    Route::get('home/get/count/mutasi', [HomeController::class, 'sortMonth'])->name('home.getCountMutasi');
 
     Route::get('user', [UserController::class, 'index'])->name('users');
     Route::get('users/{id}', [UserController::class, 'show'])->name('user.show');

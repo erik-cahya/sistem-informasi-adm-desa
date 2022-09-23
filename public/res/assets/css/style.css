@@ -66,6 +66,13 @@ h6 {
     color: #012970;
 }
 
+.pagetitle h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #012970;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -851,6 +858,11 @@ h6 {
     background: #ffecdf;
 }
 
+.dashboard .mutasi-card .card-icon {
+    color: #ec1dff;
+    background: #f9dfff;
+}
+
 /* Activity */
 .dashboard .activity {
     font-size: 14px;
@@ -1289,4 +1301,15 @@ input[readonly]:focus {
 
 .text-capital:first-letter {
     text-transform: uppercase !important;
+}
+
+.carousel .item {
+    height: 300px !important;
+}
+
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px !important;
 }
