@@ -5,8 +5,12 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Warga;
+use App\Models\Mutasi;
+use App\Models\Keluarga;
+use App\Models\DetailKeluarga;
 use App\Models\Parameter;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $totalDataWarga = 1000; //max 42000
         $users = [
             [
                 'username' => 'admin',
@@ -86,8 +91,12 @@ class DatabaseSeeder extends Seeder
             'Cerai hidup'
         ];
 
+        $dusun = [
+            'Dusun I','Dusun II','Dusun III','Dusun IV','Dusun V','Dusun VI'
+        ];
+
         $faker = Faker::create('id_ID');
-    	foreach (range(1,500) as $index) {
+    	foreach (range(1,$totalDataWarga) as $index) {
             Warga::create([
                 'no_ktp' => $faker->numerify('################'),
                 'nama_lengkap' => $faker->firstName.' '.$faker->lastName,
@@ -96,7 +105,7 @@ class DatabaseSeeder extends Seeder
                 'tgl_lahir' => $faker->dateTimeBetween('1990-01-01', '2012-12-31')->format('Y-m-d'),
                 'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'alamat' => $faker->address,
-                'dusun' => $faker->citySuffix,
+                'dusun' => $dusun[rand(0, count($dusun) - 1)],
                 'rt' => $faker->numberBetween($min = 001, $max = 100),
                 'rw' => $faker->numberBetween($min = 001, $max = 100),
                 'baca_tulis' => 'iya',
@@ -105,15 +114,87 @@ class DatabaseSeeder extends Seeder
                 'pendidikan' => $studys[rand(0, count($studys) - 1)],
                 'pekerjaan' => $faker->jobTitle,
                 'status_nikah' => $maritalStatus[rand(0, count($maritalStatus) - 1)],
-                'status_warga' => '1'
+                'status_warga' => '1',
+                'created_at' => $faker->dateTimeBetween(Carbon::now()->subYears(1), Carbon::now())->format('Y-m-d')
             ]);
         }
 
-        // \App\Models\User::factory(10)->create();
+        //faker keluarga
+        foreach (range(1,($totalDataWarga/5)) as $index){
+            Keluarga::create([
+                'no_kk' => $faker->numerify('################'),
+                'alamat' => $faker->address,
+                'dusun' => $dusun[rand(0, count($dusun) - 1)],
+                'rt' => $faker->numberBetween($min = 001, $max = 100),
+                'rw' => $faker->numberBetween($min = 001, $max = 100),
+                'ekonomi' => 'A',
+                'created_at' => $faker->dateTimeBetween(Carbon::now()->subYears(1), Carbon::now())->format('Y-m-d')
+            ]);
+        };
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        //faker detailKeluarga
+        $k = 1;
+        foreach (range(1,($totalDataWarga/5)) as $x){
+            DetailKeluarga::create([
+                'keluarga_id' => $x,
+                'warga_id' => $k,
+                'status_anggota' => 'Kepala Keluarga'    
+            ]);  
+            
+            DetailKeluarga::create([
+                'keluarga_id' => $x,
+                'warga_id' => $k = $k+1,
+                'status_anggota' => 'Istri'    
+            ]);
+
+            DetailKeluarga::create([
+                'keluarga_id' => $x,
+                'warga_id' => $k = $k+1,
+                'status_anggota' => 'Anak'    
+            ]);
+
+            DetailKeluarga::create([
+                'keluarga_id' => $x,
+                'warga_id' => $k = $k+1,
+                'status_anggota' => 'AA'    
+            ]);
+
+            DetailKeluarga::create([
+                'keluarga_id' => $x,
+                'warga_id' => $k = $k+1,
+                'status_anggota' => 'P'    
+            ]);
+
+           $k = $k+1;
+        }
+
+        //faker mutasi
+        $jenis_mutasi_out = ['Wafat','Keluar'];
+        $jenis_mutasi_in = ['Lahir','Masuk'];
+        foreach (range(1,50) as $x){
+            $warga_id_out = rand(1,$totalDataWarga);
+            $create_date_out = $faker->dateTimeBetween(Carbon::now()->subYears(1), Carbon::now())->format('Y-m-d');
+            Mutasi::create([
+                    'warga_id' => $warga_id_out,
+                    'jenis_mutasi' =>  $jenis_mutasi_out[rand(0, count($jenis_mutasi_out) - 1)],
+                    'tgl_keluar_masuk' =>  $create_date_out ,
+                    'keterangan' => '-',
+                    'created_at' =>  $create_date_out
+            ]);
+
+            Warga::find($warga_id_out)->update(['status_warga' => '0']);
+
+            $warga_id_in = rand(1,$totalDataWarga);
+            $create_date_in = $faker->dateTimeBetween(Carbon::now()->subYears(1), Carbon::now())->format('Y-m-d');
+            Mutasi::create([
+                    'warga_id' => $warga_id_in,
+                    'jenis_mutasi' =>  $jenis_mutasi_in[rand(0, count($jenis_mutasi_out) - 1)],
+                    'tgl_keluar_masuk' => $create_date_in ,
+                    'keterangan' => '-',
+                    'created_at' => $create_date_in
+            ]);
+        }
+
     }
 }

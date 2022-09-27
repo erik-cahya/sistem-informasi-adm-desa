@@ -29,29 +29,35 @@ class HomeController extends Controller
 
     public function getCountData($by)
     {
-        if ($by = 'month') {
+        $date = Carbon::now();
+        $from = $date->startOfMonth()->format('Y-m-d');
+        $to =  Carbon::createFromFormat('Y-m-d', $from)->endOfMonth()->format('Y-m-d');
+
+        
+        if ($by == 'month') {
+            //dd($by);
             return response()->json([
-                'penduduk' => Warga::whereMonth('created_at', Carbon::now()->month)->get()->count(),
-                'keluarga' => Keluarga::whereMonth('created_at', Carbon::now()->month)->get()->count(),
-                'surat' => Surat::whereMonth('created_at', Carbon::now()->month)->get()->count(),
-                'mutasi' => Mutasi::whereMonth('created_at', Carbon::now()->month)->get()->count()
+                'penduduk' => Warga::whereBetween('created_at',[$from,$to])->get()->count(),
+                'keluarga' => Keluarga::whereBetween('created_at',[$from,$to])->get()->count(),
+                'surat' => Surat::whereBetween('created_at',[$from,$to])->get()->count(),
+                'mutasi' => Mutasi::whereBetween('created_at',[$from,$to])->get()->count()
             ]);
         }
 
-        if ($by = 'year') {
+        if ($by == 'year') {
             return response()->json([
-                'penduduk' => Warga::whereYear('created_at', Carbon::now()->month)->get()->count(),
-                'keluarga' => Keluarga::whereYear('created_at', Carbon::now()->month)->get()->count(),
-                'surat' => Surat::whereYear('created_at', Carbon::now()->month)->get()->count(),
-                'mutasi' => Mutasi::whereYear('created_at', Carbon::now()->month)->get()->count()
+                'penduduk' => Warga::whereYear('created_at', Carbon::now()->year)->get()->count(),
+                'keluarga' => Keluarga::whereYear('created_at', Carbon::now()->year)->get()->count(),
+                'surat' => Surat::whereYear('created_at', Carbon::now()->year)->get()->count(),
+                'mutasi' => Mutasi::whereYear('created_at', Carbon::now()->year)->get()->count()
             ]);
         }
 
         return response()->json([
-            'penduduk' => Warga::whereYear('created_at', Carbon::now()->month)->get()->count(),
-            'keluarga' => Keluarga::whereYear('created_at', Carbon::now()->month)->get()->count(),
-            'surat' => Surat::whereYear('created_at', Carbon::now()->month)->get()->count(),
-            'mutasi' => Mutasi::whereYear('created_at', Carbon::now()->month)->get()->count()
+            'penduduk' => Warga::get()->count(),
+            'keluarga' => Keluarga::get()->count(),
+            'surat' => Surat::get()->count(),
+            'mutasi' => Mutasi::get()->count()
         ]);
         
     }
