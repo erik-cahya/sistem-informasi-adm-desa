@@ -1353,3 +1353,12 @@ input[type="date"]::-webkit-inner-spin-button {
 input[type="date"]::-webkit-clear-button {
     z-index: 1;
 }
+
+tfoot {
+    display: table-header-group;
+}
+
+table.dataTable thead tr th {
+    max-width: 100%;
+    white-space: nowrap;
+}

@@ -272,12 +272,35 @@
                                   </div>
                               </div>
                           </div>
+
                           <div id="printbar" style="float:right"></div>
+                          <div id="toggle" class="mb-3 border-1">
+                              <p>Klik untuk menampilkan kolom:</p>
+                              <a class="toggle-vis badge bg-primary" data-column="1">No KTP</a>
+                              <a class="toggle-vis badge bg-primary" data-column="2">Nama Lengkap</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="3">Agama</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="4">Tempat Lahir</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="5">Tanggal Lahir</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="6">Jenis Kelamin</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="7">Alamat</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="8">Dusun</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="9">RT</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="10">RW</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="11">Golongan Darah</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="12">Warga Negara</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="13">Pendidikan</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="14">Pekerjaan</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="15">Perkawinan</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="16">Status Dalam Keluarga</a>
+                              <a class="toggle-vis badge bg-primary" data-column="17">No KK</a>
+                              <a class="toggle-vis badge bg-primary" data-column="18">Status Warga</a>
+                          </div>
                           <div class="table-responsive">
-                              <table id="tableWarga" class="display .datatable table table-hover" style="width:100%">
+                              <table id="tableWarga" class="display .datatable table table-hover table-bordered"
+                                  style="width:100%">
                                   <thead>
                                       <tr>
-                                          <th width="6%">No</th>
+                                          <th width="2%">No</th>
                                           <th>No KTP</th>
                                           <th>Nama Lengkap</th>
                                           <th>Agama</th>
@@ -296,9 +319,11 @@
                                           <th>Status Dalam Keluarga</th>
                                           <th>No KK</th>
                                           <th>Status Warga</th>
-                                          <th width="6%" style="text-align: right">Aksi</th>
+                                          <th style="text-align: right">Aksi</th>
                                       </tr>
                                   </thead>
+                                  <tbody>
+                                  </tbody>
                               </table>
                           </div>
                       </div>
@@ -557,9 +582,36 @@
                   }
               });
 
+
+              //search by column
+              $('#tableWarga thead tr').clone(true).appendTo('#tableWarga thead');
+              $('#tableWarga thead tr:eq(1) th').each(function(i) {
+                  var title = $(this).text();
+                  var index = $(this).index();
+                  if (index === 0 || index === 19) {
+                      $(this).html('');
+                      return;
+                  }
+                  $(this).html(
+                      '<input type="text" class="form-control form-control-sm" placeholder="Cari ' +
+                      title + '" >');
+
+                  $('input', this).on('keyup change', function() {
+                      if (table.column(i).search() !== this.value) {
+                          table
+                              .column(i)
+                              .search(this.value)
+                              .draw();
+                      }
+                  });
+              });
+
+              var desa = 'Matanga';
               var table = $('#tableWarga').DataTable({
                   processing: true,
                   serverSide: true,
+                  orderCellsTop: true,
+                  fixedHeader: true,
                   ajax: "{{ url('warga') }}",
                   //   dom: 'lBfrtip',
                   "scrollX": true,
@@ -609,7 +661,7 @@
                       [10, 25, 50, 100, "All"]
                   ],
                   order: [
-                      [0, 'asc']
+                      [0, 'desc']
                   ],
                   columnDefs: [{
                           searchable: false,
@@ -618,8 +670,7 @@
                       },
                       {
                           visible: false,
-                          searchable: false,
-                          target: [9, 10],
+                          target: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
                       }
                   ],
                   columns: [{
@@ -710,7 +761,7 @@
                       {
                           render: function(data, type, row, meta) {
                               return `
-                            <div class="float-right">
+                            <div class="float-right btn-group" role="group">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit" onclick="editModalUser('${row["id"]}')">
                                     Ubah
                                 </button>
@@ -725,6 +776,32 @@
               });
 
               table.buttons().container().appendTo("#printbar");
+
+              //display column toggle
+              $('a.toggle-vis').css("text-decoration", "none");
+              $('a.toggle-vis').css("color", "#ffff");
+              $('a.toggle-vis').css("cursor", "pointer");
+
+              $('a.toggle-vis').on('click', function(e) {
+                  e.preventDefault();
+
+                  // Get the column API object
+                  var column = table.column($(this).attr('data-column'));
+
+                  // Toggle the visibility
+                  column.visible(
+                      !column.visible()
+                  );
+
+                  console.log();
+                  if ($(this).hasClass('toggle-vis badge bg-primary') != false) {
+                      $(this).removeClass('bg-primary');
+                      $(this).addClass('bg-secondary');
+                  } else {
+                      $(this).addClass('bg-primary');
+                      $(this).removeClass('bg-secondary');
+                  }
+              });
           });
 
 
