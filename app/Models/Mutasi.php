@@ -31,9 +31,9 @@ class Mutasi extends Model
             return $dataMutasi;
         }
 
-        $data = Mutasi::select('mutasis.*',
-                'wargas.no_ktp','wargas.nama_lengkap'
-            )->join('wargas','wargas.id','=','mutasis.warga_id')->get();
+        $data = Mutasi::select('mutasis.*','wargas.no_ktp','wargas.nama_lengkap')
+                ->join('wargas','wargas.id','=','mutasis.warga_id')
+                ->where(['mutasis.id' => $id])->get()->first();
 
         return $data;
     }

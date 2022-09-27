@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('keluargas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no_kk')->unique();
+            $table->string('no_kk')->unique();
             $table->text('alamat');
             $table->string('dusun');
             $table->string('rt')->nullable();

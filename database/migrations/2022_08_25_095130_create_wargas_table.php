@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no_ktp')->unique();
+            $table->string('no_ktp')->unique();
             $table->string('nama_lengkap');
             $table->string('agama');
             $table->string('tempat_lahir');

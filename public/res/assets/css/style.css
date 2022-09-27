@@ -1313,3 +1313,43 @@ input[readonly]:focus {
     left: 0;
     min-height: 300px !important;
 }
+
+input[type="date"] {
+    position: relative;
+}
+
+input[type='date']:in-range::-webkit-datetime-edit-year-field,
+input[type='date']:in-range::-webkit-datetime-edit-month-field,
+input[type='date']:in-range::-webkit-datetime-edit-day-field,
+input[type='date']:in-range::-webkit-datetime-edit-text {
+    color: transparent;
+}
+
+input[type="date"]:after {
+    font-family: "bootstrap-icons";
+    content: "\F1F6";
+    color: rgb(0, 0, 0);
+    padding: 0 0px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+/* adjust clear button */
+input[type="date"]::-webkit-clear-button {
+    z-index: 1;
+}

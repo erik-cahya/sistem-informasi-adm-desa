@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Warga;
 use App\Models\Mutasi;
 use App\Models\Dusun;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
 class MutasiController extends Controller
@@ -15,6 +16,7 @@ class MutasiController extends Controller
         $this->warga = new Warga();
         $this->mutasi = new Mutasi();
         $this->dusun = new Dusun();
+        $this->faker = Faker::create('id_ID');
     }
     
     public function index()
@@ -104,7 +106,7 @@ class MutasiController extends Controller
         }else{
             
             $request->validate([
-                'no_ktp' => 'required|numeric|digits:16|unique:wargas,no_ktp',
+                'no_ktp' => 'unique:wargas,no_ktp',
                 'nama_lengkap' => 'required|max:64|min:2|max:255',
                 'agama' => 'required|alpha|max:255',
                 'tempat_lahir' => 'required|max:255',
@@ -118,15 +120,15 @@ class MutasiController extends Controller
                 'baca_tulis' => 'required|max:255',
                 'pekerjaan' => 'required|max:255',
                 'status_nikah' => 'required|max:255',
-
                 'jenis_mutasi' => 'required|max:255',
                 'tanggal_keluar_masuk' => 'required',
                 'keterangan' => 'required'
             ]);
 
+
             DB::transaction(function() use ($request) {
                 $newWarga = Warga::create([
-                    'no_ktp' => $request->no_ktp,
+                    'no_ktp' => ($request->no_ktp != null)? $request->no_ktp : $this->faker->numerify('DUMMY-##########') ,
                     'nama_lengkap' => $request->nama_lengkap,
                     'agama' => $request->agama,
                     'tempat_lahir' => $request->tempat_lahir,

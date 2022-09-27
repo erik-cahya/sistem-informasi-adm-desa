@@ -24,8 +24,32 @@
                               <div class="modal-body row">
 
                                   <div class="col-lg-6">
+                                      <div class="form-group">
+                                          <label for="input-jenis_mutasi">Jenis Mutasi</label>
+                                          <select id="input-jenis_mutasi" class="form-control custom-select">
+                                              <option value="" disabled selected>Pilih Jenis mutasi</option>
+                                              @foreach ($tipeMutasi as $mut)
+                                                  <option value="{{ $mut }}">
+                                                      {{ $mut }}
+                                                  </option>
+                                              @endforeach
+                                          </select>
+                                          <div class="text-danger font-italic text-capital">
+                                              <small id="message-jenis_mutasi"></small>
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label for="input-nama_lengkap">Nama Lengkap</label>
+                                          <input id="input-nama_lengkap" type="text" class="form-control" value="">
+
+                                          <div class="text-danger font-italic text-capital">
+                                              <small id="message-nama_lengkap"></small>
+                                          </div>
+                                      </div>
+
                                       <div class="row">
-                                          <div class="form-group col-md-6">
+                                          <div id="form-input-no_ktp" class="form-group col-md-6">
                                               <label for="input-no_ktp">No KTP/ID</label>
                                               <input id="input-no_ktp" type="text" class="form-control" value="">
                                               <div class="text-danger font-italic text-capital">
@@ -45,15 +69,6 @@
                                               <div class="text-danger font-italic text-capital">
                                                   <small id="message-warga_negara"></small>
                                               </div>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label for="input-nama_lengkap">Nama Lengkap</label>
-                                          <input id="input-nama_lengkap" type="text" class="form-control" value="">
-
-                                          <div class="text-danger font-italic text-capital">
-                                              <small id="message-nama_lengkap"></small>
                                           </div>
                                       </div>
 
@@ -239,26 +254,12 @@
 
                                   </div>
                                   <div class="col-lg-6">
-                                      <div class="form-group">
-                                          <label for="input-jenis_mutasi">Jenis Mutasi</label>
-                                          <select id="input-jenis_mutasi"
-                                              class="form-control form-control-sm custom-select">
-                                              <option value="" disabled selected>Pilih Jenis mutasi</option>
-                                              @foreach ($tipeMutasi as $mut)
-                                                  <option value="{{ $mut }}">
-                                                      {{ $mut }}
-                                                  </option>
-                                              @endforeach
-                                          </select>
-                                          <div class="text-danger font-italic text-capital">
-                                              <small id="message-jenis_mutasi"></small>
-                                          </div>
-                                      </div>
+
 
                                       <div class="form-group">
                                           <label for="input-tanggal_keluar_masuk">Tanggal mutasi</label>
-                                          <input id="input-tanggal_keluar_masuk" type="date"
-                                              class="form-control form-control-sm" value="">
+                                          <input id="input-tanggal_keluar_masuk" type="date" class="form-control"
+                                              value="">
                                           <div class="text-danger font-italic text-capital">
                                               <small id="message-tanggal_keluar_masuk"></small>
                                           </div>
@@ -266,7 +267,7 @@
 
                                       <div class="form-group">
                                           <label for="input-keterangan">Keterangan</label>
-                                          <textarea id="input-keterangan" class="form-control form-control-sm" style="height: 100px" value=""></textarea>
+                                          <textarea id="input-keterangan" class="form-control" style="height: 100px" value=""></textarea>
                                           <div class="text-danger font-italic text-capital">
                                               <small id="message-keterangan"></small>
                                           </div>
@@ -292,6 +293,16 @@
               $.ajaxSetup({
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+
+              $('#input-jenis_mutasi').on('change', function() {
+                  var id = this.value;
+
+                  if (id == 'Lahir') {
+                      $('#form-input-no_ktp').hide();
+                  } else {
+                      $('#form-input-no_ktp').show();
                   }
               });
 

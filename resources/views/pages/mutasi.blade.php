@@ -87,7 +87,7 @@
                           </div>
                           <div class="form-group">
                               <label for="input-edit-jenis_mutasi">Jenis Mutasi</label>
-                              <select id="input-edit-jenis_mutasi" class="form-control form-control-sm custom-select">
+                              <select id="input-edit-jenis_mutasi" class="form-control">
                                   <option value="" disabled>Pilih Jenis mutasi</option>
                                   @foreach ($tipeMutasi as $mut)
                                       <option value="{{ $mut }}">{{ $mut }}</option>
@@ -100,8 +100,7 @@
 
                           <div class="form-group">
                               <label for="input-edit-tgl_keluar_masuk">Tanggal mutasi</label>
-                              <input id="input-edit-tgl_keluar_masuk" type="date" class="form-control form-control-sm"
-                                  value="">
+                              <input id="input-edit-tgl_keluar_masuk" type="date" class="form-control" value="">
                               <div class="text-danger font-italic text-capital">
                                   <small id="message-edit-tgl_keluar_masuk"></small>
                               </div>
@@ -109,7 +108,7 @@
 
                           <div class="form-group">
                               <label for="input-edit-keterangan">Keterangan</label>
-                              <textarea id="input-edit-keterangan" class="form-control form-control-sm" style="height: 100px" value=""></textarea>
+                              <textarea id="input-edit-keterangan" class="form-control" style="height: 100px" value=""></textarea>
                               <div class="text-danger font-italic text-capital">
                                   <small id="message-edit-keterangan"></small>
                               </div>
@@ -174,12 +173,13 @@
                           }
                       ],
                   },
+                  "scrollX": true,
                   aLengthMenu: [
-                      [25, 50, 100, 200, -1],
-                      [25, 50, 100, 200, "All"]
+                      [10, 25, 50, 100, -1],
+                      [10, 25, 50, 100, "All"]
                   ],
                   order: [
-                      [0, 'asc']
+                      [0, 'desc']
                   ],
                   columnDefs: [{
                       searchable: false,
@@ -237,14 +237,12 @@
               $("#form_edit_mutasi").find('.has-error').removeClass("has-error");
               $("#form_edit_mutasi").removeClass("is-invalid");
 
-
               var url = '{{ route('mutasi.show', ':id') }}';
 
               $.ajax({
                   url: url.replace(':id', id),
                   success: function(response) {
 
-                      response = response[0];
                       for (key in response) {
                           $('#input-edit-' + key).val(`${response[key]}`);
                       }

@@ -68,7 +68,6 @@ class WargaController extends Controller
         $request->validate([
             'no_ktp' => [
                 'required',
-                'numeric',
                 'digits:16',
                 Rule::unique('wargas', 'no_ktp')->ignore($request->id),
             ],
