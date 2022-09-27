@@ -118,7 +118,13 @@
                                       <div class="row">
                                           <div class="form-group col-md-4">
                                               <label for="input-dusun">Dusun</label>
-                                              <input id="input-dusun" type="text" class="form-control" value="">
+                                              <select id="input-dusun" class="form-control custom-select">
+                                                  <option value="" selected disabled></option>
+                                                  @foreach ($dusuns as $dusun)
+                                                      <option value="{{ $dusun }}">{{ $dusun }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>
                                               <div class="text-danger font-italic text-capital">
                                                   <small id="message-dusun"></small>
                                               </div>

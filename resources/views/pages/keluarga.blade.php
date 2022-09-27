@@ -58,8 +58,13 @@
                                               <div class="row">
                                                   <div class="form-group col-md-4">
                                                       <label for="input-dusun">Dusun</label>
-                                                      <input id="input-dusun" type="text"
-                                                          class="form-control form-control-sm" value="">
+                                                      <select id="input-dusun" class="form-control form-control-sm">
+                                                          <option value="" selected disabled></option>
+                                                          @foreach ($dusuns as $dusun)
+                                                              <option value="{{ $dusun }}">{{ $dusun }}
+                                                              </option>
+                                                          @endforeach
+                                                      </select>
                                                       <div class="text-danger font-italic text-capital">
                                                           <small id="message-dusun"></small>
                                                       </div>
@@ -86,12 +91,12 @@
 
                                               <div class="form-group">
                                                   <label for="input-ekonomi">Status Ekonomi</label>
-                                                  <select id="input-ekonomi"
-                                                      class="form-control form-control-sm custom-select">
+                                                  <select id="input-ekonomi" class="form-control form-control-sm">
                                                       <option value="" selected disabled></option>
-                                                      <option value="A">A</option>
-                                                      <option value="B">B</option>
-                                                      <option value="C">C</option>
+                                                      @foreach ($ekonomis as $ekonomi)
+                                                          <option value="{{ $ekonomi }}">{{ $ekonomi }}
+                                                          </option>
+                                                      @endforeach
                                                   </select>
                                                   <div class="text-danger font-italic text-capital">
                                                       <small id="message-ekonomi"></small>
@@ -231,8 +236,13 @@
                           <div class="row">
                               <div class="form-group col-md-4">
                                   <label for="input-edit-dusun">Dusun</label>
-                                  <input id="input-edit-dusun" type="text" class="form-control form-control-sm"
-                                      value="">
+                                  <select id="input-edit-dusun" class="form-control form-control-sm">
+                                      <option value="" selected disabled></option>
+                                      @foreach ($dusuns as $dusun)
+                                          <option value="{{ $dusun }}">{{ $dusun }}
+                                          </option>
+                                      @endforeach
+                                  </select>
                                   <div class="text-danger font-italic text-capital">
                                       <small id="message-edit-dusun"></small>
                                   </div>
@@ -259,10 +269,11 @@
 
                           <div class="form-group">
                               <label for="input-edit-ekonomi">Status Ekonomi</label>
-                              <select id="input-edit-ekonomi" class="form-control form-control-sm custom-select">
-                                  <option value="A">A</option>
-                                  <option value="B">B</option>
-                                  <option value="C">C</option>
+                              <select id="input-edit-ekonomi" class="form-control form-control-sm">
+                                  @foreach ($ekonomis as $ekonomi)
+                                      <option value="{{ $ekonomi }}">{{ $ekonomi }}
+                                      </option>
+                                  @endforeach
                               </select>
                           </div>
 
@@ -271,7 +282,7 @@
 
                               <div class="d-flex flex-row">
                                   <select id="input-edit-anggota"
-                                      class="js-example-placeholder-single js-states form-control custom-select"
+                                      class="js-example-placeholder-single js-states form-control form-control-sm"
                                       style=" display:block; width:100%;">
                                       <option value="-"></option>
                                       @foreach ($wargas as $warga)
@@ -285,13 +296,23 @@
                                   <ul class="dropdown-menu dropdown-menu-end">
                                       <li>
                                           <a id="button-edit-kepala" class="dropdown-item"
-                                              onclick="addAnggotaEdit('kepala')">Kepala
+                                              onclick="addAnggotaEdit('Kepala Keluarga')">Kepala
                                               Keluarga</a>
                                       </li>
                                       <li>
-                                          <a id="button-edit-anggota" class="dropdown-item"
-                                              onclick="addAnggotaEdit('anggota')">Anggota
-                                              Keluarga</a>
+                                          <a id="button-edit-istri" class="dropdown-item"
+                                              onclick="addAnggotaEdit('Istri')">Istri</a>
+                                      </li>
+                                      <li>
+                                          <a id="button-edit-anak" class="dropdown-item"
+                                              onclick="addAnggotaEdit('Anak')">Anak</a>
+                                      </li>
+                                      <li>
+                                          <a id="button-edit-aa" class="dropdown-item"
+                                              onclick="addAnggotaEdit('AA')">AA</a>
+                                      </li>
+                                      <li>
+                                          <a id="button-edit-p" class="dropdown-item" onclick="addAnggotaEdit('P')">P</a>
                                       </li>
                                   </ul>
 
@@ -340,6 +361,7 @@
                   select: true,
                   ajax: "{{ url('keluarga') }}",
                   //   dom: 'lBfrtip',
+                  "scrollX": true,
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
                       "<'row'<'col-sm-5'i><'col-sm-7'p>>B",
@@ -376,20 +398,26 @@
                       ],
                   },
                   aLengthMenu: [
-                      [25, 50, 100, 200, -1],
-                      [25, 50, 100, 200, "All"]
+                      [10, 25, 50, 100, -1],
+                      [10, 25, 50, 100, "All"]
                   ],
                   order: [
                       [0, 'asc']
                   ],
                   columnDefs: [{
-                      searchable: false,
-                      orderable: false,
-                      targets: [9]
-                  }],
+                          searchable: false,
+                          orderable: false,
+                          targets: [9]
+                      },
+                      {
+                          visible: false,
+                          searchable: false,
+                          target: [6, 7],
+                      }
+                  ],
                   columns: [{
                           render: function(data, type, row, meta) {
-                              return meta.row + meta.settings._iDisplayStart + 1;
+                              return `<b>${meta.row + meta.settings._iDisplayStart + 1}</b> `;
                           }
                       },
                       {
@@ -715,6 +743,12 @@
                   url: url.replace(':id', id),
                   success: function(response) {
 
+                      //select option set value
+                      document.querySelector('#input-edit-dusun')
+                          .options[response.dusun.selectedIndex];
+                      document.querySelector('#input-edit-ekonomi')
+                          .options[response.ekonomi.selectedIndex];
+
                       for (key in response) {
                           $('#input-edit-' + key).val(`${response[key]}`);
                       }
@@ -774,8 +808,6 @@
 
               } else {
 
-                  var status = (sebagai == 'kepala') ? 'Kepala Keluarga' : 'Anggota Keluarga';
-
                   var url = '{{ route('warga.show', ':id') }}';
 
                   $.ajax({
@@ -784,31 +816,40 @@
 
                           var tr = $('#table-edit-anggota tr[data-id="' + response.id + '"]');
 
-
                           if (!tr.length) {
-                              var markup =
-                                  `
-                                <tr data-id="${response.id}">
-                                    <td style="display:none;">${response.id}</td>
-                                    <td>${ response.no_ktp}</td>
-                                    <td>${ response.nama_lengkap}</td>
-                                    <td>${ status}</td>
-                                    <td>
-                                        <div class="float-right">
-                                            <button type="button" class="btndeleterowaddedEdit btn btn-danger btn-sm">
-                                                Hapus
-                                            </button>
-                                        </div>    
-                                    </td>
-                                </tr>
-                              `;
-                              $("#table-edit-anggota tbody").append(markup);
-                              $('#table-edit-anggota').show();
+                              if (response.no_kk != null) {
+                                  Swal.fire({
+                                      position: 'center',
+                                      icon: 'warning',
+                                      title: `Upss...`,
+                                      text: `${response.nama_lengkap} sudah terdaftar pada No KK ${response.no_kk}`,
+                                      showConfirmButton: true
+                                  });
+                              } else {
 
-                              if (sebagai == 'kepala') {
-                                  $("#button-edit-kepala").hide();
-                              };
+                                  var markup =
+                                      `
+                                            <tr data-id="${response.id}">
+                                                <td style="display:none;">${response.id}</td>
+                                                <td>${ response.no_ktp}</td>
+                                                <td>${ response.nama_lengkap}</td>
+                                                <td>${ sebagai}</td>
+                                                <td>
+                                                    <div class="float-right">
+                                                        <button type="button" class="btndeleterowaddedEdit btn btn-danger btn-sm">
+                                                            Hapus
+                                                        </button>
+                                                    </div>    
+                                                </td>
+                                            </tr>
+                                        `;
+                                  $("#table-edit-anggota tbody").append(markup);
+                                  $('#table-edit-anggota').show();
 
+                                  if (sebagai == 'Kepala Keluarga') {
+                                      $("#button-edit-kepala").hide();
+                                  };
+                              }
                           } else {
                               Swal.fire({
                                   position: 'center',

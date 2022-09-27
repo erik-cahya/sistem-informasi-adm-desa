@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Warga;
 use App\Models\Mutasi;
+use App\Models\Dusun;
 use Illuminate\Support\Facades\DB;
 
 class MutasiController extends Controller
@@ -13,6 +14,7 @@ class MutasiController extends Controller
     {
         $this->warga = new Warga();
         $this->mutasi = new Mutasi();
+        $this->dusun = new Dusun();
     }
     
     public function index()
@@ -50,9 +52,11 @@ class MutasiController extends Controller
     {
         $mutasi = ['Lahir', 'Masuk'];
 
+
         $data = [
             'title' => 'Mutasi masuk',
-            'tipeMutasi' => $mutasi
+            'tipeMutasi' => $mutasi,
+            'dusuns' => $this->dusun->dusuns()
         ];
 
         return view('pages.mutasi_masuk', $data);

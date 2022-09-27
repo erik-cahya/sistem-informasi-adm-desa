@@ -133,8 +133,13 @@
                                               <div class="row">
                                                   <div class="form-group col-md-4">
                                                       <label for="input-dusun">Dusun</label>
-                                                      <input id="input-dusun" type="text" class="form-control"
-                                                          value="">
+                                                      <select id="input-dusun" class="form-control custom-select">
+                                                          <option value="" selected disabled></option>
+                                                          @foreach ($dusuns as $dusun)
+                                                              <option value="{{ $dusun }}">{{ $dusun }}
+                                                              </option>
+                                                          @endforeach
+                                                      </select>
                                                       <div class="text-danger font-italic text-capital">
                                                           <small id="message-dusun"></small>
                                                       </div>
@@ -408,7 +413,13 @@
                           <div class="row">
                               <div class="form-group col-md-4">
                                   <label for="input-edit-dusun">Dusun</label>
-                                  <input id="input-edit-dusun" type="text" class="form-control" value="">
+                                  <select id="input-edit-dusun" class="form-control custom-select">
+                                      <option value="" selected disabled></option>
+                                      @foreach ($dusuns as $dusun)
+                                          <option value="{{ $dusun }}">{{ $dusun }}
+                                          </option>
+                                      @endforeach
+                                  </select>
                                   <div class="text-danger font-italic text-capital">
                                       <small id="message-edit-dusun"></small>
                                   </div>
@@ -551,6 +562,7 @@
                   serverSide: true,
                   ajax: "{{ url('warga') }}",
                   //   dom: 'lBfrtip',
+                  "scrollX": true,
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
                       "<'row'<'col-sm-5'i><'col-sm-7'p>>B",
@@ -593,20 +605,26 @@
                       ],
                   },
                   aLengthMenu: [
-                      [25, 50, 100, 200, -1],
-                      [25, 50, 100, 200, "All"]
+                      [10, 25, 50, 100, -1],
+                      [10, 25, 50, 100, "All"]
                   ],
                   order: [
                       [0, 'asc']
                   ],
                   columnDefs: [{
-                      searchable: false,
-                      orderable: false,
-                      targets: [19]
-                  }],
+                          searchable: false,
+                          orderable: false,
+                          targets: [19]
+                      },
+                      {
+                          visible: false,
+                          searchable: false,
+                          target: [9, 10],
+                      }
+                  ],
                   columns: [{
                           render: function(data, type, row, meta) {
-                              return meta.row + meta.settings._iDisplayStart + 1;
+                              return `<b>${meta.row + meta.settings._iDisplayStart + 1}</b> `;
                           }
                       },
                       {
@@ -627,7 +645,7 @@
                       },
                       {
                           render: function(data, type, row, meta) {
-                              return moment(row['tgl_lahir']).format('DD/MM/YYYY');
+                              return moment(row['tgl_lahir']).format('YYYY-MM-DD');
                           }
                       },
                       {
@@ -813,6 +831,8 @@
                       }
 
                       //select option set value
+                      document.querySelector('#input-edit-dusun')
+                          .options[response.dusun.selectedIndex];
                       document.querySelector('#input-edit-agama')
                           .options[response.agama.selectedIndex];
                       document.querySelector('#input-edit-jenis_kelamin')

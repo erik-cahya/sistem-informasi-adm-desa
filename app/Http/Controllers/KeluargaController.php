@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Keluarga;
 use App\Models\Warga;
 use App\Models\DetailKeluarga;
+use App\Models\Dusun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -16,6 +17,7 @@ class KeluargaController extends Controller
     {
         $this->keluargas = new Keluarga();
         $this->detailKeluarga = new DetailKeluarga();
+        $this->dusun = new Dusun();
     }
 
     public function index()
@@ -26,9 +28,16 @@ class KeluargaController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
+
+        $ekonomis = [
+            'A','B','C'
+        ];
+
         $data = [
             'title' => "Data keluarga",
-            'wargas' => Warga::get()
+            'wargas' => Warga::get(),
+            'dusuns' => $this->dusun->dusuns(),
+            'ekonomis' => $ekonomis
         ];
 
         return view('pages.keluarga', $data);

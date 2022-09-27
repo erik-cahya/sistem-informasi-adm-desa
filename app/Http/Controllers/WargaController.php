@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
+use App\Models\Dusun;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Datatables;
@@ -12,6 +13,7 @@ class WargaController extends Controller
      public function __construct()
     {
         $this->warga = new Warga();
+        $this->dusun = new Dusun();
     }
 
     public function index()
@@ -21,8 +23,10 @@ class WargaController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
+
         $data = [
-            'title' => "Data penduduk"
+            'title' => "Data penduduk",
+            'dusuns' => $this->dusun->dusuns()
         ];
 
         return view('pages.wargas', $data);
