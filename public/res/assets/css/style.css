@@ -1362,3 +1362,17 @@ table.dataTable thead tr th {
     max-width: 100%;
     white-space: nowrap;
 }
+
+
+table.dataTable td.dt-control:before {
+    font-family: 'bootstrap-icons';
+    content: '\F229';
+    cursor: pointer;
+    color: #55a4be;
+    background: #f4f9fc;
+}
+
+table.dataTable tr.shown td.dt-control:before {
+    content: '\F235';
+    color: black;
+}

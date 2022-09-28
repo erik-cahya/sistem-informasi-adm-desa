@@ -177,12 +177,24 @@
                           </div>
 
                           <div id="printbar" style="float:right"></div>
+                          <div id="toggle" class="mb-3 border-1">
+                              <p>Klik untuk menampilkan kolom:</p>
+                              <a class="toggle-vis badge bg-primary" data-column="1">No KK</a>
+                              <a class="toggle-vis badge bg-primary" data-column="2">Kepala keluarga</a>
+                              <a class="toggle-vis badge bg-primary" data-column="3">Jumlah anggota</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="4">Alamat</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="5">Dusun</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="6">RT</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="7">RW</a>
+                              <a class="toggle-vis badge bg-secondary" data-column="8">Ekonomi</a>
+                          </div>
                           <div class="table-responsive">
-                              <table id="tableKeluarga" class="display .datatable table table-hover" style="width:100%">
+                              <table id="tableKeluarga" class="display .datatable table table-bordered"
+                                  style="width:100%">
                                   <thead>
                                       <tr>
-                                          <th width="6%">No</th>
-                                          <th>No kk</th>
+                                          <th width="12px">No</th>
+                                          <th>No KK</th>
                                           <th>Kepala keluarga</th>
                                           <th>Jumlah anggota</th>
                                           <th>Alamat</th>
@@ -190,7 +202,8 @@
                                           <th>RT</th>
                                           <th>RW</th>
                                           <th>Ekonomi</th>
-                                          <th style="text-align: right">Aksi</th>
+                                          <th>Detail</th>
+                                          <th>Aksi</th>
                                       </tr>
                                   </thead>
                               </table>
@@ -346,6 +359,47 @@
       </div>
 
       <script>
+          function format(d) {
+              var anggotas = d.anggota;
+              var tableHead =
+                  `
+                <table id="tableDetails" class="display .datatable table table-hover table-bordered"
+                    style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No KTP</th>
+                            <th>Nama lengkap</th>
+                            <th>Status dalam keluarga</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+              body = [];
+              for (let i = 0; i < anggotas.length; i++) {
+
+                  body[i] = `
+                         <tr>
+                            <td>${ anggotas[i].no_ktp}</td>
+                            <td>${ anggotas[i].nama_lengkap}</td>
+                            <td>${ anggotas[i].status_anggota}</td>
+                        </tr>
+                        `;
+              }
+
+              var tableFoot = `
+                    </tbody>
+                </table>
+                `;
+
+
+
+              return (tableHead +
+                  body.join('') +
+                  tableFoot);
+          }
+
+
+
           $(document).ready(function() {
 
               $.ajaxSetup({
@@ -354,10 +408,34 @@
                   }
               });
 
+              //search by column
+              $('#tableKeluarga thead tr').clone(true).appendTo('#tableKeluarga thead');
+              $('#tableKeluarga thead tr:eq(1) th').each(function(i) {
+                  var title = $(this).text();
+                  var index = $(this).index();
+                  if (index === 0 || index === 9 || index === 10) {
+                      $(this).html('');
+                      return;
+                  }
+                  $(this).html(
+                      '<input type="text" class="form-control form-control-sm" placeholder="Cari ' +
+                      title + '" >');
+
+                  $('input', this).on('keyup change', function() {
+                      if (table.column(i).search() !== this.value) {
+                          table
+                              .column(i)
+                              .search(this.value)
+                              .draw();
+                      }
+                  });
+              });
+
               var table = $('#tableKeluarga').DataTable({
                   processing: true,
                   serverSide: true,
-                  searching: true,
+                  orderCellsTop: true,
+                  fixedHeader: true,
                   select: true,
                   ajax: "{{ url('keluarga') }}",
                   //   dom: 'lBfrtip',
@@ -402,17 +480,16 @@
                       [10, 25, 50, 100, "All"]
                   ],
                   order: [
-                      [0, 'asc']
+                      [0, 'desc']
                   ],
                   columnDefs: [{
                           searchable: false,
                           orderable: false,
-                          targets: [9]
+                          targets: [10]
                       },
                       {
                           visible: false,
-                          searchable: false,
-                          target: [6, 7],
+                          target: [4, 5, 6, 7, 8],
                       }
                   ],
                   columns: [{
@@ -422,26 +499,16 @@
                       },
                       {
                           data: "no_kk",
-                          name: "No kk",
+                          name: "no_kk",
                       },
                       {
-                          name: "Kepala Keluarga",
-                          render: function(data, type, row, meta) {
-                              var anggotas = row["anggota"];
-
-                              for (let i = 0; i < anggotas.length; i++) {
-                                  if (anggotas[i].status_anggota == "Kepala Keluarga") {
-                                      return anggotas[i].nama_lengkap
-                                  }
-                              }
-                              return '';
-                          }
+                          data: "kepala_keluarga",
+                          name: "kepala_keluarga",
                       },
                       {
-                          name: "Jumlah anggota",
+                          name: "jumlah_anggota",
                           render: function(data, type, row, meta) {
-
-                              return row["anggota"].length + ' Orang';
+                              return row["jumlah_anggota"] + ' Orang';
                           }
                       },
                       {
@@ -465,9 +532,15 @@
                           name: "ekonomi",
                       },
                       {
+                          className: 'dt-control',
+                          orderable: false,
+                          data: null,
+                          defaultContent: ''
+                      },
+                      {
                           render: function(data, type, row, meta) {
                               return `
-                            <div class="float-right">
+                            <div class="float-right btn-group" role="group">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit" onclick="editModalKeluarga('${row["id"]}')">
                                     Ubah
                                 </button>
@@ -482,6 +555,48 @@
               });
 
               table.buttons().container().appendTo("#printbar");
+
+              //display column toggle
+              $('a.toggle-vis').css("text-decoration", "none");
+              $('a.toggle-vis').css("color", "#ffff");
+              $('a.toggle-vis').css("cursor", "pointer");
+
+              $('a.toggle-vis').on('click', function(e) {
+                  e.preventDefault();
+
+                  // Get the column API object
+                  var column = table.column($(this).attr('data-column'));
+
+                  // Toggle the visibility
+                  column.visible(
+                      !column.visible()
+                  );
+
+                  console.log();
+                  if ($(this).hasClass('toggle-vis badge bg-primary') != false) {
+                      $(this).removeClass('bg-primary');
+                      $(this).addClass('bg-secondary');
+                  } else {
+                      $(this).addClass('bg-primary');
+                      $(this).removeClass('bg-secondary');
+                  }
+              });
+
+              // Add event listener for opening and closing details
+              $('#tableKeluarga tbody').on('click', 'td.dt-control', function() {
+                  var tr = $(this).closest('tr');
+                  var row = table.row(tr);
+
+                  if (row.child.isShown()) {
+                      // This row is already open - close it
+                      row.child.hide();
+                      tr.removeClass('shown');
+                  } else {
+                      // Open this row
+                      row.child(format(row.data())).show();
+                      tr.addClass('shown');
+                  }
+              });
           });
 
           newModalKeluarga = () => {
@@ -1083,6 +1198,79 @@
           function checkValidation(errorMsg, elementById, elementMsg) {
               document.getElementById(`${elementById}`).className = "form-control";
               $(`#${elementMsg}`).html(` ${errorMsg}`);
+          }
+
+
+          function exportTableToCSV($table, filename) {
+
+              //rescato los títulos y las filas
+              var $Tabla_Nueva = $table.find('tr:has(td,th)');
+              // elimino la tabla interior.
+              var Tabla_Nueva2 = $Tabla_Nueva.filter(function() {
+                  return (this.childElementCount != 1);
+              });
+
+              var $rows = Tabla_Nueva2,
+                  // Temporary delimiter characters unlikely to be typed by keyboard
+                  // This is to avoid accidentally splitting the actual contents
+                  tmpColDelim = String.fromCharCode(11), // vertical tab character
+                  tmpRowDelim = String.fromCharCode(0), // null character
+
+                  // Solo Dios Sabe por que puse esta linea
+                  colDelim = (filename.indexOf("xls") != -1) ? '"\t"' : '","',
+                  rowDelim = '"\r\n"',
+
+
+                  // Grab text from table into CSV formatted string
+                  csv = '"' + $rows.map(function(i, row) {
+                      var $row = $(row);
+                      var $cols = $row.find('td:not(.hidden),th:not(.hidden)');
+
+                      return $cols.map(function(j, col) {
+                          var $col = $(col);
+                          var text = $col.text().replace(/\./g, '');
+                          return text.replace('"', '""'); // escape double quotes
+
+                      }).get().join(tmpColDelim);
+                      csv = csv + '"\r\n"' + 'fin ' + '"\r\n"';
+                  }).get().join(tmpRowDelim)
+                  .split(tmpRowDelim).join(rowDelim)
+                  .split(tmpColDelim).join(colDelim) + '"';
+
+
+              download_csv(csv, filename);
+
+
+          }
+
+
+
+          function download_csv(csv, filename) {
+              var csvFile;
+              var downloadLink;
+
+              // CSV FILE
+              csvFile = new Blob([csv], {
+                  type: "text/csv"
+              });
+
+              // Download link
+              downloadLink = document.createElement("a");
+
+              // File name
+              downloadLink.download = filename;
+
+              // We have to create a link to the file
+              downloadLink.href = window.URL.createObjectURL(csvFile);
+
+              // Make sure that the link is not displayed
+              downloadLink.style.display = "none";
+
+              // Add the link to your DOM
+              document.body.appendChild(downloadLink);
+
+              // Lanzamos
+              downloadLink.click();
           }
       </script>
   @endsection

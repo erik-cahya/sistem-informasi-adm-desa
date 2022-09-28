@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
         $faker = Faker::create('id_ID');
     	foreach (range(1,$totalDataWarga) as $index) {
             Warga::create([
-                'no_ktp' => $faker->numerify('################'),
+                'no_ktp' => $faker->numerify('1###############'),
                 'nama_lengkap' => $faker->firstName.' '.$faker->lastName,
                 'agama' => $religions[rand(0, count($religions) - 1)],
                 'tempat_lahir' => $faker->city(),
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
         //faker keluarga
         foreach (range(1,($totalDataWarga/5)) as $index){
             Keluarga::create([
-                'no_kk' => $faker->numerify('################'),
+                'no_kk' => $faker->numerify('2###############'),
                 'alamat' => $faker->address,
                 'dusun' => $dusun[rand(0, count($dusun) - 1)],
                 'rt' => $faker->numberBetween($min = 001, $max = 100),

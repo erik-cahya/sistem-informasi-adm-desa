@@ -35,6 +35,14 @@ class Keluarga extends Model
                         ->where(['detail_keluargas.keluarga_id' => $keluarga->id])
                         ->get();
 
+                  $kepala_keluarga;
+                  foreach ($dataAnggota as $anggota) {
+                        if ($anggota->status_anggota == "Kepala Keluarga") {
+                            $kepala_keluarga = $anggota->nama_lengkap;
+                            continue;
+                        }
+                  }
+
                  $data[$key] = [
                         'id' => $keluarga->id,
                         'no_kk' => $keluarga->no_kk,
@@ -45,6 +53,8 @@ class Keluarga extends Model
                         'ekonomi' => $keluarga->ekonomi,
                         'created_at' => $keluarga->created_at,
                         'updated_at' =>$keluarga->updated_at,
+                        'kepala_keluarga' => $kepala_keluarga,
+                        'jumlah_anggota' => count($dataAnggota),
                         'anggota' => $dataAnggota
                     ];
 
