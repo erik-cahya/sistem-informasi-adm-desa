@@ -214,7 +214,7 @@
                       {
                           render: function(data, type, row, meta) {
                               return `
-                            <div class="float-right">
+                            <div class="float-right btn-group" role="group">
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit" onclick="editModal('${row["id"]}')">
                                     Ubah
                                 </button>

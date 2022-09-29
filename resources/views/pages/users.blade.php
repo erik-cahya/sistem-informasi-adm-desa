@@ -4,7 +4,7 @@
           <h1>Akun Pengguna</h1>
           <nav>
               <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Pengaturan</a></li>
+                  <li class="breadcrumb-item">Pengaturan</li>
                   <li class="breadcrumb-item active">Akun Pengguna</li>
               </ol>
           </nav>
@@ -227,12 +227,19 @@
                       },
                       {
                           render: function(data, type, row, meta) {
+                              var idUser = '{{ auth()->user()->id }}';
+                              var disabled = '';
+
+                              if (row['id'] == idUser) {
+                                  var disabled = 'disabled';
+                              }
+
                               return `
-                            <div class="float-right">
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEdit" onclick="editModalUser('${row["id"]}')">
+                            <div class="float-right btn-group" role="group">
+                                <button type="button" class="btn btn-success btn-sm ${disabled}" data-toggle="modal" data-target="#modalEdit" onclick="editModalUser('${row["id"]}')">
                                     Ubah
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteModalAccount('${row["id"]}')">
+                                <button type="button" class="btn btn-danger btn-sm ${disabled}" onclick="deleteModalAccount('${row["id"]}')">
                                     Hapus
                                 </button>
                             </div>

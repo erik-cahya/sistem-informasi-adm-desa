@@ -199,7 +199,7 @@
                       {
                           render: function(data, type, row, meta) {
                               return `
-                            <div class="float-right">
+                            <div class="float-right btn-group" role="group">
                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteModalAccount('${row["id"]}')">
                                     Hapus
                                 </button>
