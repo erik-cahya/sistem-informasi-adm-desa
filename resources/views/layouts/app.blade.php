@@ -17,7 +17,7 @@
         @include('includes.sidebar')
     </aside><!-- End Sidebar-->
 
-    <main id="main" class="main">
+    <main id="main" class="main" style="min-height: 80vh">
         @yield('content')
     </main><!-- End #main -->
 

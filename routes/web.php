@@ -9,6 +9,7 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('users/update', [UserController::class, 'update'])->name('user.update');
     Route::delete('users/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 
     Route::get('parameter', [ParameterController::class, 'index'])->name('parameters');
     Route::get('parameters/{id}', [ParameterController::class, 'show'])->name('parameter.show');
