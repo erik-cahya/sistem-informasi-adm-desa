@@ -64,12 +64,6 @@
 
 
                                 <div class="card-body">
-                                    <div class="justify-content-center pt-4">
-                                        <div class="logo d-flex flex-column align-items-center w-auto">
-                                            <span class="text-center">Sistem Informasi Administrasi</span>
-                                            <span class="text-center">Desa Matanga</span>
-                                        </div>
-                                    </div><!-- End Logo -->
                                     @yield('content')
 
                                 </div>

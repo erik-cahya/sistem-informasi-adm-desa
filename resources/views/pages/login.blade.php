@@ -1,5 +1,12 @@
      @extends('layouts.auth')
      @section('content')
+        <div class="justify-content-center pt-4">
+            <div class="logo d-flex flex-column align-items-center w-auto">
+                <span class="text-center">Sistem Informasi Administrasi</span>
+                <span class="text-center">Desa Matanga</span>
+            </div>
+        </div><!-- End Logo -->
+        
          <div class="">
              <hr class="mb-0">
              <h5 class="card-title text-center pb-0 fs-4 mt-0">Login</h5>
@@ -24,17 +31,12 @@
              </div>
 
              <div class="col-12">
-                 <div class="form-check">
-                     <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                     <label class="form-check-label" for="rememberMe">Remember me</label>
-                 </div>
-             </div>
+                 <p class="small mb-0">Lupa password? <a href="{{route('forget.password.get')}}">Klik disini</a></p>
+            </div> 
+
              <div class="col-12">
                  <button class="btn btn-primary btn-lg w-100" type="submit">Masuk
                  </button>
-             </div>
-             {{-- <div class="col-12">
-                 <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
-             </div> --}}
+             </div>             
          </form>
      @endsection

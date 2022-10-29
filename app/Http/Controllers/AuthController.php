@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
-    private function checkAuth()
+    public function checkAuth()
     {
         if (!Auth::check()) {
             return false;
