@@ -258,7 +258,7 @@
               $('#input-id').on('change', function() {
                   var id = this.value;
 
-                  var url = '{{ route('warga.show', ':id') }}';
+                  var url = "{{ route('warga.show', ':id') }}";
 
                   $.ajax({
                       url: url.replace(':id', id),
@@ -319,7 +319,7 @@
                   data_input.kepala_desa = $("#input-kepala_desa").val();
 
                   $.ajax({
-                      url: '{{ route('surat.keterangan_ekonomi_lemah.create') }}',
+                      url: "{{ route('surat.keterangan_ekonomi_lemah.create') }}",
                       method: 'POST',
                       dataType: 'json',
                       contentType: 'application/x-www-form-urlencoded',
@@ -335,7 +335,7 @@
                               showConfirmButton: false,
                               timer: 2000
                           }).then(function() {
-                              var url = '{{ route('surat.download', ':fileName') }}';
+                              var url = "{{ route('surat.download', ':fileName') }}";
                               window.location.replace(url.replace(':fileName', response
                                   .fileName));
                               document.getElementById("form_create_surat").reset();

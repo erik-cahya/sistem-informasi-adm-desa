@@ -173,7 +173,7 @@
                   var id = this.value;
 
                   console.log(id);
-                  var url = '{{ route('warga.show', ':id') }}';
+                  var url = "{{ route('warga.show', ':id') }}";
 
                   $.ajax({
                       url: url.replace(':id', id),
@@ -227,7 +227,7 @@
                   }
 
                   $.ajax({
-                      url: '{{ route('mutasi.create') }}',
+                      url: "{{ route('mutasi.create') }}",
                       method: 'POST',
                       dataType: 'json',
                       contentType: 'application/x-www-form-urlencoded',

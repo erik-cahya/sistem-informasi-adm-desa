@@ -237,7 +237,7 @@
               $("#form_edit_mutasi").find('.has-error').removeClass("has-error");
               $("#form_edit_mutasi").removeClass("is-invalid");
 
-              var url = '{{ route('mutasi.show', ':id') }}';
+              var url = "{{ route('mutasi.show', ':id') }}";
 
               $.ajax({
                   url: url.replace(':id', id),
@@ -286,7 +286,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('mutasi.update') }}',
+                  url: "{{ route('mutasi.update') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -350,7 +350,7 @@
               }).then((isDelete) => {
                   if (isDelete.isConfirmed) {
 
-                      var url = '{{ route('mutasi.delete', ':id') }}';
+                      var url = "{{ route('mutasi.delete', ':id') }}";
 
                       $.ajax({
                           url: url.replace(':id', id),

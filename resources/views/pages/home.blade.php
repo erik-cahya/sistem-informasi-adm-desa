@@ -364,7 +364,7 @@
                     <span class="visually-hidden">Loading...</span>
                 </div>
                 `);
-            var url = '{{ route('home.getCountData', ':by') }}'
+            var url = "{{ route('home.getCountData', ':by') }}";
             $.ajax({
                 url: url.replace(':by', byDate),
                 success: function(response) {

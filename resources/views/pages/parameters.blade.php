@@ -216,7 +216,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('parameter.create') }}',
+                  url: "{{ route('parameter.create') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -272,7 +272,7 @@
               $("#form_data_param").find('.has-error').removeClass("has-error");
               $("#form_data_param").removeClass("is-invalid");
 
-              var url = '{{ route('parameter.show', ':id') }}';
+              var url = "{{ route('parameter.show', ':id') }}";
               $.ajax({
                   url: url.replace(':id', id),
                   success: function(response) {
@@ -322,7 +322,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('parameter.update') }}',
+                  url: "{{ route('parameter.update') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -390,7 +390,7 @@
               }).then((isDelete) => {
                   if (isDelete.isConfirmed) {
 
-                      var url = '{{ route('parameter.delete', ':id') }}';
+                      var url = "{{ route('parameter.delete', ':id') }}";
                       $.ajax({
                           url: url.replace(':id', id),
                           method: 'DELETE',

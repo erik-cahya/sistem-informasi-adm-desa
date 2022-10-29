@@ -150,7 +150,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('profile.update') }}',
+                  url: "{{ route('profile.update') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -212,7 +212,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('profile.update.password') }}',
+                  url: "{{ route('profile.update.password') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',

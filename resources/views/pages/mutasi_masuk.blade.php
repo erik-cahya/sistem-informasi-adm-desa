@@ -341,7 +341,7 @@
                   }
 
                   $.ajax({
-                      url: '{{ route('mutasi.create') }}',
+                      url: "{{ route('mutasi.create') }}",
                       method: 'POST',
                       dataType: 'json',
                       contentType: 'application/x-www-form-urlencoded',

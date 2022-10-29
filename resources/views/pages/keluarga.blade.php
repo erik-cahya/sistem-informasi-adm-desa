@@ -617,7 +617,7 @@
 
               } else {
 
-                  var url = '{{ route('warga.show', ':id') }}';
+                  var url = "{{ route('warga.show', ':id') }}";
 
                   $.ajax({
                       url: url.replace(':id', id_warga),
@@ -783,7 +783,7 @@
                   }
 
                   $.ajax({
-                      url: '{{ route('keluarga.create') }}',
+                      url: "{{ route('keluarga.create') }}",
                       method: 'POST',
                       dataType: 'json',
                       contentType: 'application/x-www-form-urlencoded',
@@ -852,7 +852,7 @@
               $("#table-edit-anggota tbody tr").remove();
               $('#table-edit-anggota').hide();
 
-              var url = '{{ route('keluarga.show', ':id') }}';
+              var url = "{{ route('keluarga.show', ':id') }}";
 
               $.ajax({
                   url: url.replace(':id', id),
@@ -923,7 +923,7 @@
 
               } else {
 
-                  var url = '{{ route('warga.show', ':id') }}';
+                  var url = "{{ route('warga.show', ':id') }}";
 
                   $.ajax({
                       url: url.replace(':id', id_warga),
@@ -1086,7 +1086,7 @@
                   }
 
                   $.ajax({
-                      url: '{{ route('keluarga.update') }}',
+                      url: "{{ route('keluarga.update') }}",
                       method: 'POST',
                       dataType: 'json',
                       contentType: 'application/x-www-form-urlencoded',

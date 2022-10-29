@@ -227,7 +227,7 @@
                       },
                       {
                           render: function(data, type, row, meta) {
-                              var idUser = '{{ auth()->user()->id }}';
+                              var idUser = "{{ auth()->user()->id }}";
                               var disabled = '';
 
                               if (row['id'] == idUser) {
@@ -273,7 +273,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('user.create') }}',
+                  url: "{{ route('user.create') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -393,7 +393,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('user.update') }}',
+                  url: "{{ route('user.update') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',

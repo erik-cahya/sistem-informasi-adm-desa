@@ -838,7 +838,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('warga.create') }}',
+                  url: "{{ route('warga.create') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',
@@ -894,7 +894,7 @@
               $("#form_edit_warga").find('.has-error').removeClass("has-error");
               $("#form_edit_warga").removeClass("is-invalid");
 
-              var url = '{{ route('warga.show', ':id') }}';
+              var url = "{{ route('warga.show', ':id') }}";
               $.ajax({
                   url: url.replace(':id', id),
                   success: function(response) {
@@ -982,7 +982,7 @@
               }
 
               $.ajax({
-                  url: '{{ route('warga.update') }}',
+                  url: "{{ route('warga.update') }}",
                   method: 'POST',
                   dataType: 'json',
                   contentType: 'application/x-www-form-urlencoded',

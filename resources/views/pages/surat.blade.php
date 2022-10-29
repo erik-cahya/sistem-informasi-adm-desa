@@ -192,7 +192,7 @@
                       },
                       {
                           render: function(data, type, row, meta) {
-                              var url = '{{ route('surat.download', ':fileName') }}';
+                              var url = "{{ route('surat.download', ':fileName') }}";
                               return `<a href="${url.replace(':fileName', row['nama_surat'])}">${row['nama_surat']}</a>`;
                           }
                       },
@@ -230,7 +230,7 @@
               }).then((isDelete) => {
                   if (isDelete.isConfirmed) {
 
-                      var url = '{{ route('surat.delete', ':id') }}';
+                      var url = "{{ route('surat.delete', ':id') }}";
                       $.ajax({
                           url: url.replace(':id', id),
                           method: 'DELETE',
