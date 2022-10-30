@@ -79,7 +79,6 @@
                               <table id="tableparams" class="display .datatable table table-hover" style="width:100%">
                                   <thead>
                                       <tr>
-                                          <th width="6%">No</th>
                                           <th>Parameter</th>
                                           <th>Value</th>
                                           <th>Keterangan</th>
@@ -155,20 +154,14 @@
                   processing: true,
                   serverSide: true,
                   ajax: "{{ url('parameter') }}",
-                  //   dom: 'lBfrtip',
-                  order: [
-                      [0, 'asc']
-                  ],
+                  dom: 'lrt',
+                  "lengthChange": false,
                   columnDefs: [{
                       searchable: false,
                       orderable: false,
-                      targets: [4]
+                      targets: [0,1,2,3]
                   }],
-                  columns: [{
-                          render: function(data, type, row, meta) {
-                              return meta.row + meta.settings._iDisplayStart + 1;
-                          }
-                      },
+                  columns: [
                       {
                           data: "param",
                           name: "param",

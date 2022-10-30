@@ -633,26 +633,6 @@
                                       18
                                   ]
                               },
-                          },
-                          {
-                              extend: "pdfHtml5",
-                              text: '<i class="bi bi-file-earmark-pdf-fill"></i> PDF',
-                              titleAttr: 'PDF',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-                                      18
-                                  ]
-                              },
-                          },
-                          {
-                              extend: 'print',
-                              text: ' <i class="bi bi-printer-fill"></i> Print',
-                              titleAttr: 'Print',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-                                      18
-                                  ]
-                              },
                           }
                       ],
                   },

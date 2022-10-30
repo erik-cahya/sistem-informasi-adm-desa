@@ -170,22 +170,6 @@
                               exportOptions: {
                                   columns: [0, 1, 2, 3]
                               },
-                          },
-                          {
-                              extend: "pdfHtml5",
-                              text: '<i class="bi bi-file-earmark-pdf-fill"></i> PDF',
-                              titleAttr: 'PDF',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3]
-                              },
-                          },
-                          {
-                              extend: 'print',
-                              text: ' <i class="bi bi-printer-fill"></i> Print',
-                              titleAttr: 'Print',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3]
-                              },
                           }
                       ],
                   },
