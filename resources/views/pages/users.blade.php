@@ -19,8 +19,9 @@
 
                           <h5 class="card-title">Daftar Akun Pengguna</h5>
 
-                          <button type="button" class="btn btn-success mb-4" data-toggle="modal"
-                              data-target="#modalNewUser"> <i class="bx bx-plus"></i>&nbsp;Buat Baru</button>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-success mb-4 mr-2 rounded-1" data-toggle="modal"
+                              data-target="#modalNewUser"> <i class="bx bx-plus"></i>&nbsp;Tambah pengguna</button>
 
                           <div id="modalNewUser" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
@@ -74,6 +75,7 @@
                               </div>
                           </div>
                           <div id="printbar" style="float:right"></div>
+                          </div>
                           <div class="table-responsive">
                               <table id="tableuser" class="display .datatable table table-hover" style="width:100%">
                                   <thead>
@@ -153,6 +155,9 @@
                   processing: true,
                   serverSide: true,
                   ajax: "{{ url('user') }}",
+                  "oLanguage": {
+                    "sSearch": "Cari"
+                   },
                   //   dom: 'lBfrtip',
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
@@ -165,7 +170,7 @@
                       },
                       buttons: [{
                               extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Excel',
+                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
                               titleAttr: 'Excel',
                               exportOptions: {
                                   columns: [0, 1, 2, 3]

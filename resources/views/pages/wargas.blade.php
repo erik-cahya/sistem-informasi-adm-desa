@@ -19,8 +19,9 @@
 
                           <h5 class="card-title">{{ $title }}</h5>
 
-                          <button type="button" class="btn btn-success mb-4" data-toggle="modal"
-                              data-target="#modalNewWarga"> <i class="bx bx-plus"></i>&nbsp;Buat Baru</button>
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-success mb-4 mr-2 rounded-1" data-toggle="modal"
+                              data-target="#modalNewWarga"> <i class="bx bx-plus"></i>&nbsp;Tambah Penduduk</button>
 
                           <div id="modalNewWarga" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
@@ -274,6 +275,7 @@
                           </div>
 
                           <div id="printbar" style="float:right"></div>
+                          </div>
                           <div id="toggle" class="mb-3 border-1">
                               <p>Klik untuk menampilkan kolom:</p>
                               <a class="toggle-vis badge bg-primary" data-column="1">No KTP</a>
@@ -615,6 +617,9 @@
                   ajax: "{{ url('warga') }}",
                   //   dom: 'lBfrtip',
                   "scrollX": true,
+                  "oLanguage": {
+                    "sSearch": "Cari"
+                   },
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
                       "<'row'<'col-sm-5'i><'col-sm-7'p>>B",
@@ -626,7 +631,7 @@
                       },
                       buttons: [{
                               extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Excel',
+                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
                               titleAttr: 'Excel',
                               exportOptions: {
                                   columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,

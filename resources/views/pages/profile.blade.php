@@ -20,7 +20,7 @@
 
                               <li class="nav-item">
                                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
-                                      Profile</button>
+                                      Profil</button>
                               </li>
 
                               <li class="nav-item">
@@ -58,7 +58,7 @@
                                       </div>
 
                                       <div class="text-right">
-                                          <button type="submit" class="btn btn-success">Update profile</button>
+                                          <button type="submit" class="btn btn-success">Memperbaharui profil</button>
                                       </div>
                                   </form><!-- End Profile Edit Form -->
 
@@ -107,7 +107,7 @@
                                       </div>
 
                                       <div class="text-right">
-                                          <button type="submit" class="btn btn-success">Update password</button>
+                                          <button type="submit" class="btn btn-success">Memperbaharui password</button>
                                       </div>
                                   </form><!-- End Change Password Form -->
 

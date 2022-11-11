@@ -17,7 +17,7 @@
                   <div class="card">
                       <div class="card-body">
 
-                          <h5 class="card-title">Daftar {{ $title }}</h5>
+                          <h5 class="card-title">{{ $title }}</h5>
 
                           {{-- Dev Only --}}
                           {{-- <button type="button" class="btn btn-success mb-4" data-toggle="modal"

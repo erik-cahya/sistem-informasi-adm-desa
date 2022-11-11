@@ -83,7 +83,7 @@ $route = Route::current()->getName();
             <li>
                 <a href="{{ route('surat.keterangan_berlakuan_baik') }}"
                     class="{{ Request::segment(2) == 'keterangan-berlakuan-baik' ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Berpelakukan Baik</span>
+                    <i class="bi bi-circle"></i><span>Berkelakuan Baik</span>
                 </a>
             </li>
             <li>
@@ -95,7 +95,7 @@ $route = Route::current()->getName();
             <li>
                 <a href="{{ route('surat.surat_keterangan_belum_menikah') }}"
                     class="{{ Request::segment(2) == 'keterangan-belum-menikah' ? 'active' : '' }}">
-                    <i class="bi bi-circle"></i><span>Belom Menikah</span>
+                    <i class="bi bi-circle"></i><span>Belum Menikah</span>
                 </a>
             </li>
             <li>

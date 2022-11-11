@@ -18,10 +18,11 @@
                       <div class="card-body">
 
                           <h5 class="card-title">{{ $title }}</h5>
-
-                          <button type="button" class="btn btn-success mb-4" data-toggle="modal"
+                          
+                          <div class="btn-group">
+                          <button type="button" class="btn btn-success mb-4 mr-2 rounded-1" data-toggle="modal"
                               data-target="#modalNewKeluarga" onclick="newModalKeluarga()"> <i
-                                  class="bx bx-plus"></i>&nbsp;Buat Baru</button>
+                                  class="bx bx-plus"></i>&nbsp;Tambah Keluarga Baru</button>
 
                           <div id="modalNewKeluarga" class="modal fade" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
@@ -137,11 +138,11 @@
                                                           </li>
                                                           <li>
                                                               <a id="button-aa" class="dropdown-item"
-                                                                  onclick="addAnggota('AA')">AA</a>
+                                                                  onclick="addAnggota('Anak Angkat')">Anak Angkat</a>
                                                           </li>
                                                           <li>
                                                               <a id="button-p" class="dropdown-item"
-                                                                  onclick="addAnggota('P')">P</a>
+                                                                  onclick="addAnggota('Piara')">Piara</a>
                                                           </li>
                                                       </ul>
 
@@ -177,6 +178,7 @@
                           </div>
 
                           <div id="printbar" style="float:right"></div>
+                          </div>
                           <div id="toggle" class="mb-3 border-1">
                               <p>Klik untuk menampilkan kolom:</p>
                               <a class="toggle-vis badge bg-primary" data-column="1">No KK</a>
@@ -322,10 +324,10 @@
                                       </li>
                                       <li>
                                           <a id="button-edit-aa" class="dropdown-item"
-                                              onclick="addAnggotaEdit('AA')">AA</a>
+                                              onclick="addAnggotaEdit('Anak Angkat')">Anak Angkat</a>
                                       </li>
                                       <li>
-                                          <a id="button-edit-p" class="dropdown-item" onclick="addAnggotaEdit('P')">P</a>
+                                          <a id="button-edit-p" class="dropdown-item" onclick="addAnggotaEdit('Piara')">Piara</a>
                                       </li>
                                   </ul>
 
@@ -440,6 +442,9 @@
                   ajax: "{{ url('keluarga') }}",
                   //   dom: 'lBfrtip',
                   "scrollX": true,
+                  "oLanguage": {
+                    "sSearch": "Cari"
+                   },
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
                       "<'row'<'col-sm-5'i><'col-sm-7'p>>B",
@@ -451,7 +456,7 @@
                       },
                       buttons: [{
                               extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Excel',
+                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
                               titleAttr: 'Excel',
                               exportOptions: {
                                   columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -611,7 +616,7 @@
                               Swal.fire({
                                   position: 'center',
                                   icon: 'warning',
-                                  title: `Upss...`,
+                                  title: `Pemberitahuan`,
                                   text: `${response.nama_lengkap} sudah terdaftar pada No KK ${response.no_kk}`,
                                   showConfirmButton: true
                               });
@@ -648,7 +653,7 @@
                                   Swal.fire({
                                       position: 'center',
                                       icon: 'warning',
-                                      title: `Upss...`,
+                                      title: `Pemberitahuan`,
                                       text: `Data ${response.nama_lengkap} sudah ditambahkan`,
                                       showConfirmButton: true
                                   })
@@ -742,7 +747,7 @@
                   Swal.fire({
                       position: 'center',
                       icon: 'warning',
-                      title: `Upss...`,
+                      title: `Pemberitahuan`,
                       text: `Masukkan anggota Kepala keluarga`,
                       showConfirmButton: true
                   })
@@ -920,7 +925,7 @@
                                   Swal.fire({
                                       position: 'center',
                                       icon: 'warning',
-                                      title: `Upss...`,
+                                      title: `Pemberitahuan`,
                                       text: `${response.nama_lengkap} sudah terdaftar pada No KK ${response.no_kk}`,
                                       showConfirmButton: true
                                   });
@@ -953,7 +958,7 @@
                               Swal.fire({
                                   position: 'center',
                                   icon: 'warning',
-                                  title: `Upss...`,
+                                  title: `Pemberitahuan`,
                                   text: `Data ${response.nama_lengkap} sudah ditambahkan`,
                                   showConfirmButton: true
                               })
@@ -1044,7 +1049,7 @@
                   Swal.fire({
                       position: 'center',
                       icon: 'warning',
-                      title: `Upss...`,
+                      title: `Pemberitahuan`,
                       text: `Masukkan anggota Kepala keluarga`,
                       showConfirmButton: true
                   })

@@ -18,9 +18,10 @@
                       <div class="card-body">
 
                           <h5 class="card-title">Daftar {{ $title }}</h5>
-
-                          <div class="btn-group mb-3">
-                              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                          
+                          <div class="btn-group">
+                          <div class="btn-group mb-3 mr-2">
+                              <button type="button" class="btn btn-success dropdown-toggle rounded-1" data-bs-toggle="dropdown"
                                   aria-expanded="false">
                                   <i class="bx bx-plus"></i>&nbsp;Buat Surat
                               </button>
@@ -45,6 +46,7 @@
                           </div>
 
                           <div id="printbar" style="float:right"></div>
+                          </div>
                           <div class="table-responsive">
                               <table id="tablesurat" class="display .datatable table table-hover" style="width:100%">
                                   <thead>
@@ -125,6 +127,9 @@
                   processing: true,
                   serverSide: true,
                   ajax: "{{ url('surat') }}",
+                  "oLanguage": {
+                    "sSearch": "Cari"
+                   },
                   //   dom: 'lBfrtip',
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
@@ -137,7 +142,7 @@
                       },
                       buttons: [{
                               extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Excel',
+                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
                               titleAttr: 'Excel',
                               exportOptions: {
                                   columns: [0, 1, 2, 3]

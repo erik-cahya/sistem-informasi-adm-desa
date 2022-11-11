@@ -157,13 +157,13 @@ class DatabaseSeeder extends Seeder
             DetailKeluarga::create([
                 'keluarga_id' => $x,
                 'warga_id' => $k = $k+1,
-                'status_anggota' => 'AA'    
+                'status_anggota' => 'Anak Angkat'    
             ]);
 
             DetailKeluarga::create([
                 'keluarga_id' => $x,
                 'warga_id' => $k = $k+1,
-                'status_anggota' => 'P'    
+                'status_anggota' => 'Piara'    
             ]);
 
            $k = $k+1;
