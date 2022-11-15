@@ -49,7 +49,7 @@ class Warga extends Model
             ->leftJoin('detail_keluargas','detail_keluargas.warga_id', '=', 'wargas.id')
             ->leftJoin('keluargas','keluargas.id', '=', 'detail_keluargas.keluarga_id')
             ->where('wargas.id',$id)
-            ->select('wargas.*','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
+            ->select('wargas.*','keluargas.id as keluarga_id','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
             ->first();
 
             //$dataAnggota->tgl_lahir = (new Carbon($dataAnggota->tgl_lahir))->isoFormat('d/M/Y');

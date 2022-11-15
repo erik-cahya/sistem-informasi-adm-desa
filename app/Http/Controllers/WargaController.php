@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Warga;
 use App\Models\Dusun;
+use App\Models\Keluarga;
+use App\Models\DetailKeluarga;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Datatables;
 
 class WargaController extends Controller
@@ -14,6 +17,8 @@ class WargaController extends Controller
     {
         $this->warga = new Warga();
         $this->dusun = new Dusun();
+        $this->keluargas = new Keluarga();
+        $this->detailKeluarga = new DetailKeluarga();
     }
 
     public function index()
@@ -93,11 +98,39 @@ class WargaController extends Controller
     }
 
     public function delete($id)
-    {
-        $delete = $this->warga->find($id);
-
-        $delete->forceDelete();
+    {    
+        $data = $this->warga->getFullData($id);
+            
+        if($data->no_kk != null){
+            
+            $detailKeluarga = $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->get();
+            
+            if(($detailKeluarga->count() <= 1) && ($data->status_anggota == "Kepala Keluarga")){
+                DB::transaction(function() use ($id, $data) {
+                    $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->forceDelete();
+                    $this->keluargas->find($data->keluarga_id)->forceDelete();
+                    $delete = $this->warga->find($id);
+                    $delete->forceDelete();
+                });
+                return response()->json(['message'=>'Data berhasil dihapus','is_delete'=> true]);
+            }
+            
+            if($data->status_anggota == "Kepala Keluarga"){
+                $message = "Tidak dapat menghapus data ".$data->nama_lengkap ." dikarenakan berstatus sebagai 'Kepala Keluarga' untuk nomor Kartu Keluarga ". $data->no_kk;
+                return response()->json(['message'=> $message,'is_delete'=> false]);
+            }
+            
+            if($detailKeluarga->count() <= 1){
+                DB::transaction(function() use ($id, $data) {
+                    $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->forceDelete();
+                    $this->keluargas->find($data->keluarga_id)->forceDelete();  
+                });
+            }
+        }
         
-        return response()->json(['message'=>'Data berhasil dihapus']);
+        $delete = $this->warga->find($id);
+        $delete->forceDelete();
+
+        return response()->json(['message'=>'Data berhasil dihapus','is_delete'=> true]);
     }
 }

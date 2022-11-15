@@ -1041,12 +1041,22 @@
                           contentType: 'application/x-www-form-urlencoded',
                           success: function(response) {
 
-                              Swal.fire(
+                            if(response.is_delete){
+                                Swal.fire(
                                   'Deleted!',
                                   `${response.message}`,
                                   'success'
-                              )
-
+                                );
+                            }else{
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'warning',
+                                    title: `Pemberitahuan`,
+                                    text: `${response.message}`,
+                                    showConfirmButton: true
+                                });
+                            }
+                                
                               //reload only datatable
                               $('#tableWarga').DataTable().ajax.reload();
                           },

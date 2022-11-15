@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $totalDataWarga = 1000; //max 42000
+        $totalDataWarga = 5; //max 42000
         $users = [
             [
                 'username' => 'admin',
