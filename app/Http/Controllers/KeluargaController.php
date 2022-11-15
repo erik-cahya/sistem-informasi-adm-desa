@@ -30,7 +30,7 @@ class KeluargaController extends Controller
         }
 
         $ekonomis = [
-            'A','B','C'
+            '-','Ekonomi Mampu','Ekonomi Menengah', "Ekonomi Tidak Mampu"
         ];
 
         $data = [

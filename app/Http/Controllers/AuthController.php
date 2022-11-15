@@ -80,7 +80,7 @@ class AuthController extends Controller
             return redirect()->intended('home');
         }
 
-        return redirect()->route('login')->with('error', 'Pengguna tidak ditemukan');
+        return redirect()->route('login')->with('error', 'Username atau password anda salah');
     }
 
     public function logout(Request $request)
