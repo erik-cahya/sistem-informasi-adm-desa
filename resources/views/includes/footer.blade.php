@@ -1,6 +1,6 @@
   <div class="copyright">
-      <strong><span>Sistem Informasi Administasi Desa Matanga</span></strong>
-      <p>Copyright &copy; 2022 All Rights Reserved</p>
+      <strong><span>Sistem Informasi Administasi Desa Rantau Puri</span></strong>
+      <p>Copyright &copy; 2023 All Rights Reserved</p>
   </div>
   <div class="credits">
       <!-- All the links in the footer should remain intact. -->

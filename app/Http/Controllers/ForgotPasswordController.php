@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request; 
-use DB; 
+use Illuminate\Support\Facades\DB; 
 use Carbon\Carbon; 
 use App\Models\User; 
-use Mail; 
-use Hash;
+use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
   

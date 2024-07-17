@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('res/logo.ico') }}" rel="icon">
-    <link href="{{ asset('res/logo.ico') }}" rel="apple-touch-icon">
+    <link href="{{ asset('res/Batanghari.ico') }}" rel="icon">
+    <link href="{{ asset('res/Batanghari.ico') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -56,7 +56,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ asset('res/assets/my-image/Lambang_Kabupaten_Banggai_Laut.png') }}"
+                            <img src="{{ asset('res/assets/my-image/Kabupaten_Batanghari.png') }}"
                                 alt="Italian Trulli" style="height: 100px" class="m-4">
 
 

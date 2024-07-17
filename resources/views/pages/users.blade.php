@@ -20,61 +20,70 @@
                           <h5 class="card-title">Daftar Akun Pengguna</h5>
 
                           <div class="btn-group">
-                          <button type="button" class="btn btn-success mb-4 mr-2 rounded-1" data-toggle="modal"
-                              data-target="#modalNewUser"> <i class="bx bx-plus"></i>&nbsp;Tambah pengguna</button>
+                              <button type="button" class="btn btn-success mb-4 mr-2 rounded-1" data-toggle="modal"
+                                  data-target="#modalNewUser"> <i class="bx bx-plus"></i>&nbsp;Tambah pengguna</button>
 
-                          <div id="modalNewUser" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-lg">
-                                  <div class="modal-content">
+                              <div id="modalNewUser" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                      <div class="modal-content">
 
-                                      <div class="modal-header">
-                                          <h4 class="modal-title" id="myModalLabel">Buat Pengguna baru</h4>
-                                          <button type="button" class="close" data-dismiss="modal">
-                                              <span aria-hidden="true">×</span>
-                                          </button>
+                                          <div class="modal-header">
+                                              <h4 class="modal-title" id="myModalLabel">Buat Pengguna baru</h4>
+                                              <button type="button" class="close" data-dismiss="modal">
+                                                  <span aria-hidden="true">×</span>
+                                              </button>
+                                          </div>
+                                          <form id="form_new_user" method="post">
+                                              @csrf
+                                              <div class="modal-body">
+
+                                                  <div class="form-group">
+                                                      <label for="input-username">Username (NIK)</label>
+                                                      <input id="input-username" type="text" class="form-control"
+                                                          value="">
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-username"></small>
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label for="input-name">Name</label>
+                                                      <input id="input-name" type="text" class="form-control"
+                                                          value="">
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-name"></small>
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label for="input-email">Email</label>
+                                                      <input id="input-email" type="text" class="form-control"
+                                                          value="">
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-email"></small>
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label for="input-password">password</label>
+                                                      <input id="input-password" type="text" class="form-control"
+                                                          value="">
+                                                      <div class="text-danger font-italic text-capital">
+                                                          <small id="message-password"></small>
+                                                      </div>
+                                                  </div>
+
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary"
+                                                      data-dismiss="modal">Keluar</button>
+                                                  <button type="submit" class="btn btn-success">Simpan</button>
+                                              </div>
+                                          </form>
                                       </div>
-                                      <form id="form_new_user" method="post">
-                                          @csrf
-                                          <div class="modal-body">
-
-                                              <div class="form-group">
-                                                  <label for="input-username">Username</label>
-                                                  <input id="input-username" type="text" class="form-control"
-                                                      value="">
-                                                  <div class="text-danger font-italic text-capital">
-                                                      <small id="message-username"></small>
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group">
-                                                  <label for="input-email">Email</label>
-                                                  <input id="input-email" type="text" class="form-control"
-                                                      value="">
-                                                  <div class="text-danger font-italic text-capital">
-                                                      <small id="message-email"></small>
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group">
-                                                  <label for="input-password">password</label>
-                                                  <input id="input-password" type="text" class="form-control"
-                                                      value="">
-                                                  <div class="text-danger font-italic text-capital">
-                                                      <small id="message-password"></small>
-                                                  </div>
-                                              </div>
-
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary"
-                                                  data-dismiss="modal">Keluar</button>
-                                              <button type="submit" class="btn btn-success">Simpan</button>
-                                          </div>
-                                      </form>
                                   </div>
                               </div>
-                          </div>
-                          <div id="printbar" style="float:right"></div>
+                              <div id="printbar" style="float:right"></div>
                           </div>
                           <div class="table-responsive">
                               <table id="tableuser" class="display .datatable table table-hover" style="width:100%">
@@ -156,8 +165,8 @@
                   serverSide: true,
                   ajax: "{{ url('user') }}",
                   "oLanguage": {
-                    "sSearch": "Cari"
-                   },
+                      "sSearch": "Cari"
+                  },
                   //   dom: 'lBfrtip',
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
@@ -169,14 +178,13 @@
                           }
                       },
                       buttons: [{
-                              extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
-                              titleAttr: 'Excel',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3]
-                              },
-                          }
-                      ],
+                          extend: "excelHtml5",
+                          text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
+                          titleAttr: 'Excel',
+                          exportOptions: {
+                              columns: [0, 1, 2, 3]
+                          },
+                      }],
                   },
                   aLengthMenu: [
                       [25, 50, 100, 200, -1],
@@ -250,6 +258,7 @@
 
               var data_input = new Object();
               data_input.username = $("#input-username").val();
+              data_input.name = $("#input-name").val();
               data_input.email = $("#input-email").val();
               data_input.password = $("#input-password").val();
               data_input.status = 1;
@@ -331,7 +340,7 @@
                           $(`#message-edit-${key}`).html('');
                       }
 
-                      //Checkboxes 
+                      //Checkboxes
                       //   $.each(response.status, function(key, val) {
                       //       document.getElementById(`${val.roleId}-edit`).checked = true;
                       //   });
@@ -433,7 +442,7 @@
               })
           });
 
-          //delete 
+          //delete
           deleteModalAccount = (id) => {
 
               //console.log(id);

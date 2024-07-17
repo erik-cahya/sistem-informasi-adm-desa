@@ -10,6 +10,7 @@ class Surat extends Model
     use HasFactory;
 
     protected $fillable = [
+        'warga_id',
         'jenis_surat',
         'no_surat',
         'nama_surat',

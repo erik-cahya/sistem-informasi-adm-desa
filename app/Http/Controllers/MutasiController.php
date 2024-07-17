@@ -18,16 +18,16 @@ class MutasiController extends Controller
         $this->dusun = new Dusun();
         $this->faker = Faker::create('id_ID');
     }
-    
+
     public function index()
     {
         if (request()->ajax()) {
             return datatables()->of($this->mutasi->getFullData())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
 
-        $mutasi = ['Lahir','Masuk','Wafat','Keluar'];
+        $mutasi = ['Lahir', 'Masuk', 'Wafat', 'Keluar'];
 
         $data = [
             'title' => "Data Mutasi",
@@ -37,7 +37,9 @@ class MutasiController extends Controller
         return view('pages.mutasi', $data);
     }
 
-    public function show($id = null){
+
+    public function show($id = null)
+    {
 
         if ($id == null) {
             $data = $this->mutasi->getFullData();
@@ -49,6 +51,7 @@ class MutasiController extends Controller
 
         return response()->json($data);
     }
+
 
     public function mutasiMasuk()
     {
@@ -80,7 +83,7 @@ class MutasiController extends Controller
     public function create(Request $request)
     {
         if ($request->create == 'out') {
-       
+
             $request->validate([
                 'ktp' => 'required',
                 'jenis_mutasi' => 'required|max:255',
@@ -88,23 +91,21 @@ class MutasiController extends Controller
                 'keterangan' => 'required'
             ]);
 
-            DB::transaction(function() use ($request) {
-            
+            DB::transaction(function () use ($request) {
+
                 Mutasi::create([
                     'warga_id' => $request->ktp,
                     'jenis_mutasi' => $request->jenis_mutasi,
-                    'tgl_keluar_masuk' => $request->tanggal_keluar_masuk ,
+                    'tgl_keluar_masuk' => $request->tanggal_keluar_masuk,
                     'keterangan' => $request->keterangan
                 ]);
 
                 Warga::find($request->ktp)->update(['status_warga' => '0']);
-            
             });
-        
-            return response()->json(['message'=>'Data berhasil di simpan.']);
-          
-        }else{
-            
+
+            return response()->json(['message' => 'Data berhasil di simpan.']);
+        } else {
+
             $request->validate([
                 'no_ktp' => 'unique:wargas,no_ktp',
                 'nama_lengkap' => 'required|max:64|min:2|max:255',
@@ -126,9 +127,9 @@ class MutasiController extends Controller
             ]);
 
 
-            DB::transaction(function() use ($request) {
+            DB::transaction(function () use ($request) {
                 $newWarga = Warga::create([
-                    'no_ktp' => ($request->no_ktp != null)? $request->no_ktp : $this->faker->numerify('DUMMY-##########') ,
+                    'no_ktp' => ($request->no_ktp != null) ? $request->no_ktp : $this->faker->numerify('DUMMY-##########'),
                     'nama_lengkap' => $request->nama_lengkap,
                     'agama' => $request->agama,
                     'tempat_lahir' => $request->tempat_lahir,
@@ -150,20 +151,19 @@ class MutasiController extends Controller
                 Mutasi::create([
                     'warga_id' => $newWarga->id,
                     'jenis_mutasi' => $request->jenis_mutasi,
-                    'tgl_keluar_masuk' => $request->tanggal_keluar_masuk ,
+                    'tgl_keluar_masuk' => $request->tanggal_keluar_masuk,
                     'keterangan' => $request->keterangan
                 ]);
-
             });
-            
 
-            return response()->json(['message'=>'Data berhasil di simpan.']);
+
+            return response()->json(['message' => 'Data berhasil di simpan.']);
         }
     }
 
     public function update(Request $request)
     {
-       $request->validate([
+        $request->validate([
             'id' => 'required',
             'jenis_mutasi' => 'required|max:255',
             'tgl_keluar_masuk' => 'required',
@@ -174,18 +174,17 @@ class MutasiController extends Controller
 
         $dataMutasi->update([
             'jenis_mutasi' => $request->jenis_mutasi,
-            'tgl_keluar_masuk' => $request->tgl_keluar_masuk ,
+            'tgl_keluar_masuk' => $request->tgl_keluar_masuk,
             'keterangan' => $request->keterangan
         ]);
-       
-        return response()->json(['message'=>'Data berhasil diperbarui']);
+
+        return response()->json(['message' => 'Data berhasil diperbarui']);
     }
 
     public function delete($id)
     {
-        $this->mutasi->find($id)->forceDelete(); 
-        
-        return response()->json(['message'=>'Data berhasil dihapus']);
-    }
+        $this->mutasi->find($id)->forceDelete();
 
+        return response()->json(['message' => 'Data berhasil dihapus']);
+    }
 }

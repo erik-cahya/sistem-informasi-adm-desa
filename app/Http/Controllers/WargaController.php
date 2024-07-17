@@ -13,7 +13,7 @@ use Datatables;
 
 class WargaController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         $this->warga = new Warga();
         $this->dusun = new Dusun();
@@ -25,8 +25,8 @@ class WargaController extends Controller
     {
         if (request()->ajax()) {
             return datatables()->of($this->warga->getFullData())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
 
         $data = [
@@ -37,7 +37,7 @@ class WargaController extends Controller
         return view('pages.wargas', $data);
     }
 
-     public function create()
+    public function create()
     {
         $attributes = request()->validate([
             'no_ktp' => 'required|numeric|digits:16|unique:wargas,no_ktp',
@@ -59,11 +59,12 @@ class WargaController extends Controller
 
         $post = Warga::create($attributes);
 
-        return response()->json(['message'=>'Data berhasil di simpan.']);
+        return response()->json(['message' => 'Data berhasil di simpan.']);
     }
 
-    public function show($id){
-       // $data = Warga::find($id);
+    public function show($id)
+    {
+        // $data = Warga::find($id);
         $data = $this->warga->getFullData($id);
         return response()->json($data);
     }
@@ -94,43 +95,43 @@ class WargaController extends Controller
 
         $update = Warga::find($request->id)->update($request->all());
 
-        return response()->json(['message'=>'Data berhasil diperbarui']);
+        return response()->json(['message' => 'Data berhasil diperbarui']);
     }
 
     public function delete($id)
-    {    
+    {
         $data = $this->warga->getFullData($id);
-            
-        if($data->no_kk != null){
-            
+
+        if ($data->no_kk != null) {
+
             $detailKeluarga = $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->get();
-            
-            if(($detailKeluarga->count() <= 1) && ($data->status_anggota == "Kepala Keluarga")){
-                DB::transaction(function() use ($id, $data) {
+
+            if (($detailKeluarga->count() <= 1) && ($data->status_anggota == "Kepala Keluarga")) {
+                DB::transaction(function () use ($id, $data) {
                     $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->forceDelete();
                     $this->keluargas->find($data->keluarga_id)->forceDelete();
                     $delete = $this->warga->find($id);
                     $delete->forceDelete();
                 });
-                return response()->json(['message'=>'Data berhasil dihapus','is_delete'=> true]);
+                return response()->json(['message' => 'Data berhasil dihapus', 'is_delete' => true]);
             }
-            
-            if($data->status_anggota == "Kepala Keluarga"){
-                $message = "Tidak dapat menghapus data ".$data->nama_lengkap ." dikarenakan berstatus sebagai 'Kepala Keluarga' untuk nomor Kartu Keluarga ". $data->no_kk;
-                return response()->json(['message'=> $message,'is_delete'=> false]);
+
+            if ($data->status_anggota == "Kepala Keluarga") {
+                $message = "Tidak dapat menghapus data " . $data->nama_lengkap . " dikarenakan berstatus sebagai 'Kepala Keluarga' untuk nomor Kartu Keluarga " . $data->no_kk;
+                return response()->json(['message' => $message, 'is_delete' => false]);
             }
-            
-            if($detailKeluarga->count() <= 1){
-                DB::transaction(function() use ($id, $data) {
+
+            if ($detailKeluarga->count() <= 1) {
+                DB::transaction(function () use ($id, $data) {
                     $this->detailKeluarga->where(['keluarga_id' => $data->keluarga_id])->forceDelete();
-                    $this->keluargas->find($data->keluarga_id)->forceDelete();  
+                    $this->keluargas->find($data->keluarga_id)->forceDelete();
                 });
             }
         }
-        
+
         $delete = $this->warga->find($id);
         $delete->forceDelete();
 
-        return response()->json(['message'=>'Data berhasil dihapus','is_delete'=> true]);
+        return response()->json(['message' => 'Data berhasil dihapus', 'is_delete' => true]);
     }
 }

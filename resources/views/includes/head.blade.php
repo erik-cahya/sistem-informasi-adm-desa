@@ -7,8 +7,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicons -->
-<link href="{{ asset('res/logo.ico') }}" rel="icon">
-<link href="{{ asset('res/logo.ico') }}" rel="apple-touch-icon">
+<link href="{{ asset('res/Batanghari.ico') }}" rel="icon">
+<link href="{{ asset('res/Batanghari.ico') }}" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">

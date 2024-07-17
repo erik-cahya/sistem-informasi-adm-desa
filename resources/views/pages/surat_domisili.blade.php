@@ -90,6 +90,7 @@
                                           </div>
                                       </div>
                                   </div>
+
                                   <div class="row mb-3">
                                       <label for="input-no_ktp" class="col-sm-2 col-form-label">NIK</label>
                                       <div class="col-sm-10">
@@ -100,6 +101,7 @@
                                           </div>
                                       </div>
                                   </div>
+
                                   <div class="row mb-3">
                                       <label for="input-nama_lengkap" class="col-sm-2 col-form-label">Nama</label>
                                       <div class="col-sm-10">
@@ -279,6 +281,7 @@
                       url: url.replace(':id', id),
                       success: function(response) {
 
+
                           $('#warga_id').val(`${response.id}`);
 
                           //set alamat
@@ -288,9 +291,9 @@
                           //set value
                           for (key in response) {
                               $('#input-' + key).val(`${response[key]}`);
+                              console.log(response[key]);
+
                           }
-
-
                           $('#data-warga').show();
                       },
                       error: function(xhr, status, error) {
@@ -320,6 +323,8 @@
                   data_input.pembuat_jabatan = $("#input-pembuat_jabatan").val();
                   data_input.pembuat_alamat = $("#input-pembuat_alamat").val();
 
+                  data_input.warga_id = $("#input-id").val();
+
                   data_input.no_ktp = $("#input-no_ktp").val();
                   data_input.nama_lengkap = $("#input-nama_lengkap").val();
                   data_input.tempat_lahir = $("#input-tempat_lahir").val();
@@ -332,6 +337,7 @@
                   data_input.tempat_surat = $("#input-tempat_surat").val();
                   data_input.tgl_surat = $("#input-tgl_surat").val();
                   data_input.kepala_desa = $("#input-kepala_desa").val();
+
 
                   $.ajax({
                       url: "{{ route('surat.domisili.create') }}",

@@ -310,6 +310,9 @@
                   event.preventDefault();
 
                   var data_input = new Object();
+
+                  data_input.warga_id = $("#input-id").val();
+
                   data_input.no_surat = $("#input-no_surat").val();
                   data_input.pembuat_nama = $("#input-pembuat_nama").val();
                   data_input.pembuat_jabatan = $("#input-pembuat_jabatan").val();

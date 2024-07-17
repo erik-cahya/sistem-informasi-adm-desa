@@ -1288,7 +1288,7 @@ input[readonly]:focus {
 
 /* custom */
 .bg-images {
-    background-image: url("../my-image/bg.jpeg");
+    background-image: url("../my-image/image1.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

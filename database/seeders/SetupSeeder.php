@@ -19,9 +19,11 @@ class SetupSeeder extends Seeder
         $users = [
             [
                 'username' => 'admin',
+                'name' => 'admin',
                 'email' => 'admin@mail.com',
                 'password' => bcrypt('admin123'),
-                'status' => 1
+                'status' => 1,
+                'level' => 'admin'
             ],
         ];
 
@@ -32,12 +34,12 @@ class SetupSeeder extends Seeder
         $params = [
             [
                 'param' => 'nama_desa',
-                'value' => 'Matanga',
+                'value' => 'Rantau Puri',
                 'keterangan' => 'nama desa',
             ],
             [
                 'param' => 'kepala_desa',
-                'value' => 'ARIYANDO MATAIYA',
+                'value' => 'Muhammad Haviz',
                 'keterangan' => 'nama kepala desa',
             ],
         ];

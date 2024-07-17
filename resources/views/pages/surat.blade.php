@@ -18,34 +18,39 @@
                       <div class="card-body">
 
                           <h5 class="card-title">Daftar {{ $title }}</h5>
-                          
-                          <div class="btn-group">
-                          <div class="btn-group mb-3 mr-2">
-                              <button type="button" class="btn btn-success dropdown-toggle rounded-1" data-bs-toggle="dropdown"
-                                  aria-expanded="false">
-                                  <i class="bx bx-plus"></i>&nbsp;Buat Surat
-                              </button>
-                              <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{{ route('surat.domisili') }}">Surat domisili</a></li>
-                                  <li><a class="dropdown-item"
-                                          href="{{ route('surat.keterangan_pekerjaan_orang_tua') }}">Surat pekerjaan orang
-                                          tua</a></li>
-                                  <li><a class="dropdown-item" href="{{ route('surat.keterangan_berlakuan_baik') }}">Surat
-                                          berpelakuan baik</a></li>
-                                  <li><a class="dropdown-item" href="{{ route('surat.keterangan_ekonomi_lemah') }}">Surat
-                                          ekonomi lemah</a></li>
-                                  <li><a class="dropdown-item"
-                                          href="{{ route('surat.surat_keterangan_belum_menikah') }}">Surat belum menikah</a>
-                                  </li>
-                                  <li><a class="dropdown-item"
-                                          href="{{ route('surat.surat_keterangan_kepemilikan') }}">Surat kepemilikan</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="{{ route('surat.surat_keterangan_usaha') }}">Surat
-                                          keterangan usaha</a></li>
-                              </ul>
-                          </div>
 
-                          <div id="printbar" style="float:right"></div>
+                          <div class="btn-group">
+                              <div class="btn-group mb-3 mr-2">
+                                  <button type="button" class="btn btn-success dropdown-toggle rounded-1"
+                                      data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="bx bx-plus"></i>&nbsp;Buat Surat
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="{{ route('surat.domisili') }}">Surat domisili</a>
+                                      </li>
+                                      <li><a class="dropdown-item"
+                                              href="{{ route('surat.keterangan_pekerjaan_orang_tua') }}">Surat pekerjaan
+                                              orang
+                                              tua</a></li>
+                                      <li><a class="dropdown-item"
+                                              href="{{ route('surat.keterangan_berlakuan_baik') }}">Surat
+                                              berpelakuan baik</a></li>
+                                      <li><a class="dropdown-item"
+                                              href="{{ route('surat.keterangan_ekonomi_lemah') }}">Surat
+                                              ekonomi lemah</a></li>
+                                      <li><a class="dropdown-item"
+                                              href="{{ route('surat.surat_keterangan_belum_menikah') }}">Surat belum
+                                              menikah</a>
+                                      </li>
+                                      <li><a class="dropdown-item"
+                                              href="{{ route('surat.surat_keterangan_kepemilikan') }}">Surat kepemilikan</a>
+                                      </li>
+                                      <li><a class="dropdown-item" href="{{ route('surat.surat_keterangan_usaha') }}">Surat
+                                              keterangan usaha</a></li>
+                                  </ul>
+                              </div>
+
+                              <div id="printbar" style="float:right"></div>
                           </div>
                           <div class="table-responsive">
                               <table id="tablesurat" class="display .datatable table table-hover" style="width:100%">
@@ -128,8 +133,8 @@
                   serverSide: true,
                   ajax: "{{ url('surat') }}",
                   "oLanguage": {
-                    "sSearch": "Cari"
-                   },
+                      "sSearch": "Cari"
+                  },
                   //   dom: 'lBfrtip',
                   dom: "<'row'<'col-sm-5'l><'col-sm-7'f>>" +
                       "<'row'<'col-sm-12'tr>>" +
@@ -141,14 +146,13 @@
                           }
                       },
                       buttons: [{
-                              extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
-                              titleAttr: 'Excel',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3]
-                              },
-                          }
-                      ],
+                          extend: "excelHtml5",
+                          text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
+                          titleAttr: 'Excel',
+                          exportOptions: {
+                              columns: [0, 1, 2, 3]
+                          },
+                      }],
                   },
                   aLengthMenu: [
                       [25, 50, 100, 200, -1],
@@ -164,6 +168,7 @@
                   }],
                   columns: [{
                           render: function(data, type, row, meta) {
+                              console.log(row);
                               return meta.row + meta.settings._iDisplayStart + 1;
                           }
                       },
@@ -202,7 +207,7 @@
               table.buttons().container().appendTo("#printbar");
           });
 
-          //delete 
+          //delete
           deleteModalAccount = (id) => {
 
               //console.log(id);

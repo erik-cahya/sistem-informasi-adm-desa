@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Mutasi extends Model
 {
-     use HasFactory, Notifiable;
+    use HasFactory, Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,16 +24,18 @@ class Mutasi extends Model
     public function getFullData($id = null)
     {
         if ($id == null) {
-            $dataMutasi = Mutasi::select('mutasis.*',
-                'wargas.no_ktp','wargas.nama_lengkap'
-            )->join('wargas','wargas.id','=','mutasis.warga_id')->get();
+            $dataMutasi = Mutasi::select(
+                'mutasis.*',
+                'wargas.no_ktp',
+                'wargas.nama_lengkap'
+            )->join('wargas', 'wargas.id', '=', 'mutasis.warga_id')->get();
 
             return $dataMutasi;
         }
 
-        $data = Mutasi::select('mutasis.*','wargas.no_ktp','wargas.nama_lengkap')
-                ->join('wargas','wargas.id','=','mutasis.warga_id')
-                ->where(['mutasis.id' => $id])->get()->first();
+        $data = Mutasi::select('mutasis.*', 'wargas.no_ktp', 'wargas.nama_lengkap')
+            ->join('wargas', 'wargas.id', '=', 'mutasis.warga_id')
+            ->where(['mutasis.id' => $id])->get()->first();
 
         return $data;
     }

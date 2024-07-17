@@ -2,7 +2,8 @@
 @section('content')
     <div class="pagetitle">
         <h3 id="time">-</h3>
-        <h1>Halo {{ auth()->user()->username }}, Selamat datang 👋</h1>
+        <h1>Halo {{ auth()->user()->name }}, Selamat datang 👋</h1>
+
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -357,9 +358,10 @@
             getBy('surat', 'total');
             getBy('mutasi', 'total');
         });
+
         //set default data
         getBy = (byData, byDate) => {
-            $(`#count-${byData}`).html(` 
+            $(`#count-${byData}`).html(`
                 <div class="spinner-border spinner-border-sm text-dark" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>

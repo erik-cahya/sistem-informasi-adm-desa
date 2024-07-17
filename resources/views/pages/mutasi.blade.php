@@ -20,20 +20,21 @@
                           <h5 class="card-title">Daftar {{ $title }}</h5>
 
                           <div class="btn-group">
-                          <div class="btn-group mb-3 mr-2">
-                              <button type="button" class="btn btn-success dropdown-toggle rounded-1" data-bs-toggle="dropdown"
-                                  aria-expanded="false">
-                                  <i class="bx bx-plus"></i>&nbsp;Buat Mutasi
-                              </button>
-                              <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{{ route('mutasi.masuk') }}">Mutasi masuk/lahir</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="{{ route('mutasi.keluar') }}">Mutasi keluar/wafat</a>
-                                  </li>
-                              </ul>
-                          </div>
+                              <div class="btn-group mb-3 mr-2">
+                                  <button type="button" class="btn btn-success dropdown-toggle rounded-1"
+                                      data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="bx bx-plus"></i>&nbsp;Buat Mutasi
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="{{ route('mutasi.masuk') }}">Mutasi masuk/lahir</a>
+                                      </li>
+                                      <li><a class="dropdown-item" href="{{ route('mutasi.keluar') }}">Mutasi
+                                              keluar/wafat</a>
+                                      </li>
+                                  </ul>
+                              </div>
 
-                          <div id="printbar" style="float:right" class="mb-3"></div>
+                              <div id="printbar" style="float:right" class="mb-3"></div>
                           </div>
                           <div class="table-responsive">
                               <table id="table_mutasi" class="display .datatable table table-hover" style="width:100%">
@@ -150,19 +151,18 @@
                           }
                       },
                       buttons: [{
-                              extend: "excelHtml5",
-                              text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
-                              titleAttr: 'Excel',
-                              exportOptions: {
-                                  columns: [0, 1, 2, 3, 4, 5]
-                              },
-                          }
-                      ],
+                          extend: "excelHtml5",
+                          text: '<i class="bi bi-file-earmark-excel-fill"></i> Download Data',
+                          titleAttr: 'Excel',
+                          exportOptions: {
+                              columns: [0, 1, 2, 3, 4, 5]
+                          },
+                      }],
                   },
                   "scrollX": true,
                   "oLanguage": {
-                    "sSearch": "Cari"
-                   },
+                      "sSearch": "Cari"
+                  },
                   aLengthMenu: [
                       [10, 25, 50, 100, -1],
                       [10, 25, 50, 100, "All"]
@@ -324,7 +324,7 @@
               })
           });
 
-          //delete 
+          //delete
           deleteModal = (id) => {
 
               Swal.fire({

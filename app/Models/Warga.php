@@ -45,27 +45,27 @@ class Warga extends Model
     public function getFullData($id = null)
     {
         if ($id != null) {
-            $dataAnggota = \DB::table('wargas')
-            ->leftJoin('detail_keluargas','detail_keluargas.warga_id', '=', 'wargas.id')
-            ->leftJoin('keluargas','keluargas.id', '=', 'detail_keluargas.keluarga_id')
-            ->where('wargas.id',$id)
-            ->select('wargas.*','keluargas.id as keluarga_id','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
-            ->first();
+            $dataAnggota = DB::table('wargas')
+                ->leftJoin('detail_keluargas', 'detail_keluargas.warga_id', '=', 'wargas.id')
+                ->leftJoin('keluargas', 'keluargas.id', '=', 'detail_keluargas.keluarga_id')
+                ->where('wargas.id', $id)
+                ->select('wargas.*', 'keluargas.id as keluarga_id', 'keluargas.no_kk', 'keluargas.ekonomi', 'detail_keluargas.status_anggota')
+                ->first();
 
             //$dataAnggota->tgl_lahir = (new Carbon($dataAnggota->tgl_lahir))->isoFormat('d/M/Y');
 
             return $dataAnggota;
         }
-            $dataAnggota = \DB::table('wargas')
-                ->leftJoin('detail_keluargas','detail_keluargas.warga_id', '=', 'wargas.id')
-                ->leftJoin('keluargas','keluargas.id', '=', 'detail_keluargas.keluarga_id')
-                ->select('wargas.*','keluargas.no_kk','keluargas.ekonomi','detail_keluargas.status_anggota')
-                ->get();
+        $dataAnggota = DB::table('wargas')
+            ->leftJoin('detail_keluargas', 'detail_keluargas.warga_id', '=', 'wargas.id')
+            ->leftJoin('keluargas', 'keluargas.id', '=', 'detail_keluargas.keluarga_id')
+            ->select('wargas.*', 'keluargas.no_kk', 'keluargas.ekonomi', 'detail_keluargas.status_anggota')
+            ->get();
 
-            for ($i=0; $i < count($dataAnggota) ; $i++) { 
-                //$dataAnggota[$i]->tgl_lahir = (new Carbon($dataAnggota[$i]->tgl_lahir))->isoFormat('d/M/Y');
-            }
+        for ($i = 0; $i < count($dataAnggota); $i++) {
+            //$dataAnggota[$i]->tgl_lahir = (new Carbon($dataAnggota[$i]->tgl_lahir))->isoFormat('d/M/Y');
+        }
 
-            return $dataAnggota;
+        return $dataAnggota;
     }
 }

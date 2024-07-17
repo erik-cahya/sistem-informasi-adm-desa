@@ -10,7 +10,7 @@ use Datatables;
 
 class UserController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         $this->users = new User();
     }
@@ -19,8 +19,8 @@ class UserController extends Controller
     {
         if (request()->ajax()) {
             return datatables()->of(User::select('*'))
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         $data = [
             'title' => "Akun Pengguna"
@@ -37,23 +37,29 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'username' => 'required|max:32|min:3|alpha_dash|unique:users,username',
+            'username' => 'required|max:32|min:3|alpha_dash|unique:users,username|exists:wargas,no_ktp',
+            'name' => 'required|max:32|min:3',
             'password' => 'required|max:32|min:3',
             'email' => 'required|email|unique:users,email',
             'status' => 'required'
+        ], [
+            'username.exists' => 'Data NIK tidak ada, silahkan hubungi petugas'
         ]);
 
         $user = new User();
         $user->username = $request->username;
+        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->status = ($request->status == 1) ? 1  : 0;
+        $user->level = 'warga';
         $user->save();
 
-        return response()->json(['message'=>'Data berhasil di simpan.']);
+        return response()->json(['message' => 'Data berhasil di simpan.']);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $data = User::find($id);
 
         return response()->json($data);
@@ -73,9 +79,11 @@ class UserController extends Controller
         $user = $this->users->find($request->id);
 
         $request->validate([
-            'username' => 'required|max:32',
+            'username' => 'required|max:32|exists:wargas,no_ktp',
             'email' => 'required|email',
             'status' => 'required'
+        ], [
+            'username.exists' => 'Data NIK tidak ada, silahkan hubungi petugas'
         ]);
 
         $user->update([
@@ -84,7 +92,7 @@ class UserController extends Controller
             'status' => ($request->status == 1) ? 1  : 0
         ]);
 
-        return response()->json(['message'=>'Data berhasil diperbarui']);
+        return response()->json(['message' => 'Data berhasil diperbarui']);
     }
 
     public function delete($id)
@@ -92,8 +100,8 @@ class UserController extends Controller
         $user = $this->users->find($id);
 
         $user->forceDelete();
-        
-        return response()->json(['message'=>'Data berhasil dihapus']);
+
+        return response()->json(['message' => 'Data berhasil dihapus']);
     }
 
     public function profile()

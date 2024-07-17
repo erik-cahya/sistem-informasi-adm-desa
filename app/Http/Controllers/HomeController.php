@@ -15,13 +15,15 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-       //
+        //
     }
 
     public function index()
     {
+        // dd('ini home');
         $data = [
             'user' => User::first(),
+            'data_user' => Warga::where('no_ktp', auth()->user()->username)->get(),
             'title' => 'Dashboard'
         ];
         return view('pages.home', $data);
@@ -33,14 +35,14 @@ class HomeController extends Controller
         $from = $date->startOfMonth()->format('Y-m-d');
         $to =  Carbon::createFromFormat('Y-m-d', $from)->endOfMonth()->format('Y-m-d');
 
-        
+
         if ($by == 'month') {
             //dd($by);
             return response()->json([
-                'penduduk' => Warga::whereBetween('created_at',[$from,$to])->get()->count(),
-                'keluarga' => Keluarga::whereBetween('created_at',[$from,$to])->get()->count(),
-                'surat' => Surat::whereBetween('created_at',[$from,$to])->get()->count(),
-                'mutasi' => Mutasi::whereBetween('created_at',[$from,$to])->get()->count()
+                'penduduk' => Warga::whereBetween('created_at', [$from, $to])->get()->count(),
+                'keluarga' => Keluarga::whereBetween('created_at', [$from, $to])->get()->count(),
+                'surat' => Surat::whereBetween('created_at', [$from, $to])->get()->count(),
+                'mutasi' => Mutasi::whereBetween('created_at', [$from, $to])->get()->count()
             ]);
         }
 
@@ -59,7 +61,6 @@ class HomeController extends Controller
             'surat' => Surat::get()->count(),
             'mutasi' => Mutasi::get()->count()
         ]);
-        
     }
 
     public function getGenderData()
@@ -80,17 +81,16 @@ class HomeController extends Controller
         $arrayDataKeluar = [];
         $arrayDataMasuk = [];
 
-        for ($i=0; $i < 6 ; $i++) { 
-            $arrayMonth[$i] = $date->format('M y');           
+        for ($i = 0; $i < 6; $i++) {
+            $arrayMonth[$i] = $date->format('M y');
             $from = $date->startOfMonth()->format('Y-m-d');
             $to =  Carbon::createFromFormat('Y-m-d', $from)->endOfMonth()->format('Y-m-d');
-           
-            $arrayDataKeluar[$i] = Mutasi::whereIn('jenis_mutasi',['Keluar','Wafat'])->whereBetween('tgl_keluar_masuk',[$from,$to])->get()->count();
-            $arrayDataMasuk[$i] = Mutasi::whereIn('jenis_mutasi',['Masuk','Lahir'])->whereBetween('tgl_keluar_masuk',[$from,$to])->get()->count();
-     
-        
-            $date = $date->subMonth();
 
+            $arrayDataKeluar[$i] = Mutasi::whereIn('jenis_mutasi', ['Keluar', 'Wafat'])->whereBetween('tgl_keluar_masuk', [$from, $to])->get()->count();
+            $arrayDataMasuk[$i] = Mutasi::whereIn('jenis_mutasi', ['Masuk', 'Lahir'])->whereBetween('tgl_keluar_masuk', [$from, $to])->get()->count();
+
+
+            $date = $date->subMonth();
         }
 
         return response()->json([
@@ -99,5 +99,4 @@ class HomeController extends Controller
             'keluar' => $arrayDataKeluar
         ]);
     }
- 
 }
